@@ -33,7 +33,7 @@ try:
     print("read bmp file")
     Himage = Image.open(os.path.join(picdir, 'prepared.png'))
     epd.display(epd.getbuffer(Himage))
-    time.sleep(3)
+    time.sleep(10)
 
     print("clearing...")
     epd.Clear()
