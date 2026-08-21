@@ -4,7 +4,7 @@
 import sys
 import os
 picdir = "picdir/"
-libdir = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'lib')
+libdir = "e_ink_lib"
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
