@@ -56,7 +56,7 @@ try:
 
     # read bmp file 
     print("2.read bmp file")
-    Himage = Image.open(os.path.join(picdir, '13in3E.bmp'))
+    Himage = Image.open(os.path.join(picdir, 'lighthouse2.jpeg'))
     epd.display(epd.getbuffer(Himage))
     time.sleep(3)
 
