@@ -22,7 +22,7 @@ import json
 def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     y = y_start
     sq_width = 26
-    sq_height = 19
+    sq_height = 20
     draw.text((x_start, y),"Station " + station_name,font=font,fill=fill)
     
     y += 20
@@ -32,7 +32,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
 
         # Choose background and text color
         if route == "3":
-            route_bg = (144, 238, 144)
+            route_bg = "green"
             route_text = "white"
 
         elif route == "S11":
