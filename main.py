@@ -28,7 +28,7 @@ font_large = ImageFont.truetype(
 
 font_small = ImageFont.truetype(
     "fonts/GoogleSans-Regular.ttf",
-    30
+    15
 )
 
 
@@ -62,25 +62,8 @@ try:
     )
 
     # Print DataFrame rows
-    y = 130
-
-    for _, row in seen_df.iterrows():
-
-        text = (
-            f"{row['departure_time']}  "
-            f"{row['route_short_name']}  "
-            f"{row['trip_headsign']}  "
-            f"+{row['delay']}s"
-        )
-
-        draw.text(
-            (50, y),
-            text,
-            font=font_small,
-            fill="black"
-        )
-
-        y += 60
+    display_schedule(draw, seen_df, 150, font_small, "black")
+    display_schedule(draw, etzberg_df, 250, font_small, "black")
     
     draw.rectangle(
     (20, 20, 1180, 1580),
@@ -119,7 +102,22 @@ except:
 
 
 
-
+def display_schedule(draw, df, y_start, font, fill):
+    y = y_start
+    for _, row in df.iterrows():
+        text = (
+            f"{row['departure_time']}  "
+            f"{row['route_short_name']}  "
+            f"{row['trip_headsign']}  "
+            f"+{row['delay']}s"
+        )
+        draw.text(
+            (50, y),
+            text,
+            font=font,
+            fill=fill
+        )
+        y += 20
 
 
 def center_text(draw, y, text, font, fill):
