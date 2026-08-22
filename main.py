@@ -62,8 +62,8 @@ try:
     )
 
     # Print DataFrame rows
-    display_schedule(draw, seen_df, 150, font_small, "black")
-    display_schedule(draw, etzberg_df, 250, font_small, "black")
+    draw = display_schedule(draw, seen_df, 150, font_small, "black")
+    draw = display_schedule(draw, etzberg_df, 250, font_small, "black")
     
     draw.rectangle(
     (20, 20, 1180, 1580),
@@ -118,7 +118,7 @@ def display_schedule(draw, df, y_start, font, fill):
             fill=fill
         )
         y += 20
-
+    return draw
 
 def center_text(draw, y, text, font, fill):
     bbox = draw.textbbox((0, 0), text, font=font)
