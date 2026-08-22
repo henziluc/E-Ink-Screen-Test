@@ -21,7 +21,8 @@ import json
 
 def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     y = y_start
-    
+    sq_width = 26
+    sq_height = 19
     draw.text((x_start, y),"Station " + station_name,font=font,fill=fill)
     
     y += 20
@@ -46,8 +47,8 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
             route_bg = "gray"
             route_text = "white"
         
-        draw.rounded_rectangle((x_start, y, x_start + 20, y + 20),radius=1,fill=route_bg)
-        draw.text((x_start, y),row['route_short_name'],font=font,fill=route_text)
+        draw.rounded_rectangle((x_start, y, x_start + sq_width, y + sq_height),radius=1,fill=route_bg)
+        draw.text((x_start + sq_width/2 , y),row['route_short_name'],font=font,fill=route_text, anchor="mt")
         
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
         draw.text((x_start + 30, y),headsign ,font=font,fill=fill) 
