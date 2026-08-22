@@ -48,7 +48,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
             route_text = "white"
         
         draw.rounded_rectangle((x_start, y, x_start + sq_width, y + sq_height),radius=1,fill=route_bg)
-        draw.text((x_start + sq_width/2 , y + sq_height/h),row['route_short_name'],font=font,fill=route_text, anchor="mm")
+        draw.text((x_start + sq_width/2 , y + sq_height/2),row['route_short_name'],font=font,fill=route_text, anchor="mm")
         
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
         draw.text((x_start + 30, y),headsign ,font=font,fill=fill) 
