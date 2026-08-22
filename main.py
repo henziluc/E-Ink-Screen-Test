@@ -119,7 +119,7 @@ try:
     draw = display_schedule(draw, "Seen", seen_df, 50, 120, font_small, "black")
     draw = display_schedule(draw, "Etzberg", etzberg_df,50 , 270, font_small, "black")
     
-    draw = draw_grid(draw, 1600, 1200)
+    draw = draw_grid(draw, 50, 1600, 1200)
     
     epd.display(epd.getbuffer(image))
     time.sleep(20)
