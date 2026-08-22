@@ -98,8 +98,8 @@ try:
     )
 
     # Print DataFrame rows
-    draw = display_schedule(draw,"Seen" , seen_df, 50, 150, font_small, "black")
-    draw = display_schedule(draw,"Etzberg" ;etzberg_df,50 , 270, font_small, "black")
+    draw = display_schedule(draw, "Seen", seen_df, 50, 150, font_small, "black")
+    draw = display_schedule(draw, "Etzberg", etzberg_df,50 , 270, font_small, "black")
     
     draw.rectangle(
     (20, 20, 1180, 1580),
