@@ -19,6 +19,19 @@ from PIL import Image
 import pandas as pd
 import json
 
+def display_schedule(draw, df, y_start, font, fill):
+    y = y_start
+    for _, row in df.iterrows():
+        
+        draw.text((50, y),row['departure_time'][:-3],font=font_small,fill=fill)
+        draw.text((100, y),row['route_short_name'],font=font_small,fill=fill)
+        draw.text((150, y),row['trip_headsign'],font=font_small,fill=fill) 
+        draw.text((200, y),f"+{row['delay']/60:.0f}min",font=font_small,fill=fill)  
+        y += 20
+    return draw
+
+
+
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
     60
@@ -94,16 +107,7 @@ except:
 
 
 
-def display_schedule(draw, df, y_start, font, fill):
-    y = y_start
-    for _, row in df.iterrows():
-        
-        draw.text((50, y),row['departure_time'][:-3],font=font_small,fill=fill)
-        draw.text((100, y),row['route_short_name'],font=font_small,fill=fill)
-        draw.text((150, y),row['trip_headsign'],font=font_small,fill=fill) 
-        draw.text((200, y),f"+{row['delay']/60:.0f}min",font=font_small,fill=fill)  
-        y += 20
-    return draw
+
 
 
 
