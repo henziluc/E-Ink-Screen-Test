@@ -22,22 +22,36 @@ import json
 def display_schedule(draw, df, x_start, y_start, font, fill):
     y = y_start
     for _, row in df.iterrows():
-        if row['route_short_name'] == "3":
-            fill_route_short_name = "green"
-        elif row['route_short_name'] in ["S11", "S26"]:
-            fill_route_short_name = "black"
+        route = str(row["route_short_name"])
+
+        # Choose background and text color
+        if route == "3":
+            route_bg = "green"
+            route_text = "white"
+
+        elif route == "S11":
+            route_bg = "black"
+            route_text = "white"
+
+        elif route == "S26":
+            route_bg = "black"
+            route_text = "white"
+
         else:
-            fill_route_short_name = "black"
-        draw.text((x_start, y),row['route_short_name'],font=font_small,fill=fill_route_short_name)
+            route_bg = "gray"
+            route_text = "white"
+        
+        draw.rounded_rectangle((x_start, y, x_start + 20, y + 45),radius=8,fill=route_bg)
+        draw.text((x_start, y),row['route_short_name'],font=font,fill=route_text)
         
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
-        draw.text((x_start + 30, y),headsign ,font=font_small,fill=fill) 
+        draw.text((x_start + 30, y),headsign ,font=font,fill=fill) 
         
         delay = round(int(row['delay'])/60)
         if delay > 1:
-            draw.text((x_start + 150, y),f"+{delay}min",font=font_small,fill="red") 
+            draw.text((x_start + 150, y),f"+{delay}min",font=font,fill="red") 
             
-        draw.text((x_start + 250, y),row['departure_time'][:-3],font=font_small,fill=fill)
+        draw.text((x_start + 200, y),row['departure_time'][:-3],font=font,fill=fill)
       
         y += 20
     return draw
@@ -69,7 +83,7 @@ try:
 
     image = Image.new("RGB", (1200, 1600), "white")
     draw = ImageDraw.Draw(image)
-
+    
     # Title
     draw.text(
         (50, 50),
