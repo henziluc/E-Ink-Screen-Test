@@ -7,9 +7,9 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start, font, fill):
     spacing = 25
     draw.text((x_start, y),'Date',font=font,fill=fill)
     draw.text((x_start + 100, y),'Weather Code',font=font,fill=fill)
-    draw.text((x_start + 200, y),'Min Temperature',font=font,fill=fill)
-    draw.text((x_start + 300, y),'Max Temperature ',font=font,fill=fill)
-    draw.text((x_start + 400, y),'Max Wind Speed',font=font,fill=fill)
+    draw.text((x_start + 200, y),'Min Temp.',font=font,fill=fill)
+    draw.text((x_start + 300, y),'Max Temp.',font=font,fill=fill)
+    draw.text((x_start + 400, y),'Wind Speed',font=font,fill=fill)
     draw.text((x_start + 500, y),'Precipitation',font=font,fill=fill)
     draw.text((x_start + 600, y),'Sunshine Duration',font=font,fill=fill)
     y += spacing
@@ -20,11 +20,11 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start, font, fill):
         
         draw.text((x_start, y),str(row['date'])[:10],font=font,fill=fill)
         draw.text((x_start + 100, y),weather_code,font=font,fill=fill)
-        draw.text((x_start + 200, y),str(row['temperature_2m_min']),font=font,fill=fill)
-        draw.text((x_start + 300, y),str(row['temperature_2m_max']),font=font,fill=fill)
-        draw.text((x_start + 400, y),str(row['wind_speed_10m_max']),font=font,fill=fill)
-        draw.text((x_start + 500, y),str(row['precipitation_sum']),font=font,fill=fill)
-        draw.text((x_start + 600, y),str(row['sunshine_duration']),font=font,fill=fill)
+        draw.text((x_start + 200, y),str(round(row['temperature_2m_min'],1)),font=font,fill=fill)
+        draw.text((x_start + 300, y),str(round(row['temperature_2m_max'],1)),font=font,fill=fill)
+        draw.text((x_start + 400, y),str(round(row['wind_speed_10m_max'],1)),font=font,fill=fill)
+        draw.text((x_start + 500, y),str(round(row['precipitation_sum'],1)),font=font,fill=fill)
+        draw.text((x_start + 600, y),str(round(row['sunshine_duration']/3060,1)) + 'h',font=font,fill=fill)
         
         y += spacing    
     return draw
