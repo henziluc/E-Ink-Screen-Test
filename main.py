@@ -22,11 +22,9 @@ import json
 def display_schedule(draw, df, y_start, font, fill):
     y = y_start
     for _, row in df.iterrows():
-        if row[trip_headsign] == "3":
+        if row['trip_headsign'] == "3":
             fill_headsign = "green"
-        elif row[trip_headsign] == "S11":
-            fill_headsign = "black"
-        elif row[trip_headsign] == "S26":
+        elif row["route_short_name"] in ["S11", "S26"]:
             fill_headsign = "black"
         else:
             fill_headsign = "black"
