@@ -13,13 +13,13 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start, font, fill):
     draw.text((x_start + 300, y),'Sunshine Duration',font=font,fill=fill)
     y += 25
     for _, row in df_daily.iterrows():
-        draw.text((x_start, y),row['date'],font=font,fill=fill)
-        draw.text((x_start + 50, y),row['weather_code'],font=font,fill=fill)
-        draw.text((x_start + 100, y),row['temperature_2m_min'],font=font,fill=fill)
-        draw.text((x_start + 150, y),row['temperature_2m_max'],font=font,fill=fill)
-        draw.text((x_start + 200, y),row['wind_speed_10m_max'],font=font,fill=fill)
-        draw.text((x_start + 250, y),row['precipitation_sum'],font=font,fill=fill)
-        draw.text((x_start + 300, y),row['sunshine_duration'],font=font,fill=fill)
+        draw.text((x_start, y),str(row['date']),font=font,fill=fill)
+        draw.text((x_start + 50, y),str(row['weather_code']),font=font,fill=fill)
+        draw.text((x_start + 100, y),str(row['temperature_2m_min']),font=font,fill=fill)
+        draw.text((x_start + 150, y),str(row['temperature_2m_max']),font=font,fill=fill)
+        draw.text((x_start + 200, y),str(row['wind_speed_10m_max']),font=font,fill=fill)
+        draw.text((x_start + 250, y),str(row['precipitation_sum']),font=font,fill=fill)
+        draw.text((x_start + 300, y),str(row['sunshine_duration']),font=font,fill=fill)
         
         
         
