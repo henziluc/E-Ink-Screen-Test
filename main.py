@@ -42,27 +42,37 @@ try:
     draw = ImageDraw.Draw(image)
 
     draw.text((50, 50), "Weather", fill="black")
-    draw.text((50, 100),"22 °C",font=font_large,fill="black")
-    draw.text((50, 150), "Sunny", fill="yellow")
+    draw.text((50, 100),"22°C",font=font_large,fill="black")
+    draw.text((50, 200), "Sunny",font=font_small, fill="red")
     
     draw.rectangle(
-    (100, 50, 150, 100),
+    (20, 20, 1180, 1580),
     outline="black",
     width=5)
     
     draw.rectangle(
-    (200, 50, 250, 100),
+    (500, 700, 700, 900),
     fill="yellow")
 
     draw.ellipse(
-    (300, 50, 350, 100),
+    (500, 700, 700, 900),
     fill="red")
     
     draw.line(
-    (400, 50, 450, 100),
+    (500, 700, 700, 900),
     fill="black",
     width=4)
+    draw.line(
+    (500, 900, 700, 700),
+    fill="black",
+    width=4)
+    
+    
     epd.display(epd.getbuffer(image))
+    time.sleep(10)
+
+    print("clearing...")
+    epd.Clear()
 
     print("goto sleep...")
     epd.sleep()
@@ -71,3 +81,14 @@ except:
     epd.sleep()
 
 
+
+
+
+
+def center_text(draw, y, text, font, fill):
+    bbox = draw.textbbox((0, 0), text, font=font)
+    width = bbox[2] - bbox[0]
+
+    x = (1200 - width) // 2
+
+    draw.text((x, y), text, font=font, fill=fill)
