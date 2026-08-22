@@ -30,8 +30,13 @@ try:
     epd.Clear()
     
     # read bmp file 
-    print("read bmp file")
+    print("read bmp 1.file")
     Himage = Image.open(os.path.join(picdir, 'prepared.png'))
+    epd.display(epd.getbuffer(Himage))
+    time.sleep(10)
+    
+    print("read bmp 2.file")
+    Himage = Image.open(os.path.join(picdir, 'prepared2.png'))
     epd.display(epd.getbuffer(Himage))
     time.sleep(10)
 
