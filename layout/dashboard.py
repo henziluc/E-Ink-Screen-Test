@@ -27,7 +27,7 @@ from .helpers import draw_grid
 
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
-    60
+    55
 )
 
 font_small = ImageFont.truetype(
@@ -57,7 +57,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         draw = draw_grid(draw, 50, 1600, 1200)
         
-        draw.text((1580, 50),"Last refresh: " + dt.datetime.now(),font=font_small)
+        draw.text((1580, 50),"Last refresh: " + str(dt.datetime.now()),font=font_small)
         
         
         epd.display(epd.getbuffer(image))
