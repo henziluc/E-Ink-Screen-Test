@@ -21,6 +21,7 @@ import json
 
 def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     y = y_start
+    #Size of the squares around the route short name
     sq_width = 26
     sq_height = 20
     draw.text((x_start, y),"Station " + station_name,font=font,fill=fill)
@@ -30,7 +31,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     for _, row in df.iterrows():
         route = str(row["route_short_name"])
 
-        # Choose background and text color
+        # Choose background and text color depending on route number
         if route == "3":
             route_bg = "green"
             route_text = "white"
@@ -46,20 +47,36 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
         else:
             route_bg = "gray"
             route_text = "white"
-        
+        #display route short name with a colored square around it
         draw.rounded_rectangle((x_start, y, x_start + sq_width, y + sq_height),radius=1,fill=route_bg)
-        draw.text((x_start + sq_width/2 , y + sq_height/2),row['route_short_name'],font=font,fill=route_text, anchor="mm")
-        
+        draw.text((x_start + sq_width/2 , y + sq_height/2), route,font=font,fill=route_text, anchor="mm")
+        #display trip headsign with out leading Winterthur
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
         draw.text((x_start + 30, y),headsign ,font=font,fill=fill) 
-        
+        #display delays in rounded minutes in a red font
         delay = round(int(row['delay'])/60)
         if delay > 1:
             draw.text((x_start + 150, y),f"+{delay}min",font=font,fill="red") 
-            
+        #display departure time    
         draw.text((x_start + 200, y),row['departure_time'][:-3],font=font,fill=fill)
       
         y += 25
+    return draw
+
+
+def draw_grid(draw, spacing, height, width):
+    i = 1
+    #horizontal lines
+    while i * spacing < height:
+        draw.line((0, i * spacing, width, i * spacing),fill="black",width=1)
+        i += 1
+    
+    i = 1  
+    #vertical lines
+    while i * spacing < width:
+            draw.line((i * spacing, 0, i * spacing, height),fill="black",width=1)
+            i += 1
+    
     return draw
 
 
@@ -99,31 +116,10 @@ try:
     )
 
     # Print DataFrame rows
-    draw = display_schedule(draw, "Seen", seen_df, 50, 150, font_small, "black")
-    draw = display_schedule(draw, "Etzberg", etzberg_df,50 , 300, font_small, "black")
+    draw = display_schedule(draw, "Seen", seen_df, 50, 120, font_small, "black")
+    draw = display_schedule(draw, "Etzberg", etzberg_df,50 , 270, font_small, "black")
     
-    draw.rectangle(
-    (20, 20, 1180, 1580),
-    outline="black",
-    width=5)
-    
-    draw.rectangle(
-    (500, 700, 700, 900),
-    fill="yellow")
-
-    draw.ellipse(
-    (500, 700, 700, 900),
-    fill="red")
-    
-    draw.line(
-    (500, 700, 700, 900),
-    fill="black",
-    width=4)
-    draw.line(
-    (500, 900, 700, 700),
-    fill="black",
-    width=4)
-    
+    draw = draw_grid(draw, 1600, 1200)
     
     epd.display(epd.getbuffer(image))
     time.sleep(20)
