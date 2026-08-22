@@ -40,8 +40,6 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
     epd = epd13in3E.EPD()
     try:
         epd.Init()
-        print("clearing...")
-        epd.Clear()
 
         image = Image.new("RGB", (1200, 1600), "white")
         draw = ImageDraw.Draw(image)
