@@ -19,7 +19,7 @@ from PIL import Image
 import pandas as pd
 import json
 
-def display_schedule(draw, df, y_start, font, fill):
+def display_schedule(draw, df, x_start, y_start, font, fill):
     y = y_start
     for _, row in df.iterrows():
         if row['route_short_name'] == "3":
@@ -28,12 +28,16 @@ def display_schedule(draw, df, y_start, font, fill):
             fill_route_short_name = "black"
         else:
             fill_route_short_name = "black"
-        draw.text((50, y),row['route_short_name'],font=font_small,fill=fill)
-        draw.text((100, y),row['trip_headsign'],font=font_small,fill=fill) 
+        draw.text((x_start, y),row['route_short_name'],font=font_small,fill=fill_route_short_name)
+        
+        headsign = row["trip_headsign"].replace("Winterthur, ", "")
+        draw.text((x_start + 30, y),headsign ,font=font_small,fill=fill) 
+        
         delay = round(int(row['delay'])/60)
         if delay > 1:
-            draw.text((150, y),f"+{delay}min",font=font_small,fill="red") 
-        draw.text((200, y),row['departure_time'][:-3],font=font_small,fill=fill)
+            draw.text((x_start + 150, y),f"+{delay}min",font=font_small,fill="red") 
+            
+        draw.text((x_start + 250, y),row['departure_time'][:-3],font=font_small,fill=fill)
       
         y += 20
     return draw
@@ -75,8 +79,8 @@ try:
     )
 
     # Print DataFrame rows
-    draw = display_schedule(draw, seen_df, 150, font_small, "black")
-    draw = display_schedule(draw, etzberg_df, 250, font_small, "black")
+    draw = display_schedule(draw, seen_df, 50, 150, font_small, "black")
+    draw = display_schedule(draw, etzberg_df,50 , 250, font_small, "black")
     
     draw.rectangle(
     (20, 20, 1180, 1580),
