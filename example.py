@@ -34,11 +34,6 @@ try:
     Himage = Image.open(os.path.join(picdir, 'prepared.png'))
     epd.display(epd.getbuffer(Himage))
     time.sleep(10)
-    
-    print("read bmp 2.file")
-    Himage = Image.open(os.path.join(picdir, 'prepared2.png'))
-    epd.display(epd.getbuffer(Himage))
-    time.sleep(10)
 
     print("clearing...")
     epd.Clear()
