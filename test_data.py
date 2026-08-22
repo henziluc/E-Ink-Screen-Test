@@ -82,7 +82,7 @@ hourly_weather_data = [
     ["2026-08-24 23:00:00+02:00", 21.428499, 3, 0.0, 3.545589],
 ]
 
-hourly_weather_df = pd.DataFrame(
+weather_hourly = pd.DataFrame(
     hourly_weather_data,
     columns=[
         "date",
@@ -93,7 +93,7 @@ hourly_weather_df = pd.DataFrame(
     ],
 )
 
-hourly_weather_df["date"] = pd.to_datetime(hourly_weather_df["date"])
+weather_hourly["date"] = pd.to_datetime(weather_hourly["date"])
 
 
 # ============================================================
@@ -136,7 +136,7 @@ daily_weather_data = [
     ],
 ]
 
-daily_weather_df = pd.DataFrame(
+weather_daily = pd.DataFrame(
     daily_weather_data,
     columns=[
         "date",
@@ -151,9 +151,9 @@ daily_weather_df = pd.DataFrame(
     ],
 )
 
-daily_weather_df["date"] = pd.to_datetime(daily_weather_df["date"])
-daily_weather_df["sunrise"] = pd.to_datetime(daily_weather_df["sunrise"])
-daily_weather_df["sunset"] = pd.to_datetime(daily_weather_df["sunset"])
+weather_daily["date"] = pd.to_datetime(weather_daily["date"])
+weather_daily["sunrise"] = pd.to_datetime(weather_daily["sunrise"])
+weather_daily["sunset"] = pd.to_datetime(weather_daily["sunset"])
 
 
 # ============================================================
@@ -168,7 +168,7 @@ seen_data = [
     ["10:50:00", "10:51:00", "Rüti ZH", "S26", 39060, 24, 39084],
 ]
 
-seen_df = pd.DataFrame(
+departures_seen = pd.DataFrame(
     seen_data,
     columns=[
         "arrival_time",
@@ -194,7 +194,7 @@ etzberg_data = [
     ["10:21:00", "10:21:00", "Winterthur, Rosenberg", "3", 37260, 48, 37308],
 ]
 
-etzberg_df = pd.DataFrame(
+departures_etzberg = pd.DataFrame(
     etzberg_data,
     columns=[
         "arrival_time",
