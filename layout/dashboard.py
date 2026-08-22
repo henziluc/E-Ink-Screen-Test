@@ -57,7 +57,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         draw = draw_grid(draw, 50, 1600, 1200)
         
-        draw.text((50, 1580),"Last refresh: " + str(dt.datetime.now()),font=font_small)
+        draw.text((50, 1500),"Last refresh: ",font=font_small)
         
         
         epd.display(epd.getbuffer(image))
