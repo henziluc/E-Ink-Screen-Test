@@ -10,6 +10,7 @@ if os.path.exists(libdir):
 
 import epd13in3E
 import time
+import datetime as dt
 
 from PIL import Image
 from PIL import ImageDraw
@@ -46,12 +47,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         draw = ImageDraw.Draw(image)
         
         # Title
-        draw.text(
-            (50, 50),
-            "Next Trains",
-            font=font_large,
-            fill="black"
-        )
+        draw.text((50, 50), "Next Trains", font=font_large, fill="black")
 
         # Print DataFrame rows
         draw = display_schedule(draw, "Seen", departures_seen, 50, 120, font_small, "black")
@@ -61,8 +57,11 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         draw = draw_grid(draw, 50, 1600, 1200)
         
+        draw.text((1580, 50),"Last refresh: " + dt.datetime.now(),font=font_small)
+        
+        
         epd.display(epd.getbuffer(image))
-        time.sleep(20)
+        time.sleep(30)
 
         print("clearing...")
         epd.Clear()
