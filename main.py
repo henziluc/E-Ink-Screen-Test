@@ -32,7 +32,9 @@ def display_schedule(draw, df, y_start, font, fill):
             fill_headsign = "black"
         draw.text((50, y),row['trip_headsign'],font=font_small,fill=fill_headsign) 
         draw.text((100, y),row['route_short_name'],font=font_small,fill=fill)
-        draw.text((150, y),f"+{row['delay']/60:.0f}min",font=font_small,fill=fill) 
+        delay = int(row['delay'])/60
+        if delay > 1:
+            draw.text((150, y),f"+{delay}min",font=font_small,fill="red") 
         draw.text((200, y),row['departure_time'][:-3],font=font_small,fill=fill)
       
         y += 20
