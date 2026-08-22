@@ -48,7 +48,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
             route_text = "white"
         
         draw.rounded_rectangle((x_start, y, x_start + sq_width, y + sq_height),radius=1,fill=route_bg)
-        draw.text((x_start + sq_width/2 , y),row['route_short_name'],font=font,fill=route_text, anchor="mt")
+        draw.text((x_start + sq_width/2 , y),row['route_short_name'],font=font,fill=route_text, anchor="mm")
         
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
         draw.text((x_start + 30, y),headsign ,font=font,fill=fill) 
@@ -59,7 +59,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
             
         draw.text((x_start + 200, y),row['departure_time'][:-3],font=font,fill=fill)
       
-        y += 20
+        y += 25
     return draw
 
 
@@ -100,7 +100,7 @@ try:
 
     # Print DataFrame rows
     draw = display_schedule(draw, "Seen", seen_df, 50, 150, font_small, "black")
-    draw = display_schedule(draw, "Etzberg", etzberg_df,50 , 270, font_small, "black")
+    draw = display_schedule(draw, "Etzberg", etzberg_df,50 , 300, font_small, "black")
     
     draw.rectangle(
     (20, 20, 1180, 1580),
