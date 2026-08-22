@@ -22,15 +22,15 @@ import json
 def display_schedule(draw, df, y_start, font, fill):
     y = y_start
     for _, row in df.iterrows():
-        if row['trip_headsign'] == "3":
-            fill_headsign = "green"
-        elif row["route_short_name"] in ["S11", "S26"]:
-            fill_headsign = "black"
+        if row['route_short_name'] == "3":
+            fill_route_short_name = "green"
+        elif row['route_short_name'] in ["S11", "S26"]:
+            fill_route_short_name = "black"
         else:
-            fill_headsign = "black"
-        draw.text((50, y),row['trip_headsign'],font=font_small,fill=fill_headsign) 
-        draw.text((100, y),row['route_short_name'],font=font_small,fill=fill)
-        delay = int(row['delay'])/60
+            fill_route_short_name = "black"
+        draw.text((50, y),row['route_short_name'],font=font_small,fill=fill)
+        draw.text((100, y),row['trip_headsign'],font=font_small,fill=fill) 
+        delay = round(int(row['delay'])/60)
         if delay > 1:
             draw.text((150, y),f"+{delay}min",font=font_small,fill="red") 
         draw.text((200, y),row['departure_time'][:-3],font=font_small,fill=fill)
@@ -102,7 +102,7 @@ try:
     
     
     epd.display(epd.getbuffer(image))
-    time.sleep(10)
+    time.sleep(20)
 
     print("clearing...")
     epd.Clear()
