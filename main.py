@@ -8,7 +8,6 @@ libdir = "e_ink_lib"
 if os.path.exists(libdir):
     sys.path.append(libdir)
 
-
 import epd13in3E
 import time
 
@@ -16,10 +15,27 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 from PIL import ImageColor
-
 from PIL import Image
 import pandas as pd
 import json
+
+def display_schedule(draw, df, y_start, font, fill):
+    y = y_start
+    for _, row in df.iterrows():
+        text = (
+            f"{row['departure_time']}  "
+            f"{row['route_short_name']}  "
+            f"{row['trip_headsign']}  "
+            f"+{row['delay']}s"
+        )
+        draw.text(
+            (50, y),
+            text,
+            font=font,
+            fill=fill
+        )
+        y += 20
+    return draw
 
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
@@ -31,18 +47,12 @@ font_small = ImageFont.truetype(
     15
 )
 
-
-
 from test_data import (
     hourly_weather_df,
     daily_weather_df,
     seen_df,
     etzberg_df,
 )
-
-
-
-
 
 epd = epd13in3E.EPD()
 try:
@@ -102,28 +112,8 @@ except:
 
 
 
-def display_schedule(draw, df, y_start, font, fill):
-    y = y_start
-    for _, row in df.iterrows():
-        text = (
-            f"{row['departure_time']}  "
-            f"{row['route_short_name']}  "
-            f"{row['trip_headsign']}  "
-            f"+{row['delay']}s"
-        )
-        draw.text(
-            (50, y),
-            text,
-            font=font,
-            fill=fill
-        )
-        y += 20
-    return draw
 
-def center_text(draw, y, text, font, fill):
-    bbox = draw.textbbox((0, 0), text, font=font)
-    width = bbox[2] - bbox[0]
 
-    x = (1200 - width) // 2
 
-    draw.text((x, y), text, font=font, fill=fill)
+
+
