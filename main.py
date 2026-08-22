@@ -19,8 +19,13 @@ from PIL import Image
 import pandas as pd
 import json
 
-def display_schedule(draw, df, x_start, y_start, font, fill):
+def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     y = y_start
+    
+    draw.text((x_start, y),"Station " + station_name,font=font,fill=fill)
+    
+    y += 20
+    
     for _, row in df.iterrows():
         route = str(row["route_short_name"])
 
@@ -41,7 +46,7 @@ def display_schedule(draw, df, x_start, y_start, font, fill):
             route_bg = "gray"
             route_text = "white"
         
-        draw.rounded_rectangle((x_start, y, x_start + 20, y + 45),radius=8,fill=route_bg)
+        draw.rounded_rectangle((x_start, y, x_start + 20, y + 20),radius=1,fill=route_bg)
         draw.text((x_start, y),row['route_short_name'],font=font,fill=route_text)
         
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
@@ -93,8 +98,8 @@ try:
     )
 
     # Print DataFrame rows
-    draw = display_schedule(draw, seen_df, 50, 150, font_small, "black")
-    draw = display_schedule(draw, etzberg_df,50 , 250, font_small, "black")
+    draw = display_schedule(draw,"Seen" , seen_df, 50, 150, font_small, "black")
+    draw = display_schedule(draw,"Etzberg" ;etzberg_df,50 , 270, font_small, "black")
     
     draw.rectangle(
     (20, 20, 1180, 1580),
