@@ -18,7 +18,7 @@ from PIL import ImageFont
 from PIL import ImageColor
 
 from PIL import Image
-
+import pandas as pd
 import json
 
 font_large = ImageFont.truetype(
@@ -32,6 +32,18 @@ font_small = ImageFont.truetype(
 )
 
 
+
+from test_data import (
+    hourly_weather_df,
+    daily_weather_df,
+    seen_df,
+    etzberg_df,
+)
+
+
+
+
+
 epd = epd13in3E.EPD()
 try:
     epd.Init()
@@ -41,9 +53,34 @@ try:
     image = Image.new("RGB", (1200, 1600), "white")
     draw = ImageDraw.Draw(image)
 
-    draw.text((50, 50), "Weather", fill="black")
-    draw.text((50, 100),"22°C",font=font_large,fill="black")
-    draw.text((50, 200), "Sunny",font=font_small, fill="red")
+    # Title
+    draw.text(
+        (50, 50),
+        "Next Trains",
+        font=font_large,
+        fill="black"
+    )
+
+    # Print DataFrame rows
+    y = 130
+
+    for _, row in seen_df.iterrows():
+
+        text = (
+            f"{row['departure_time']}  "
+            f"{row['route_short_name']}  "
+            f"{row['trip_headsign']}  "
+            f"+{row['delay']}s"
+        )
+
+        draw.text(
+            (50, y),
+            text,
+            font=font_small,
+            fill="black"
+        )
+
+        y += 60
     
     draw.rectangle(
     (20, 20, 1180, 1580),
