@@ -20,9 +20,9 @@ import pandas as pd
 import json
 
 
-from transport_widget import display_schedule
-from weather_widget import display_weather
-from helpers import draw_grid
+from .transport_widget import display_schedule
+from .weather_widget import display_weather
+from .helpers import draw_grid
 
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
