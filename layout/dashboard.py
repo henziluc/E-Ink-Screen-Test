@@ -11,7 +11,7 @@ if os.path.exists(libdir):
 import epd13in3E
 import time
 import datetime as dt
-
+import traceback
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -42,7 +42,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
     epd = epd13in3E.EPD()
     try:
         epd.Init()
-
+        
         image = Image.new("RGB", (1200, 1600), "white")
         draw = ImageDraw.Draw(image)
         
@@ -74,8 +74,10 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
 
         print("goto sleep...")
         epd.sleep()
-    except:
-        print("goto sleep...")
+        
+    except Exception:
+        print("ERROR:")
+        traceback.print_exc()
         epd.sleep()
 
     return
