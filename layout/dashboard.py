@@ -59,7 +59,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         draw = display_weather(draw, weather_hourly, weather_daily, 400, 120, font_small, "black")
         
-        draw = display_holiday(draw, 50, 420, font_large, font_small, "black")
+        #draw = display_holiday(draw, 50, 420, font_large, font_small, "black")
         
         draw = draw_grid(draw, holidays, 50, 1600, 1200)
         
