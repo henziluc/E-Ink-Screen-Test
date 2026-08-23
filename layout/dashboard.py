@@ -34,7 +34,7 @@ font_large = ImageFont.truetype(
 
 font_small = ImageFont.truetype(
     "fonts/RobotoCondensed-Regular.ttf",
-    15
+    20
 )
 
 def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg):
@@ -55,11 +55,11 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
 
         # Print DataFrame rows
         draw = display_schedule(draw, "Seen", departures_seen, 50, 120, font_small, "black")
-        draw = display_schedule(draw, "Etzberg", departures_etzberg, 50 , 270, font_small, "black")
+        draw = display_schedule(draw, "Etzberg", departures_etzberg, 50 , 300, font_small, "black")
         
         draw = display_weather(draw, weather_hourly, weather_daily, 400, 120, font_small, "black")
         
-        draw = display_holiday(draw, holidays, 50, 420, font_large, font_small, "black")
+        draw = display_holiday(draw, holidays, 50, 480, font_large, font_small, "black")
         
         draw = draw_grid(draw, 50, 1600, 1200)
         
