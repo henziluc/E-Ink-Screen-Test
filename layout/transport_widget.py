@@ -1,8 +1,9 @@
 def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     y = y_start
+    spacing = 30
     #Size of the squares around the route short name
-    sq_width = 26
-    sq_height = 20
+    sq_width = 31
+    sq_height = 25
     draw.text((x_start, y),"Station " + station_name,font=font,fill=fill)
     
     y += 20
@@ -39,5 +40,5 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
         #display departure time    
         draw.text((x_start + 200, y),row['departure_time'][:-3],font=font,fill=fill)
       
-        y += 25
+        y += spacing
     return draw

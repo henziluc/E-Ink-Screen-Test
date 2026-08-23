@@ -4,14 +4,27 @@ import datetime as dt
 
 def display_weather(draw, df_hourly, df_daily, x_start, y_start, font, fill):
     y = y_start
-    spacing = 25
+    spacing = 30
+    
+    x_weather_code = x_start + 100
+    x_min_temp = x_weather_code + 100
+    x_max_temp = x_min_temp + 150
+    x_wind_speed = x_max_temp + 100
+    x_precipitation = x_wind_speed + 100
+    x_sunshine = x_precipitation + 100
+    
+    
+    
+    
+    
+    
     draw.text((x_start, y),'Date',font=font,fill=fill)
-    draw.text((x_start + 100, y),'Weather Code',font=font,fill=fill)
-    draw.text((x_start + 200, y),'Min Temp.',font=font,fill=fill)
-    draw.text((x_start + 300, y),'Max Temp.',font=font,fill=fill)
-    draw.text((x_start + 400, y),'Wind Speed',font=font,fill=fill)
-    draw.text((x_start + 500, y),'Precipitation',font=font,fill=fill)
-    draw.text((x_start + 600, y),'Sunshine Duration',font=font,fill=fill)
+    draw.text((x_weather_code, y),'Weather Code',font=font,fill=fill)
+    draw.text((x_min_temp, y),'Min Temp.',font=font,fill=fill)
+    draw.text((x_max_temp, y),'Max Temp.',font=font,fill=fill)
+    draw.text((x_wind_speed, y),'Wind Speed',font=font,fill=fill)
+    draw.text((x_precipitation, y),'Precipitation',font=font,fill=fill)
+    draw.text((x_sunshine, y),'Sunshine Duration',font=font,fill=fill)
     y += spacing
     
     for _, row in df_daily.iterrows():
@@ -19,12 +32,12 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start, font, fill):
         weather_code = get_weather_description(row['weather_code'])
         
         draw.text((x_start, y),str(row['date'])[:10],font=font,fill=fill)
-        draw.text((x_start + 100, y),weather_code,font=font,fill=fill)
-        draw.text((x_start + 200, y),str(round(row['temperature_2m_min'],1)),font=font,fill=fill)
-        draw.text((x_start + 300, y),str(round(row['temperature_2m_max'],1)),font=font,fill=fill)
-        draw.text((x_start + 400, y),str(round(row['wind_speed_10m_max'],1)),font=font,fill=fill)
-        draw.text((x_start + 500, y),str(round(row['precipitation_sum'],1)),font=font,fill=fill)
-        draw.text((x_start + 600, y),str(round(row['sunshine_duration']/3060,1)) + 'h',font=font,fill=fill)
+        draw.text((x_weather_code, y),weather_code,font=font,fill=fill)
+        draw.text((x_min_temp, y),str(round(row['temperature_2m_min'],1)),font=font,fill=fill)
+        draw.text((x_max_temp, y),str(round(row['temperature_2m_max'],1)),font=font,fill=fill)
+        draw.text((x_wind_speed, y),str(round(row['wind_speed_10m_max'],1)),font=font,fill=fill)
+        draw.text((x_precipitation, y),str(round(row['precipitation_sum'],1)),font=font,fill=fill)
+        draw.text((x_sunshine, y),str(round(row['sunshine_duration']/3060,1)) + 'h',font=font,fill=fill)
         
         y += spacing    
     return draw
