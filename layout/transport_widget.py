@@ -6,7 +6,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
     sq_height = 25
     draw.text((x_start, y),"Station " + station_name,font=font,fill=fill)
     
-    y += 20
+    y += 25
     
     for _, row in df.iterrows():
         route = str(row["route_short_name"])
