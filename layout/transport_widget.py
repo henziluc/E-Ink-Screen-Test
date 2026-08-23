@@ -32,7 +32,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, font, fill):
         draw.text((x_start + sq_width/2 , y + sq_height/2), route,font=font,fill=route_text, anchor="mm")
         #display trip headsign with out leading Winterthur
         headsign = row["trip_headsign"].replace("Winterthur, ", "")
-        draw.text((x_start + 30, y),headsign ,font=font,fill=fill) 
+        draw.text((x_start + 35, y),headsign ,font=font,fill=fill) 
         #display delays in rounded minutes in a red font
         delay = round(int(row['delay'])/60)
         if delay > 1:

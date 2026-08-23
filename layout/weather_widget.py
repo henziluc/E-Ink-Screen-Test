@@ -7,8 +7,8 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start, font, fill):
     spacing = 30
     
     x_weather_code = x_start + 100
-    x_min_temp = x_weather_code + 100
-    x_max_temp = x_min_temp + 150
+    x_min_temp = x_weather_code + 150
+    x_max_temp = x_min_temp + 100
     x_wind_speed = x_max_temp + 100
     x_precipitation = x_wind_speed + 100
     x_sunshine = x_precipitation + 100
