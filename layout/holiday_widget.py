@@ -15,8 +15,8 @@ def display_holiday(draw, df, x_start, y_start, font_large, font_small, fill):
         
         if delta >= datetime.timedelta(0):
             days = delta.days
-            draw.text((x_start, y_start), row['location'], font=font_small, fill=fill)
-            draw.text((x_start + 100, y_start ), f"{days} days to go", font=font_small, fill=fill)
+            draw.text((x_start, y), row['location'], font=font_small, fill=fill)
+            draw.text((x_start + 100, y), f"{days} days to go", font=font_small, fill=fill)
             y += 25
             
     return draw
