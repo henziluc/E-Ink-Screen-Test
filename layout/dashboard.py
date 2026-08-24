@@ -28,20 +28,6 @@ from .holiday_widget import display_holiday
 from assets.holiday_data import holidays
 from .fonts import font_small, font_medium, font_large, fill_main
 
-font_large = ImageFont.truetype(
-    "fonts/RobotoCondensed-Bold.ttf",
-    56
-)
-
-font_medium = ImageFont.truetype(
-    "fonts/RobotoCondensed-Regular.ttf",
-    38
-)
-
-font_small = ImageFont.truetype(
-    "fonts/RobotoCondensed-Regular.ttf",
-    20
-)
 
 def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg):
 
@@ -54,7 +40,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # Last refresh info
         now = datetime.datetime.now()
-        draw.text((50, 1500),"Last refresh: " + str(now), font=font_small,fill=fill_main)
+        draw.text((50, 1570),"Last refresh: " + str(now), font=font_small,fill=fill_main)
         
         # Title
         draw.text((50, 50), "Next Trains", font=font_large, fill=fill_main)
