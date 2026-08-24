@@ -25,7 +25,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, spacing):
     sq_width = 31
     sq_height = 24
     name = "Station " + station_name
-    draw = draw_centered_text(draw, name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
+    draw_centered_text(draw, name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
     
     y += spacing
     
