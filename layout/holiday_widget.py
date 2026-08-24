@@ -21,8 +21,7 @@ def display_holiday(draw, df, x_start, y_start):
             if next_holiday == 1:
                 draw_centered_text(draw, row['location'], (x_start , y, x_start + 280, y + 27), font_large, fill_main)
                 y += 60
-                draw_centered_text(draw,)
-                draw.text((x_start, y, x_start + 280, y + 15), f"{days} days to go", font=font_medium, fill=fill_main)
+                draw_centered_text(draw, f"{days} days to go", (x_start, y, x_start + 280, y + 15), font_medium, fill_main)
                 next_holiday = 0
                 y += 40
                 
