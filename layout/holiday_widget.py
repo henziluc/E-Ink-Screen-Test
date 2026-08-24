@@ -10,7 +10,7 @@ def display_holiday(draw, df, x_start, y_start):
     
     draw.text((x_start, y_start), 'Next Holiday', font=font_large, fill=fill_main)
     
-    y += 60
+    y += 70
     
     for _, row in df.iterrows():
         
@@ -23,7 +23,7 @@ def display_holiday(draw, df, x_start, y_start):
                 y += 60
                 draw_centered_text(draw, f"{days} days to go", (x_start, y, x_start + 280, y + 15), font_medium, fill_main)
                 next_holiday = 0
-                y += 40
+                y += 30
                 
             else:
                 draw.text((x_start, y), row['location'], font=font_small, fill=fill_main)
