@@ -1,3 +1,5 @@
+from PIL import ImageFont
+
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
     56

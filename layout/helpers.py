@@ -1,3 +1,5 @@
+from PIL import ImageFont
+
 def draw_grid(draw, spacing, height, width):
     i = 1
     #horizontal lines
