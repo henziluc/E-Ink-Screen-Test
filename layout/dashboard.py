@@ -48,7 +48,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # Last refresh info
         now = datetime.datetime.now()
-        draw.text((50, 1100),"Last refresh: " + str(now), font=font_small,fill='black')
+        draw.text((50, 1500),"Last refresh: " + str(now), font=font_small,fill='black')
         
         # Title
         draw.text((50, 50), "Next Trains", font=font_large, fill="black")

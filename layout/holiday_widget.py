@@ -1,4 +1,5 @@
 import datetime
+from .helpers import draw_centered_text
 
 def display_holiday(draw, df, x_start, y_start, font_large, font_small, fill):
     y = y_start
@@ -8,7 +9,7 @@ def display_holiday(draw, df, x_start, y_start, font_large, font_small, fill):
     
     draw.text((x_start, y_start), 'Next Holiday', font=font_large, fill=fill)
     
-    y += 70
+    y += 60
     
     for _, row in df.iterrows():
         
@@ -17,7 +18,7 @@ def display_holiday(draw, df, x_start, y_start, font_large, font_small, fill):
         if delta >= datetime.timedelta(0):
             days = delta.days
             if next_holiday == 1:
-                draw.text((x_start, y), row['location'], font=font_large, fill=fill)
+                draw_centered_text(draw, row['location'], (x_start , y, x_start + 280, y + 27), font_large, fill)
                 y += 60
                 draw.text((x_start, y), f"{days} days to go", font=font_small, fill=fill)
                 next_holiday = 0
