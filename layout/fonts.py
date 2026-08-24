@@ -10,6 +10,11 @@ font_medium = ImageFont.truetype(
     38
 )
 
+font_normal = ImageFont.truetype(
+    "fonts/RobotoCondensed-Regular.ttf",
+    29
+)
+
 font_small = ImageFont.truetype(
     "fonts/RobotoCondensed-Regular.ttf",
     20

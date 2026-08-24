@@ -21,7 +21,7 @@ import pandas as pd
 import json
 
 
-from .transport_widget import display_schedule
+from .transport_widget import display_schedule_complet
 from .weather_widget import display_weather
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
@@ -42,18 +42,16 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         now = datetime.datetime.now()
         draw.text((50, 1570),"Last refresh: " + str(now), font=font_small,fill=fill_main)
         
-        # Title
-        draw.text((50, 50), "Next Trains", font=font_large, fill=fill_main)
+        # Draw transport schedule
+        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 50, 50)
         
-
-        # Print DataFrame rows
-        draw = display_schedule(draw, "Seen", departures_seen, 50, 120)
-        draw = display_schedule(draw, "Etzberg", departures_etzberg, 50 , 300)
-        
+        # Draw weather forecast    
         draw = display_weather(draw, weather_hourly, weather_daily, 375, 120)
         
+        # Draw next holidays
         draw = display_holiday(draw, holidays, 50, 500)
         
+        # Draw helper grid
         draw = draw_grid(draw, 20, 1600, 1200)
         
         
