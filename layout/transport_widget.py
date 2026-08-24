@@ -9,9 +9,9 @@ def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x
     
     draw.text((x_start, y), "Next Trains", font=font_large, fill=fill_main)
     y += spacing_large
-    draw = display_schedule(draw, station_name_1, df_1, x_start, y)
+    draw = display_schedule(draw, station_name_1, df_1, x_start, y, spacing_small, spacing_normal)
     y += spacing_normal
-    draw = display_schedule(draw, station_name_2, df_2, x_start , y)
+    draw = display_schedule(draw, station_name_2, df_2, x_start , y, spacing_small, spacing_normal)
     
     
     return draw
