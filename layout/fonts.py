@@ -25,6 +25,8 @@ fill_main = 'black'
 
 spacing_small = font_small.size + 10
 
-spacing_normal = font_medium.size + 10
+spacing_normal = font_normal.size + 10
+
+spacing_medium = font_medium.size + 10
 
 spacing_large = font_large.size + 10

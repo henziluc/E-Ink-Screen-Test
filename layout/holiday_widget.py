@@ -1,6 +1,6 @@
 import datetime
 from .helpers import draw_centered_text
-from .fonts import font_small, font_medium, font_large, fill_main
+from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 
 def display_holiday(draw, df, x_start, y_start):
     y = y_start
@@ -10,7 +10,7 @@ def display_holiday(draw, df, x_start, y_start):
     
     draw.text((x_start, y_start), 'Next Holiday', font=font_large, fill=fill_main)
     
-    y += 70
+    y += spacing_large
     
     for _, row in df.iterrows():
         
@@ -19,16 +19,16 @@ def display_holiday(draw, df, x_start, y_start):
         if delta >= datetime.timedelta(0):
             days = delta.days
             if next_holiday == 1:
-                draw_centered_text(draw, row['location'], (x_start , y, x_start + 280, y + 27), font_large, fill_main)
-                y += 60
-                draw_centered_text(draw, f"{days} days to go", (x_start, y, x_start + 280, y + 15), font_medium, fill_main)
+                draw_centered_text(draw, row['location'], (x_start , y, x_start + 280, y + 38), font_medium, fill_main)
+                y += spacing_medium
+                draw_centered_text(draw, f"{days} days to go", (x_start, y, x_start + 280, y + 29), font_normal, fill_main)
                 next_holiday = 0
-                y += 40
+                y += spacing_normal
                 
             else:
                 draw.text((x_start, y), row['location'], font=font_small, fill=fill_main)
                 draw.text((x_start + 120, y), f"{days} days to go", font=font_small, fill=fill_main)
-                y += spacing
+                y += spacing_small
             
                             
     return draw

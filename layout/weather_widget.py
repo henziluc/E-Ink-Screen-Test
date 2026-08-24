@@ -1,10 +1,9 @@
 import datetime as dt
-from .fonts import font_small, font_medium, font_large, fill_main
+from .fonts import font_small, font_medium, font_large, fill_main, spacing_small
 
 
 def display_weather(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
-    spacing = 30
     
     x_weather_code = x_start + 100
     x_min_temp = x_weather_code + 150
@@ -25,7 +24,7 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
     draw.text((x_wind_speed, y),'Wind Speed',font=font_small,fill=fill_main)
     draw.text((x_precipitation, y),'Precipitation',font=font_small,fill=fill_main)
     draw.text((x_sunshine, y),'Sunshine Duration',font=font_small,fill=fill_main)
-    y += spacing
+    y += spacing_small
     
     for _, row in df_daily.iterrows():
         
@@ -39,7 +38,7 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
         draw.text((x_precipitation, y),str(round(row['precipitation_sum'],1)),font=font_small,fill=fill_main)
         draw.text((x_sunshine, y),str(round(row['sunshine_duration']/3060,1)) + 'h',font=font_small,fill=fill_main)
         
-        y += spacing    
+        y += spacing_small    
     return draw
 
 
