@@ -24,9 +24,8 @@ def display_schedule(draw, station_name, df, x_start, y_start, spacing):
     #Size of the squares around the route short name
     sq_width = 31
     sq_height = 24
-    
-    draw = draw_centered_text(draw, "Station " + station_name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
-    draw.text((x_start, y),"Station " + station_name,font=font_normal,fill=fill_main)
+    name = "Station " + station_name
+    draw = draw_centered_text(draw, name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
     
     y += spacing
     
