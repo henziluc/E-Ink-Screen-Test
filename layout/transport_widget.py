@@ -54,9 +54,9 @@ def display_schedule(draw, station_name, df, x_start, y_start):
         #display delays in rounded minutes in a red font
         delay = round(int(row['delay'])/60)
         if delay > 1:
-            draw.text((x_start + 150, y),f"+{delay}min",font=font_small,fill="red") 
+            draw.text((x_start + 170, y),f"+{delay}min",font=font_small,fill="red") 
         #display departure time    
-        draw.text((x_start + 200, y),row['departure_time'][:-3],font=font_small,fill=fill_main)
+        draw.text((x_start + 230, y),row['departure_time'][:-3],font=font_small,fill=fill_main)
       
         y += spacing_small
         
