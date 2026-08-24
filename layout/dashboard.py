@@ -10,7 +10,7 @@ if os.path.exists(libdir):
 
 import epd13in3E
 import time
-import datetime as dt
+import datetime
 import traceback
 from PIL import Image
 from PIL import ImageDraw
@@ -47,7 +47,8 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         draw = ImageDraw.Draw(image)
         
         # Last refresh info
-        draw.text((600, 600),"Last refresh: ")
+        now = datetime.datetime.now()
+        draw.text((50, 1100),"Last refresh: " + str(now), font=font_small,fill='black')
         
         # Title
         draw.text((50, 50), "Next Trains", font=font_large, fill="black")
@@ -59,7 +60,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         draw = display_weather(draw, weather_hourly, weather_daily, 375, 120, font_small, "black")
         
-        draw = display_holiday(draw, holidays, 50, 480, font_large, font_small, "black")
+        draw = display_holiday(draw, holidays, 50, 500, font_large, font_small, "black")
         
         draw = draw_grid(draw, 50, 1600, 1200)
         
