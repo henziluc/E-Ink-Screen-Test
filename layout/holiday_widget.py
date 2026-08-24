@@ -23,12 +23,12 @@ def display_holiday(draw, df, x_start, y_start):
                 y += 60
                 draw_centered_text(draw, f"{days} days to go", (x_start, y, x_start + 280, y + 15), font_medium, fill_main)
                 next_holiday = 0
-                y += 30
+                y += 40
                 
             else:
                 draw.text((x_start, y), row['location'], font=font_small, fill=fill_main)
                 draw.text((x_start + 120, y), f"{days} days to go", font=font_small, fill=fill_main)
-                
-            y += spacing
+                y += spacing
+            
                             
     return draw
