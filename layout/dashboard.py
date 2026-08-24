@@ -40,16 +40,16 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # Last refresh info
         now = datetime.datetime.now()
-        draw.text((50, 1570),"Last refresh: " + str(now), font=font_small,fill=fill_main)
+        draw.text((30, 1575),"Last refresh: " + str(now), font=font_small,fill=fill_main)
         
         # Draw transport schedule
-        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 50, 50)
+        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 30)
         
         # Draw weather forecast    
         draw = display_weather(draw, weather_hourly, weather_daily, 375, 120)
         
         # Draw next holidays
-        draw = display_holiday(draw, holidays, 50, 500)
+        draw = display_holiday(draw, holidays, 30, 480)
         
         # Draw helper grid
         draw = draw_grid(draw, 20, 1600, 1200)
