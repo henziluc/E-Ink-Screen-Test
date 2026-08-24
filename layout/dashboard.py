@@ -26,10 +26,16 @@ from .weather_widget import display_weather
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
 from assets.holiday_data import holidays
+from .fonts import font_small, font_medium, font_large, fill_main
 
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
-    55
+    56
+)
+
+font_medium = ImageFont.truetype(
+    "fonts/RobotoCondensed-Regular.ttf",
+    38
 )
 
 font_small = ImageFont.truetype(
@@ -48,19 +54,19 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # Last refresh info
         now = datetime.datetime.now()
-        draw.text((50, 1500),"Last refresh: " + str(now), font=font_small,fill='black')
+        draw.text((50, 1500),"Last refresh: " + str(now), font=font_small,fill=fill_main)
         
         # Title
-        draw.text((50, 50), "Next Trains", font=font_large, fill="black")
+        draw.text((50, 50), "Next Trains", font=font_large, fill=fill_main)
         
 
         # Print DataFrame rows
-        draw = display_schedule(draw, "Seen", departures_seen, 50, 120, font_small, "black")
-        draw = display_schedule(draw, "Etzberg", departures_etzberg, 50 , 300, font_small, "black")
+        draw = display_schedule(draw, "Seen", departures_seen, 50, 120)
+        draw = display_schedule(draw, "Etzberg", departures_etzberg, 50 , 300)
         
-        draw = display_weather(draw, weather_hourly, weather_daily, 375, 120, font_small, "black")
+        draw = display_weather(draw, weather_hourly, weather_daily, 375, 120)
         
-        draw = display_holiday(draw, holidays, 50, 500, font_large, font_small, "black")
+        draw = display_holiday(draw, holidays, 50, 500)
         
         draw = draw_grid(draw, 50, 1600, 1200)
         
