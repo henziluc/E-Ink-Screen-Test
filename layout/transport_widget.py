@@ -1,24 +1,21 @@
-from .fonts import font_small, font_normal, font_medium, font_large, fill_main
+from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_large
 from .helpers import draw_centered_text
 
 def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x_start, y_start):
     y = y_start
-    spacing_small = font_small.size + 10
-    spacing_normal = font_medium.size + 10
-    spacing_large = font_large.size + 10
-    
+        
     draw.text((x_start, y), "Next Trains", font=font_large, fill=fill_main)
     y += spacing_large
-    draw, y = display_schedule(draw, station_name_1, df_1, x_start, y, spacing_small)
+    draw, y = display_schedule(draw, station_name_1, df_1, x_start, y)
     y += 10
-    draw, y = display_schedule(draw, station_name_2, df_2, x_start , y, spacing_small)
+    draw, y = display_schedule(draw, station_name_2, df_2, x_start , y)
     
     
     return draw
 
 
 
-def display_schedule(draw, station_name, df, x_start, y_start, spacing):
+def display_schedule(draw, station_name, df, x_start, y_start):
     y = y_start
     
     #Size of the squares around the route short name
@@ -27,7 +24,7 @@ def display_schedule(draw, station_name, df, x_start, y_start, spacing):
     name = "Station " + station_name
     draw_centered_text(draw, name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
     
-    y += spacing
+    y += spacing_small + 5
     
     for _, row in df.iterrows():
         route = str(row["route_short_name"])
@@ -61,6 +58,6 @@ def display_schedule(draw, station_name, df, x_start, y_start, spacing):
         #display departure time    
         draw.text((x_start + 200, y),row['departure_time'][:-3],font=font_small,fill=fill_main)
       
-        y += spacing
+        y += spacing_small
         
     return draw, y
