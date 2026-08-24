@@ -1,5 +1,5 @@
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main
-
+from .helpers import draw_centered_text
 
 def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x_start, y_start):
     y = y_start
@@ -24,6 +24,8 @@ def display_schedule(draw, station_name, df, x_start, y_start, spacing):
     #Size of the squares around the route short name
     sq_width = 31
     sq_height = 24
+    
+    draw = draw_centered_text(draw, "Station " + station_name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
     draw.text((x_start, y),"Station " + station_name,font=font_normal,fill=fill_main)
     
     y += spacing
