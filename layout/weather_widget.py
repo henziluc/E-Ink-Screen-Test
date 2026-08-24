@@ -31,8 +31,8 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
         
         weather_code = get_weather_description(row['weather_code'])
         
-        draw.text((x_start, y),str(row['date'])[:10],font=font,fill=fill)
-        draw.text((x_weather_code, y),weather_code,font=font,fill=fill)
+        draw.text((x_start, y),str(row['date'])[:10],font=font_small,fill=fill_main)
+        draw.text((x_weather_code, y),weather_code,font=font_small,fill=fill_main)
         draw.text((x_min_temp, y),str(round(row['temperature_2m_min'],1)),font=font_small,fill=fill_main)
         draw.text((x_max_temp, y),str(round(row['temperature_2m_max'],1)),font=font_small,fill=fill_main)
         draw.text((x_wind_speed, y),str(round(row['wind_speed_10m_max'],1)),font=font_small,fill=fill_main)
