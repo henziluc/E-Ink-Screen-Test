@@ -61,7 +61,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         draw = display_holiday(draw, holidays, 30, 580)
         
         # Draw helper grid
-        draw = draw_grid(draw, 20, 1600, 1200)
+        # draw = draw_grid(draw, 20, 1600, 1200)
         
         # Write picture on to screen
         epd.display(epd.getbuffer(image))
