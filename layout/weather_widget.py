@@ -57,15 +57,15 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     hour_spacing = (1200 - x_start * 2) / 48
     
-    draw.line([(x_start, y), (1200-x_start, y)])
+    draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
     
     y += graph_hight
     
     for i in range(1, 49):
-        draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y + 5)])
+        draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y + 5)], fill= fill_main, width = 0)
     
-    draw.line([(x_start, y), (1200-x_start, y)])
+    draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
     return draw
 
