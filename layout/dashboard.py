@@ -22,7 +22,7 @@ import json
 
 from .welcome_widget import display_welcome
 from .transport_widget import display_schedule_complet
-from .weather_widget import display_weather
+from .weather_widget import display_weather, display_weather_curve
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
 from assets.holiday_data import holidays
@@ -51,6 +51,11 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # Draw weather forecast    
         draw = display_weather(draw, weather_hourly, weather_daily, 375, 130)
+        
+        # Draw weather curve
+        draw = display_weather_curve(draw, weather_hourly, weather_daily, 30, 850)
+        
+        
         
         # Draw next holidays
         draw = display_holiday(draw, holidays, 30, 580)
