@@ -1,5 +1,7 @@
-import datetime as dt
+import datetime
+
 from .fonts import font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
+from .helpers import draw_centered_text
 
 def display_weather(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
@@ -50,7 +52,11 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
 # Plus daily maximum and minimum temperatur with a weather picture
 def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
-    graph_hight = 100    
+    graph_hight = 100
+    
+    now = datetime.datetime.now()
+    now_hour = now.hour
+        
     # Draw widget title
     draw.text((x_start, y), 'Weather Forecast', font=font_large, fill=fill_main)
     y += spacing_large
@@ -62,9 +68,16 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     y += graph_hight
     
-    for i in range(1, 49):
-        draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y + 5)], fill= fill_main, width = 0)
-    
+    for i in range(0, 49):
+        hour = now_hour + i
+        if hour < 10:
+            hour = '0' + str(hour)
+        else:
+            hour = str(hour)
+            
+            
+        draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y - 5)], fill= fill_main, width = 0)
+        draw_centered_text(draw, hour + ':00',(x_start + i * hour_spacing - 20, y + 5, x_start + i * hour_spacing + 20, y + 25))
     draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
     return draw
