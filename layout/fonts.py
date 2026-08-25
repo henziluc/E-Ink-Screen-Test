@@ -27,7 +27,7 @@ font_small = ImageFont.truetype(
 
 font_very_small = ImageFont.truetype(
     "fonts/RobotoCondensed-Regular.ttf",
-    10
+    15
 )
 
 

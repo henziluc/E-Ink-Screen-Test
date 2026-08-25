@@ -53,6 +53,7 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
 def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
     graph_hight = 100
+    print_hour = 1
     
     now = datetime.datetime.now()
     now_hour = now.hour
@@ -75,9 +76,13 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
         else:
             hour = str(hour)
             
+        if  print_hour == 1:
+            draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y - 5)], fill= fill_main, width = 0)
+            draw_centered_text(draw, hour + ':00',(x_start + i * hour_spacing - 20, y + 5, x_start + i * hour_spacing + 20, y + 15), font_very_small, fill_main)
+            print_hour = 0
+        else:
+            print_hour = 1
             
-        draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y - 5)], fill= fill_main, width = 0)
-        draw_centered_text(draw, hour + ':00',(x_start + i * hour_spacing - 20, y + 5, x_start + i * hour_spacing + 20, y + 15), font_very_small, fill_main)
     draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
     return draw
