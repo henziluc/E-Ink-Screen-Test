@@ -1,18 +1,23 @@
 from PIL import ImageFont
 
+font_massiv = ImageFont.truetype(
+    "fonts/RobotoCondensed-Bold.ttf",
+    80
+)
+
 font_large = ImageFont.truetype(
     "fonts/RobotoCondensed-Bold.ttf",
-    56
+    60
 )
 
 font_medium = ImageFont.truetype(
     "fonts/RobotoCondensed-Regular.ttf",
-    38
+    40
 )
 
 font_normal = ImageFont.truetype(
     "fonts/RobotoCondensed-Regular.ttf",
-    29
+    30
 )
 
 font_small = ImageFont.truetype(

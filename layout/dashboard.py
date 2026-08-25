@@ -20,7 +20,7 @@ from PIL import Image
 import pandas as pd
 import json
 
-
+from .welcome_widget import display_welcome
 from .transport_widget import display_schedule_complet
 from .weather_widget import display_weather
 from .helpers import draw_grid
@@ -43,14 +43,17 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         now = datetime.datetime.now()
         draw.text((30, 1575),"Last refresh: " + str(now), font=font_small,fill=fill_main)
         
+        # Draw welcome message
+        draw = display_welcome(draw, 30, 30)
+        
         # Draw transport schedule
-        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 30)
+        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 130)
         
         # Draw weather forecast    
-        draw = display_weather(draw, weather_hourly, weather_daily, 375, 120)
+        draw = display_weather(draw, weather_hourly, weather_daily, 375, 130)
         
         # Draw next holidays
-        draw = display_holiday(draw, holidays, 30, 480)
+        draw = display_holiday(draw, holidays, 30, 580)
         
         # Draw helper grid
         draw = draw_grid(draw, 20, 1600, 1200)
