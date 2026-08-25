@@ -35,6 +35,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
     try:
         epd.Init()
         
+        # Set background to white
         image = Image.new("RGB", (1200, 1600), "white")
         draw = ImageDraw.Draw(image)
         
@@ -54,9 +55,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         # Draw helper grid
         draw = draw_grid(draw, 20, 1600, 1200)
         
-        
-        
-        
+        # Write picture on to screen
         epd.display(epd.getbuffer(image))
         time.sleep(30)
 
@@ -72,10 +71,3 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         epd.sleep()
 
     return
-
-
-
-
-
-
-

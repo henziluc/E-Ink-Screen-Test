@@ -3,11 +3,14 @@ from .helpers import draw_centered_text
 
 def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x_start, y_start):
     y = y_start
-        
+    
+    # Draw widget title    
     draw.text((x_start, y), "Next Trains", font=font_large, fill=fill_main)
     y += spacing_large
+    # Draw schedule for station 1
     draw, y = display_schedule(draw, station_name_1, df_1, x_start, y)
     y += 10
+    # Draw schedule for station 2
     draw, y = display_schedule(draw, station_name_2, df_2, x_start , y)
     
     
@@ -18,7 +21,7 @@ def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x
 def display_schedule(draw, station_name, df, x_start, y_start):
     y = y_start
     
-    #Size of the squares around the route short name
+    # Size of the squares around the route short name
     sq_width = 31
     sq_height = 24
     name = "Station " + station_name
@@ -26,6 +29,7 @@ def display_schedule(draw, station_name, df, x_start, y_start):
     
     y += spacing_small + 5
     
+    # Looping through the schedule list
     for _, row in df.iterrows():
         route = str(row["route_short_name"])
 
