@@ -1,9 +1,13 @@
 import datetime as dt
-from .fonts import font_small, font_medium, font_large, fill_main, spacing_small
+from .fonts import font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
 
 
 def display_weather(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
+    
+    # Draw widget title
+    draw.text((x_start, y), 'Weather', font=font_large, fill=fill_main)
+    y += spacing_large
     
     # Initalize x position of values
     x_weather_code = x_start + 100
@@ -40,6 +44,15 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
         y += spacing_small 
            
     return draw
+
+
+
+# new function that is on top of the screen and shows the temperatur curve and rain from now for the next 48h.
+# Plus daily maximum and minimum temperatur with a weather picture
+def display_weather_curve(draw):
+
+    return draw
+
 
 
 
