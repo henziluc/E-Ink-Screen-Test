@@ -25,6 +25,12 @@ font_small = ImageFont.truetype(
     20
 )
 
+font_very_small = ImageFont.truetype(
+    "fonts/RobotoCondensed-Regular.ttf",
+    10
+)
+
+
 fill_main = 'black'
 
 
