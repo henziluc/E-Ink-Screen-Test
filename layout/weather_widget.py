@@ -109,7 +109,7 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     draw = draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
     draw = draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
-    draw = draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , x_day_start[2], 2)
+    draw = draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , 1200 - x_start, 2)
     
     return draw
 
