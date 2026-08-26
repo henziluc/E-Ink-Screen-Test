@@ -61,7 +61,7 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
         
     # Draw widget title
     draw.text((x_start, y), 'Weather Forecast', font=font_large, fill=fill_main)
-    y += spacing_large
+    y += spacing_large + spacing_small
     
     # calulate hour spacing on the graph
     hour_spacing = (1200 - x_start * 2) / 48
@@ -105,7 +105,7 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     # draw bottom horizontal line of the graph       
     draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
-    y -= graph_height - spacing_small
+    y -= graph_height + spacing_small
     
     draw = draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
     draw = draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
@@ -117,7 +117,14 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
 def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     x = x_start
     y = y_start
-    draw.text((x, y), str(df_daily.loc[day, 'temperature_2m_min']) + '°C / ' + str(df_daily.loc[day, 'temperature_2m_max']) + '°C', font=font_small, fill= fill_main )
+    x_delta = x_end - x_start
+    
+    text = str(df_daily.loc[day, 'temperature_2m_min']) + '°C / ' + str(df_daily.loc[day, 'temperature_2m_max']) + '°C'
+    
+    if x_delta > 200:
+        draw_centered_text(draw, text, (x_start, y_start, x_end, y + 20), font_small, fill_main) 
+        
+    
     return draw
 
 
