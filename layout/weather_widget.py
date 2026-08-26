@@ -83,6 +83,9 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
         else:
             hour = str(hour)
         
+        if hour == 24:
+            draw.line([(x_start + i * hour_spacing, y),(x_start + i * hour_spacing, y - graph_hight)], fill= fill_main, width = 0)
+        
         draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y - 5)], fill= fill_main, width = 0)
             
         if  print_hour == 1:
