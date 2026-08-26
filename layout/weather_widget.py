@@ -71,12 +71,15 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     for i in range(0, 49):
         hour = now_hour + i
+        
+        if hour > 48:
+            hour -= 48
+        elif hour > 24:
+            hour -= 24
+        
+        
         if hour < 10:
-            hour = '0' + str(hour)
-        elif 24 < hour < 48:
-            hour = '0' + str(hour - 24)
-        elif hour > 48:
-            hour = '0' + str(hour - 48)        
+            hour = '0' + str(hour)       
         else:
             hour = str(hour)
         
