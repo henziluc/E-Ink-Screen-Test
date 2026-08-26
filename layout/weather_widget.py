@@ -90,7 +90,7 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
         
         # Draw vertical line where the day ends
         if hour == '24':
-            draw.line([(x_start + i * hour_spacing, y),(x_start + i * hour_spacing, y - graph_hight)], fill= fill_main, width = 0)
+            draw.line([(x_start + i * hour_spacing, y),(x_start + i * hour_spacing, y - graph_height)], fill= fill_main, width = 0)
             x_day_start.append(x_start + i * hour_spacing)
         
         draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y - 5)], fill= fill_main, width = 0)
@@ -107,9 +107,9 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     y -= graph_height - spacing_small
     
-    #draw = draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
-    #draw = draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
-    #draw = draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , x_day_start[2], 2)
+    draw = draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
+    draw = draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
+    draw = draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , x_day_start[2], 2)
     
     return draw
 
