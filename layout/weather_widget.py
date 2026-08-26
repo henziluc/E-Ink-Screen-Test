@@ -72,22 +72,25 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     for i in range(0, 49):
         hour = now_hour + i
         
+        # Reduce hour to 24h format
         if hour > 48:
             hour -= 48
         elif hour > 24:
             hour -= 24
         
-        
+        # Add leading zero for hour smaller 10
         if hour < 10:
             hour = '0' + str(hour)       
         else:
             hour = str(hour)
         
+        # Draw vertical line where the day ends
         if hour == 24:
             draw.line([(x_start + i * hour_spacing, y),(x_start + i * hour_spacing, y - graph_hight)], fill= fill_main, width = 0)
         
         draw.line([(x_start + i * hour_spacing, y), (x_start + i * hour_spacing, y - 5)], fill= fill_main, width = 0)
-            
+        
+        # Draw text at every second hour    
         if  print_hour == 1:
             
             draw_centered_text(draw, hour + ':00',(x_start + i * hour_spacing - 20, y + 5, x_start + i * hour_spacing + 20, y + 15), font_very_small, fill_main)
