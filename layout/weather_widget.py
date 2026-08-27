@@ -144,7 +144,7 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     
     
     temp_min = df_from_now['temperature_2m'].min()
-    temp_max = df_from_now['temperature_2m'].min()
+    temp_max = df_from_now['temperature_2m'].max()
     temp_delta = temp_max - temp_min
     
     degrees_spacing = (graph_height - offset * 2) / temp_delta
