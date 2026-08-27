@@ -141,7 +141,7 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     # get hourly data from now on
     index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
     df_from_now = df_hourly.loc[index:]
-    
+    df_from_now = df_from_now.reset_index(drop=True)
     
     temp_min = df_from_now['temperature_2m'].min()
     temp_max = df_from_now['temperature_2m'].max()
