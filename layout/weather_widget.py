@@ -151,12 +151,14 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     
     for i in range(0, 49):
         # define X positions of curve
-        positions.append(int(i * hour_spacing))
+        positions_x = i * hour_spacing
         
         # define X positions of curve
         temperature = df_from_now.loc[i,'temperature_2m']
-        positions.append(int((temp_max - temperature) * degrees_spacing + offset))
-    
+        positions_y = (temp_max - temperature) * degrees_spacing + offset
+
+        positions.append((positions_x, positions_y))
+        
     draw_smooth_curve(draw, positions, fill_main, 0)
         
     return draw
