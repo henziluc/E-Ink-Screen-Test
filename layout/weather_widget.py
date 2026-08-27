@@ -151,11 +151,11 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     
     for i in range(0, 49):
         # define X positions of curve
-        positions_x = i * hour_spacing
+        positions_x = i * hour_spacing + x_start
         
         # define X positions of curve
         temperature = df_from_now.loc[i,'temperature_2m']
-        positions_y = (temp_max - temperature) * degrees_spacing + offset
+        positions_y = (temp_max - temperature) * degrees_spacing + offset + y_start
 
         positions.append((positions_x, positions_y))
         
