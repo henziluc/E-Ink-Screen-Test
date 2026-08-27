@@ -176,9 +176,10 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
         temp = temp_max - i
         if i % 2 == 0:
             draw.text((x_start - 2, y), str(temp) , font=font_small, fill=fill_main, anchor= 'rm')
-        
+        print(temp)
         # draw dotted helper lines at every 5°C step
         if temp % 5 == 0:
+            print('Make doted line at' + str(temp))
             draw_dotted_line(draw,(x_start, y ),(1200-x_start, y), 4, 4, fill_main, 0)
         
     return draw
