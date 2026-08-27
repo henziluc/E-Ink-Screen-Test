@@ -146,6 +146,8 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
     df_from_now = df_hourly.loc[index: index+48]
     df_from_now = df_from_now.reset_index(drop=True)
+    print(df_from_now.to_string())
+    
     
     # calculate spacing per degree
     temp_min = math.floor(df_from_now['temperature_2m'].min())
@@ -171,7 +173,7 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     for i in range(0, temp_delta):
         y = y_start + offset + i * degrees_spacing
         draw.line([(x_start, y),(x_start + 5, y)], fill= fill_main, width = 0)
-        temp = str(temp_max - 1)
+        temp = str(temp_max - i)
         draw.text((x_start, y), temp, font=font_small, fill=fill_main, anchor= 'rm')
         
     return draw
