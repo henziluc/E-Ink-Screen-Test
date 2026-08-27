@@ -1,4 +1,5 @@
 import datetime
+import math
 
 from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
 from .helpers import draw_centered_text, draw_smooth_curve
@@ -69,6 +70,8 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     # draw top horizontal line of the graph
     draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
+    #draw vertical line at beginning of graph
+    draw.line([(x_start, y),(x_start, y + graph_height)], fill= fill_main, width = 0)
     
     y += graph_height
     
@@ -136,19 +139,21 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
 
 
 def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spacing, hour):
-    offset = 5
+    offset = 8
     positions = []
+    
     # get hourly data from now on
     index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
     df_from_now = df_hourly.loc[index: index+48]
     df_from_now = df_from_now.reset_index(drop=True)
     
-    temp_min = df_from_now['temperature_2m'].min()
-    temp_max = df_from_now['temperature_2m'].max()
-    temp_delta = temp_max - temp_min
-    
+    # calculate spacing per degree
+    temp_min = math.floor(df_from_now['temperature_2m'].min())
+    temp_max = math.ceil(df_from_now['temperature_2m'].max())
+    temp_delta = math.ceil(temp_max - temp_min)
     degrees_spacing = (graph_height - offset * 2) / temp_delta
     
+    # calculate x and y position of every hourly temperature value
     for i in range(0, 49):
         # define X positions of curve
         positions_x = i * hour_spacing + x_start
@@ -158,8 +163,16 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
         positions_y = (temp_max - temperature) * degrees_spacing + offset + y_start
 
         positions.append((positions_x, positions_y))
-        
+    
+    # draw temperature curve    
     draw_smooth_curve(draw, positions, fill_main, 0)
+    
+    # draw temperature scale
+    for i in range(0, temp_delta):
+        y = y_start + offset + i * degrees_spacing
+        draw.line([(x_start, y),(x_start + 5, y)], fill= fill_main, width = 0)
+        temp = str(temp_max - 1)
+        draw.text((x_start, y), temp, font=font_small, fill=fill_main, anchor= 'rm')
         
     return draw
 
