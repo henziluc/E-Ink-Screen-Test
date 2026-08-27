@@ -114,7 +114,7 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     y +=  spacing_small
     
-    draw = draw_weather_curve(draw, df_daily,x_start, y, graph_height, hour_spacing, now_hour)
+    draw = draw_weather_curve(draw, df_hourly, x_start, y, graph_height, hour_spacing, now_hour)
     
     return draw
 
