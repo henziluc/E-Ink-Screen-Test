@@ -22,7 +22,7 @@ import json
 
 from .welcome_widget import display_welcome
 from .transport_widget import display_schedule_complet
-from .weather_widget import display_weather, display_weather_curve
+from .weather_widget import  display_weather_curve
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
 from assets.holiday_data import holidays
