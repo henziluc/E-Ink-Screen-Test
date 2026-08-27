@@ -42,7 +42,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         # Last refresh info
         now = datetime.datetime.now()
         now_str = str(now.date()) + ' ' + str(now.hour) + ':' + str(now.minute)
-        draw.text((30, 1575),"Last refresh: " + str(now), font=font_small,fill=fill_main)
+        draw.text((30, 1575),"Last refresh: " + now_str, font=font_small,fill=fill_main)
         
         # Draw welcome message
         draw = display_welcome(draw, 30, 30)
