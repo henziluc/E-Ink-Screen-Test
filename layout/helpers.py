@@ -16,6 +16,60 @@ def draw_grid(draw, spacing, height, width):
     return draw
 
 
+def draw_smooth_curve(draw, points, fill="black", width=3, steps=20):
+    """
+    Draw a smooth curve through all given points.
+
+    points: list of (x, y) coordinates
+    steps: smoothness between each pair of points
+    """
+
+    if len(points) < 2:
+        return
+
+    curve_points = []
+
+    # Duplicate first and last point for interpolation
+    pts = [points[0]] + points + [points[-1]]
+
+    for i in range(1, len(pts) - 2):
+
+        p0 = pts[i - 1]
+        p1 = pts[i]
+        p2 = pts[i + 1]
+        p3 = pts[i + 2]
+
+        for j in range(steps):
+            t = j / steps
+
+            t2 = t * t
+            t3 = t2 * t
+
+            x = 0.5 * (
+                2 * p1[0]
+                + (-p0[0] + p2[0]) * t
+                + (2*p0[0] - 5*p1[0] + 4*p2[0] - p3[0]) * t2
+                + (-p0[0] + 3*p1[0] - 3*p2[0] + p3[0]) * t3
+            )
+
+            y = 0.5 * (
+                2 * p1[1]
+                + (-p0[1] + p2[1]) * t
+                + (2*p0[1] - 5*p1[1] + 4*p2[1] - p3[1]) * t2
+                + (-p0[1] + 3*p1[1] - 3*p2[1] + p3[1]) * t3
+            )
+
+            curve_points.append((x, y))
+
+    curve_points.append(points[-1])
+
+    draw.line(
+        curve_points,
+        fill=fill,
+        width=width
+    )
+    
+
 def draw_centered_text(draw, text, box, font, fill):
 
     x_start, y_start, x_end, y_end = box
