@@ -1,7 +1,7 @@
 import datetime
 
 from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
-from .helpers import draw_centered_text
+from .helpers import draw_centered_text, draw_smooth_curve
 
 def display_weather(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
@@ -52,7 +52,7 @@ def display_weather(draw, df_hourly, df_daily, x_start, y_start):
 # Plus daily maximum and minimum temperatur with a weather picture
 def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
-    graph_height = 100
+    graph_height = 150
     print_hour = 1
     x_day_start = []
     
@@ -107,9 +107,14 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     
     y -= graph_height + spacing_small
     
+    # Draw daily weather overview
     draw = draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
     draw = draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
     draw = draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , 1200 - x_start, 2)
+    
+    y +=  spacing_small
+    
+    draw = draw_weather_curve(draw, df_daily,x_start, y, graph_height, hour_spacing, now_hour)
     
     return draw
 
@@ -130,7 +135,31 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     return draw
 
 
-
+def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spacing, hour):
+    offset = 5
+    positions = []
+    # get hourly data from now on
+    index = df_hourly[df_hourly['datetime'].dt.hour == hour].index[0]
+    df_from_now = df_hourly.loc[index:]
+    
+    
+    temp_min = df_from_now['temperature_2m'].min()
+    temp_max = df_from_now['temperature_2m'].min()
+    temp_delta = temp_max - temp_min
+    
+    degrees_spacing = (graph_height - offset * 2) / temp_delta
+    
+    for i in range(0, 49):
+        # define X positions of curve
+        positions.append(i * hour_spacing)
+        
+        # define X positions of curve
+        temperature = df_from_now.loc[i,'temperature_2m']
+        positions.append((temp_max - temperature) * degrees_spacing + offset)
+    
+    draw_smooth_curve(draw, positions, fill_main, 0)
+        
+    return draw
 
 
 def get_weather_description(code):
