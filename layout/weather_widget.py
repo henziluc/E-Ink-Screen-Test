@@ -119,13 +119,16 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     y = y_start
     x_delta = x_end - x_start
     
-    text = str(df_daily.loc[day, 'temperature_2m_min']) + '°C / ' + str(df_daily.loc[day, 'temperature_2m_max']) + '°C'
+    
+    
+    text = str(round(df_daily.loc[day, 'temperature_2m_min'], 1)) + '°C / ' + str(round(df_daily.loc[day, 'temperature_2m_max'], 1)) + '°C'
     
     if x_delta > 200:
         draw_centered_text(draw, text, (x_start, y_start, x_end, y + 20), font_small, fill_main) 
         
     
     return draw
+
 
 
 
