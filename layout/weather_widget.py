@@ -139,7 +139,7 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     offset = 5
     positions = []
     # get hourly data from now on
-    index = df_hourly[df_hourly['datetime'].dt.hour == hour].index[0]
+    index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
     df_from_now = df_hourly.loc[index:]
     
     
