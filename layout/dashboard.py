@@ -49,13 +49,13 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         draw = display_welcome(draw, 30, 30)
         
         # Draw weather curve
-        draw = display_weather_curve(draw, weather_hourly, weather_daily, 30, 130)
+        draw = display_weather_curve(draw, weather_hourly, weather_daily, 30, 120)
         
         # Draw transport schedule
-        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 300)
+        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 400)
         
         # Draw next holidays
-        draw = display_holiday(draw, holidays, 30, 750)
+        draw = display_holiday(draw, holidays, 30, 850)
         
         # Draw helper grid
         draw = draw_grid(draw, 20, 1600, 1200)
