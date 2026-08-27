@@ -68,7 +68,36 @@ def draw_smooth_curve(draw, points, fill="black", width=3, steps=20):
         fill=fill,
         width=width
     )
-    
+
+
+def draw_dotted_line(draw, start, end, dot_length=4, gap=4, fill="black", width=2):
+    x1, y1 = start
+    x2, y2 = end
+
+    dx = x2 - x1
+    dy = y2 - y1
+    length = (dx**2 + dy**2) ** 0.5
+
+    if length == 0:
+        return
+
+    ux = dx / length
+    uy = dy / length
+
+    distance = 0
+
+    while distance < length:
+        x = x1 + ux * distance
+        y = y1 + uy * distance
+
+        draw.ellipse(
+            (x - width/2, y - width/2,
+             x + width/2, y + width/2),
+            fill=fill
+        )
+
+        distance += dot_length + gap
+            
 
 def draw_centered_text(draw, text, box, font, fill):
 

@@ -2,7 +2,7 @@ import datetime
 import math
 
 from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
-from .helpers import draw_centered_text, draw_smooth_curve
+from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
 def display_weather(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
@@ -171,9 +171,15 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
     for i in range(0, temp_delta + 1):
         y = y_start + offset + i * degrees_spacing
         draw.line([(x_start, y),(x_start + 5, y)], fill= fill_main, width = 0)
-        temp = str(temp_max - i)
+        
+        # draw every second temperature value
+        temp = temp_max - i
         if i % 2 == 0:
-            draw.text((x_start - 2, y), temp, font=font_small, fill=fill_main, anchor= 'rm')
+            draw.text((x_start - 2, y), str(temp) , font=font_small, fill=fill_main, anchor= 'rm')
+        
+        # draw dotted helper lines at every 5°C step
+        if temp % 5 == 0:
+            draw_dotted_line(draw,(x_start, y ),(1200-x_start, y), 4, 4, fill_main, 0)
         
     return draw
 
