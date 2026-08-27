@@ -165,7 +165,7 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
         positions.append((positions_x, positions_y))
     
     # draw temperature curve    
-    draw_smooth_curve(draw, positions, fill_main, 1)
+    draw_smooth_curve(draw, positions, fill_main, 2)
     
     # draw temperature scale
     for i in range(0, temp_delta + 1):
@@ -175,7 +175,7 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
         # draw every second temperature value
         temp = temp_max - i
         if i % 2 == 0:
-            draw.text((x_start - 2, y), str(temp) , font=font_small, fill=fill_main, anchor= 'rm')
+            draw.text((x_start - 2, y), str(temp), font=font_small, fill=fill_main, anchor= 'rm')
             
         # draw dotted helper lines at every 5°C step
         if temp % 5 == 0:
