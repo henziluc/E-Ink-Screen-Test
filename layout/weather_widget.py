@@ -4,50 +4,6 @@ import math
 from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
 from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
-def display_weather(draw, df_hourly, df_daily, x_start, y_start):
-    y = y_start
-    
-    # Draw widget title
-    draw.text((x_start, y), 'Weather Forecast', font=font_large, fill=fill_main)
-    y += spacing_large
-    
-    # Initalize x position of values
-    x_weather_code = x_start + 100
-    x_min_temp = x_weather_code + 150
-    x_max_temp = x_min_temp + 100
-    x_wind_speed = x_max_temp + 100
-    x_precipitation = x_wind_speed + 100
-    x_sunshine = x_precipitation + 100
-    
-    # Draw the column titels
-    draw.text((x_start, y),'Date',font=font_small,fill=fill_main)
-    draw.text((x_weather_code, y),'Weather Code',font=font_small,fill=fill_main)
-    draw.text((x_min_temp, y),'Min Temp.',font=font_small,fill=fill_main)
-    draw.text((x_max_temp, y),'Max Temp.',font=font_small,fill=fill_main)
-    draw.text((x_wind_speed, y),'Wind Speed',font=font_small,fill=fill_main)
-    draw.text((x_precipitation, y),'Precipitation',font=font_small,fill=fill_main)
-    draw.text((x_sunshine, y),'Sunshine Duration',font=font_small,fill=fill_main)
-    y += spacing_small
-    
-    # Draw daily weather data
-    for _, row in df_daily.iterrows():
-        
-        # Get weather description from weather code
-        weather_code = get_weather_description(row['weather_code'])
-        
-        # draw weather data
-        draw.text((x_start, y),str(row['date'])[:10],font=font_small,fill=fill_main)
-        draw.text((x_weather_code, y),weather_code,font=font_small,fill=fill_main)
-        draw.text((x_min_temp, y),str(round(row['temperature_2m_min'],1)),font=font_small,fill=fill_main)
-        draw.text((x_max_temp, y),str(round(row['temperature_2m_max'],1)),font=font_small,fill=fill_main)
-        draw.text((x_wind_speed, y),str(round(row['wind_speed_10m_max'],1)),font=font_small,fill=fill_main)
-        draw.text((x_precipitation, y),str(round(row['precipitation_sum'],1)),font=font_small,fill=fill_main)
-        draw.text((x_sunshine, y),str(round(row['sunshine_duration']/3060,1)) + 'h',font=font_small,fill=fill_main)
-        y += spacing_small 
-           
-    return draw
-
-
 
 # new function that is on top of the screen and shows the temperatur curve and rain from now for the next 48h.
 # Plus daily maximum and minimum temperatur with a weather picture

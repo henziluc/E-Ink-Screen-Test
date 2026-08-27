@@ -33,6 +33,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
 
     epd = epd13in3E.EPD()
     try:
+        
         epd.Init()
         
         # Set background to white
@@ -47,22 +48,17 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         # Draw welcome message
         draw = display_welcome(draw, 30, 30)
         
-        # Draw transport schedule
-        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 130)
-        
-        # Draw weather forecast    
-        draw = display_weather(draw, weather_hourly, weather_daily, 375, 130)
-        
         # Draw weather curve
-        draw = display_weather_curve(draw, weather_hourly, weather_daily, 30, 850)
+        draw = display_weather_curve(draw, weather_hourly, weather_daily, 30, 130)
         
-        
+        # Draw transport schedule
+        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 300)
         
         # Draw next holidays
-        draw = display_holiday(draw, holidays, 30, 580)
+        draw = display_holiday(draw, holidays, 30, 750)
         
         # Draw helper grid
-        # draw = draw_grid(draw, 20, 1600, 1200)
+        draw = draw_grid(draw, 20, 1600, 1200)
         
         # Write picture on to screen
         epd.display(epd.getbuffer(image))
