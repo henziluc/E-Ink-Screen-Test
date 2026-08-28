@@ -22,7 +22,7 @@ import json
 
 from .welcome_widget import display_welcome
 from .transport_widget import display_schedule_complet
-from .weather_widget import  display_weather_curve
+from .weather_widget import  display_weather_graph
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
 from assets.holiday_data import holidays
@@ -46,16 +46,16 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         draw.text((30, 1575),"Last refresh: " + now_str, font=font_small,fill=fill_main)
         
         # Draw welcome message
-        draw = display_welcome(draw, 30, 30)
+        display_welcome(draw, 30, 30)
         
         # Draw weather curve
-        draw = display_weather_curve(draw, weather_hourly, weather_daily, 30, 120)
+        display_weather_graph(draw, weather_hourly, weather_daily, 30, 120)
         
         # Draw transport schedule
-        draw = display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 400)
+        display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 400)
         
         # Draw next holidays
-        draw = display_holiday(draw, holidays, 30, 850)
+        display_holiday(draw, holidays, 30, 850)
         
         # Draw helper grid
         draw = draw_grid(draw, 20, 1600, 1200)

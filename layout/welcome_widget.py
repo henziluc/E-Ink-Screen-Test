@@ -18,5 +18,3 @@ def display_welcome(draw, x_start, y_start):
     else:
         draw_centered_text(draw, 'Good Night',(x_start, y_start, x_end, y_end), font_massiv, fill_main)
     
-
-    return draw

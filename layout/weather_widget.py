@@ -1,5 +1,6 @@
 import datetime
 import math
+from PIL import Image
 
 from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
 from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
@@ -7,7 +8,7 @@ from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
 # new function that is on top of the screen and shows the temperatur curve and rain from now for the next 48h.
 # Plus daily maximum and minimum temperatur with a weather picture
-def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
+def display_weather_graph(draw, df_hourly, df_daily, x_start, y_start):
     y = y_start
     graph_height = 150
     print_hour = 1
@@ -67,15 +68,14 @@ def display_weather_curve(draw, df_hourly, df_daily, x_start, y_start):
     y -= graph_height + spacing_small
     
     # Draw daily weather overview
-    draw = draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
-    draw = draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
-    draw = draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , 1200 - x_start, 2)
+    draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
+    draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
+    draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , 1200 - x_start, 2)
     
     y +=  spacing_small
     
-    draw = draw_weather_curve(draw, df_hourly, x_start, y, graph_height, hour_spacing, now_hour)
+    draw_weather_curve(draw, df_hourly, x_start, y, graph_height, hour_spacing, now_hour)
     
-    return draw
 
 
 def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
@@ -89,12 +89,10 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     
     if x_delta > 200:
         draw_centered_text(draw, text, (x_start, y_start, x_end, y + 20), font_small, fill_main) 
-        
-    
-    return draw
+   
 
 
-def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spacing, hour):
+def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, hour_spacing, hour):
     offset = 8
     positions = []
     
@@ -119,7 +117,12 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
         positions_y = (temp_max - temperature) * degrees_spacing + offset + y_start
 
         positions.append((positions_x, positions_y))
-    
+
+        icon = Image.open("assets/weather_icons/partly-cloudy-day.png").convert("RGB")
+        icon = icon.resize((40, 40))
+
+        image.paste(icon, (500, 300))
+
     # draw temperature curve    
     draw_smooth_curve(draw, positions, fill_main, 2)
     
@@ -137,7 +140,6 @@ def draw_weather_curve(draw, df_hourly, x_start, y_start, graph_height, hour_spa
         if temp % 5 == 0:
             draw_dotted_line(draw,(x_start, y ),(1200-x_start, y), dot_length=2, gap=8, fill=fill_main, width=1)
         
-    return draw
 
 
 def get_weather_description(code):

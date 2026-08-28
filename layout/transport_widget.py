@@ -12,9 +12,7 @@ def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x
     y += 10
     # Draw schedule for station 2
     draw, y = display_schedule(draw, station_name_2, df_2, x_start , y)
-    
-    
-    return draw
+
 
 
 
