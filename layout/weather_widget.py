@@ -8,7 +8,7 @@ from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
 # new function that is on top of the screen and shows the temperatur curve and rain from now for the next 48h.
 # Plus daily maximum and minimum temperatur with a weather picture
-def display_weather_graph(draw, df_hourly, df_daily, x_start, y_start):
+def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     y = y_start
     graph_height = 150
     print_hour = 1
@@ -74,7 +74,7 @@ def display_weather_graph(draw, df_hourly, df_daily, x_start, y_start):
     
     y +=  spacing_small
     
-    draw_weather_curve(draw, df_hourly, x_start, y, graph_height, hour_spacing, now_hour)
+    draw_weather_curve(draw, image, df_hourly, x_start, y, graph_height, hour_spacing, now_hour)
     
 
 

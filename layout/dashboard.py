@@ -49,7 +49,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         display_welcome(draw, 30, 30)
         
         # Draw weather curve
-        display_weather_graph(draw, weather_hourly, weather_daily, 30, 120)
+        display_weather_graph(draw, image, weather_hourly, weather_daily, 30, 120)
         
         # Draw transport schedule
         display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 400)
