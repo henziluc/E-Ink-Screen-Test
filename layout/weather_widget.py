@@ -120,7 +120,7 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
 
         positions.append((positions_x, positions_y))
 
-        icon_path = BASE_DIR / "assets" / "weather_symbols" / "rain-snow-showers-night.png"
+        icon_path = BASE_DIR / "assets" / "weather_symbol" / "rain-snow-showers-night.png"
         icon = Image.open(icon_path).convert("RGB")
         icon = icon.resize((40, 40))
 
