@@ -1,10 +1,12 @@
 import datetime
 import math
 from PIL import Image
+from pathlib import Path
 
 from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
 from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 # new function that is on top of the screen and shows the temperatur curve and rain from now for the next 48h.
 # Plus daily maximum and minimum temperatur with a weather picture
@@ -118,7 +120,8 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
 
         positions.append((positions_x, positions_y))
 
-        icon = Image.open("assets/weather_icons/partly-cloudy-day.png").convert("RGB")
+        icon_path = BASE_DIR / "assets" / "weather_icons" / "rain-snow-showers-night.png"
+        icon = Image.open(icon_path).convert("RGB")
         icon = icon.resize((40, 40))
 
         image.paste(icon, (500, 300))
