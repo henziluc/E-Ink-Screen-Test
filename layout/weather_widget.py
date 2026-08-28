@@ -118,7 +118,7 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
 
         positions.append((positions_x, positions_y))
 
-        icon = Image.open("../assets/weather_icons/partly-cloudy-day.png").convert("RGB")
+        icon = Image.open("assets/weather_icons/partly-cloudy-day.png").convert("RGB")
         icon = icon.resize((40, 40))
 
         image.paste(icon, (500, 300))
