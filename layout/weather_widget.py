@@ -74,13 +74,21 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
     draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , 1200 - x_start, 2)
     
-    y +=  spacing_small + spacing_normal
+    y +=   spacing_normal
     
-    
+    # get hourly data from now on
+    index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
+    df_from_now = df_hourly.loc[index: index+48]
+    df_from_now = df_from_now.reset_index(drop=True) 
+        
     sunrise = df_daily.loc[1,'sunrise'].hour
     sunset = df_daily.loc[1,'sunset'].hour
     
-    draw_weather_curve(draw, image, df_hourly, x_start, y, graph_height, hour_spacing, now_hour, sunrise, sunset)
+    draw_weather_icons(image, df_from_now, x_start, y, sunrise, sunset, hour, hour_spacing)
+    
+    y +=  spacing_small
+    
+    draw_temperature_curve(draw, df_from_now, x_start, y, graph_height, hour_spacing)
     
 
 
@@ -97,16 +105,9 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
         draw_centered_text(draw, text, (x_start, y_start, x_end, y + 20), font_small, fill_main) 
    
 
-
-def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, hour_spacing, hour, sunrise, sunset):
+def draw_temperature_curve(draw, df_from_now, x_start, y_start, graph_height, hour_spacing):
     offset = 8
-    positions = []
-    print_icon = True
-    
-    # get hourly data from now on
-    index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
-    df_from_now = df_hourly.loc[index: index+48]
-    df_from_now = df_from_now.reset_index(drop=True) 
+    positions_rain = []
     
     # calculate spacing per degree
     temp_min = math.floor(df_from_now['temperature_2m'].min())
@@ -123,31 +124,11 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         temperature = df_from_now.loc[i,'temperature_2m']
         positions_y = (temp_max - temperature) * degrees_spacing + offset + y_start
 
-        positions.append((positions_x, positions_y))
+        positions_rain.append((positions_x, positions_y))
         
-        hour = df_from_now.loc[i,'date'].hour
-        
-        if print_icon:
-            if sunrise < hour < sunset:
-                day = True
-            else:
-                day = False
-                
-            icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
-            print(str(hour) + ': ' + str(icon_path))
-            icon = Image.open(icon_path).convert("RGBA")
-            icon = icon.resize((40, 40))
-
-            x = int((x_start + i * hour_spacing) - icon.width / 2)
-            y = int(y_start - spacing_normal)
-            
-            image.paste(icon, (x, y), icon)
-            print_icon = False
-        else:
-            print_icon = True
 
     # draw temperature curve    
-    draw_smooth_curve(draw, positions, fill_main, 2)
+    draw_smooth_curve(draw, positions_rain, fill_main, 2)
     
     # draw temperature scale
     for i in range(0, temp_delta + 1):
@@ -163,6 +144,30 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         if temp % 5 == 0:
             draw_dotted_line(draw,(x_start, y ),(1200-x_start, y), dot_length=2, gap=8, fill=fill_main, width=1)
         
+
+def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, hour, hour_spacing):
+    print_icon = True
+    
+    for i in range(0, 49):
+           
+        if print_icon:
+            if sunrise < hour < sunset:
+                day = True
+            else:
+                day = False
+                
+            icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
+            icon = Image.open(icon_path).convert("RGBA")
+            icon = icon.resize((40, 40))
+
+            x = int((x_start + i * hour_spacing) - icon.width / 2)
+            y = int(y_start - spacing_normal)
+            
+            image.paste(icon, (x, y), icon)
+            print_icon = False
+        else:
+            print_icon = True
+
 
 def get_weather_icon(code, day):    
     
