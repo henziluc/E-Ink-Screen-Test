@@ -74,7 +74,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     draw_daily_wether_decription(draw, df_daily, x_day_start[0], y , x_day_start[1], 1)
     draw_daily_wether_decription(draw, df_daily, x_day_start[1], y , 1200 - x_start, 2)
     
-    y +=   spacing_normal
+    y +=   spacing_small
     
     # get hourly data from now on
     index = df_hourly[df_hourly['date'].dt.hour == now_hour].index[0]
@@ -86,8 +86,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     
     draw_weather_icons(image, df_from_now, x_start, y, sunrise, sunset, hour_spacing)
     
-    y +=  spacing_small
-    
+    y +=  spacing_normal
     
     draw_rain_graph(draw, df_from_now, x_start, y, graph_height, hour_spacing)
     
