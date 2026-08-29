@@ -151,7 +151,7 @@ def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, ho
     for i in range(0, 49):
            
         if print_icon:
-            hour = df_from_now['date'].hour
+            hour = df_from_now.loc[i, 'date'].hour
             if sunrise < hour < sunset:
                 day = True
             else:
