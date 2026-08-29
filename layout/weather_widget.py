@@ -76,7 +76,11 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     
     y +=  spacing_small + spacing_normal
     
-    draw_weather_curve(draw, image, df_hourly, x_start, y, graph_height, hour_spacing, now_hour)
+    
+    sunrise = df_daily.loc[1,'sunrise'].hour
+    sunset = df_daily.loc[1,'sunset'].hour
+    
+    draw_weather_curve(draw, image, df_hourly, x_start, y, graph_height, hour_spacing, now_hour, sunrise, sunset)
     
 
 
@@ -94,7 +98,7 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
    
 
 
-def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, hour_spacing, hour):
+def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, hour_spacing, hour, sunrise, sunset):
     offset = 8
     positions = []
     print_icon = True
@@ -124,7 +128,7 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         hour = df_from_now.loc[i,'date'].hour
         
         if print_icon:
-            if 6 < hour < 21:
+            if sunrise < hour < sunset:
                 day = True
             else:
                 day = False
