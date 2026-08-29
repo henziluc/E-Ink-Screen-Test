@@ -162,7 +162,7 @@ def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, ho
             icon = icon.resize((40, 40))
 
             x = int((x_start + i * hour_spacing) - icon.width / 2)
-            y = int(y_start - spacing_normal)
+            y = int(y_start)
             
             image.paste(icon, (x, y), icon)
             print_icon = False
