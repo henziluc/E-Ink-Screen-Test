@@ -77,7 +77,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     y +=   spacing_normal
     
     # get hourly data from now on
-    index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
+    index = df_hourly[df_hourly['date'].dt.hour == now_hour].index[0]
     df_from_now = df_hourly.loc[index: index+48]
     df_from_now = df_from_now.reset_index(drop=True) 
         
