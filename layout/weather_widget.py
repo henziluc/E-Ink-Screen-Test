@@ -88,11 +88,13 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     
     y +=  spacing_small
     
+    
+    draw_rain_graph(draw, df_from_now, x_start, y, graph_height, hour_spacing)
+    
     draw_temperature_graph(draw, df_from_now, x_start, y, graph_height, hour_spacing)
     
-    y += graph_height
 
-    draw_rain_graph(draw, df_from_now, x_start, y, graph_height, hour_spacing)
+    
 
 def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     x = x_start
@@ -183,8 +185,9 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
         precipitation = df_from_now.loc[i,'precipitation']
         x1 = x_start + hour_spacing * i - math.floor(hour_spacing / 2)
         x2 = x_start + hour_spacing * i + math.floor(hour_spacing / 2)
-        y1 = y_start - precipitation * rain_spacing
-        draw.rectangle([(x1, y1),(x2, y_start)], fill= fill_rain_graph)
+        y1 = y_start + graph_height - precipitation * rain_spacing
+        y2 = y_start + graph_height
+        draw.rectangle([(x1, y1),(x2, y2)], fill= fill_rain_graph)
 
 def get_weather_icon(code, day):
     match code:
