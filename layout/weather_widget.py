@@ -183,8 +183,8 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
         precipitation = df_from_now.loc[i,'precipitation']
         x1 = x_start + hour_spacing * i - math.floor(hour_spacing / 2)
         x2 = x_start + hour_spacing * i + math.floor(hour_spacing / 2)
-        y2 = y_start - precipitation * rain_spacing
-        draw.rectangle([(x1, y_start),(x2, y2)], fill= fill_main)
+        y1 = y_start - precipitation * rain_spacing
+        draw.rectangle([(x1, y1),(x2, y_start)], fill= fill_main)
 
 def get_weather_icon(code, day):
     match code:
