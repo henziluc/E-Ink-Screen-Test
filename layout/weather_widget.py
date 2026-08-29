@@ -67,7 +67,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     # draw bottom horizontal line of the graph       
     draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
-    y -= graph_height + spacing_small
+    y -= graph_height + spacing_small + spacing_normal
     
     # Draw daily weather overview
     draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
