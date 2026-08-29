@@ -97,6 +97,7 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
 def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, hour_spacing, hour):
     offset = 8
     positions = []
+    print_icon = True
     
     # get hourly data from now on
     index = df_hourly[df_hourly['date'].dt.hour == hour].index[0]
@@ -121,19 +122,25 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         positions.append((positions_x, positions_y))
         
         hour = df_hourly.loc[i,'date'].hour
-        if 6 < hour < 21:
-            day = True
-        else:
-            day = False
-            
-        icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
-        icon = Image.open(icon_path).convert("RGBA")
-        icon = icon.resize((40, 40))
-
-        x = int(x_start + i * hour_spacing)
-        y = int(y_start - spacing_normal)
         
-        image.paste(icon, (x, y), icon)
+        if print_icon:
+            if 6 < hour < 21:
+                day = True
+            else:
+                day = False
+                
+            icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
+            print(hour + ': ' + str(icon_path))
+            icon = Image.open(icon_path).convert("RGBA")
+            icon = icon.resize((40, 40))
+
+            x = int(x_start + i * hour_spacing)
+            y = int(y_start - spacing_normal)
+            
+            image.paste(icon, (x, y), icon)
+            print_icon = False
+        else:
+            print_icon = True
 
     # draw temperature curve    
     draw_smooth_curve(draw, positions, fill_main, 2)
