@@ -84,7 +84,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     sunrise = df_daily.loc[1,'sunrise'].hour
     sunset = df_daily.loc[1,'sunset'].hour
     
-    draw_weather_icons(image, df_from_now, x_start, y, sunrise, sunset, hour, hour_spacing)
+    draw_weather_icons(image, df_from_now, x_start, y, sunrise, sunset, hour_spacing)
     
     y +=  spacing_small
     
@@ -145,12 +145,13 @@ def draw_temperature_curve(draw, df_from_now, x_start, y_start, graph_height, ho
             draw_dotted_line(draw,(x_start, y ),(1200-x_start, y), dot_length=2, gap=8, fill=fill_main, width=1)
         
 
-def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, hour, hour_spacing):
+def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, hour_spacing):
     print_icon = True
     
     for i in range(0, 49):
            
         if print_icon:
+            hour = df_from_now['date'].hour
             if sunrise < hour < sunset:
                 day = True
             else:
