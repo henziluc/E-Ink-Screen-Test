@@ -119,7 +119,9 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         positions_y = (temp_max - temperature) * degrees_spacing + offset + y_start
 
         positions.append((positions_x, positions_y))
-        if 6 < df_hourly.loc[i,'date'].dt.hour < 21:
+        
+        hour = df_hourly.loc[i,'date'].hour
+        if 6 < hour < 21:
             day = True
         else:
             day = False
