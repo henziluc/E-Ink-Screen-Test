@@ -3,7 +3,7 @@ import math
 from PIL import Image
 from pathlib import Path
 
-from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_large
+from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, fill_rain_graph, spacing_small, spacing_normal, spacing_large
 from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -184,7 +184,7 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
         x1 = x_start + hour_spacing * i - math.floor(hour_spacing / 2)
         x2 = x_start + hour_spacing * i + math.floor(hour_spacing / 2)
         y1 = y_start - precipitation * rain_spacing
-        draw.rectangle([(x1, y1),(x2, y_start)], fill= fill_main)
+        draw.rectangle([(x1, y1),(x2, y_start)], fill= fill_rain_graph)
 
 def get_weather_icon(code, day):
     match code:
