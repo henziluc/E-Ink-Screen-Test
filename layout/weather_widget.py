@@ -130,7 +130,7 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
                 day = False
                 
             icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
-            print(hour + ': ' + str(icon_path))
+            print(str(hour) + ': ' + str(icon_path))
             icon = Image.open(icon_path).convert("RGBA")
             icon = icon.resize((40, 40))
 
