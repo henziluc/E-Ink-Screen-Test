@@ -88,9 +88,11 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     
     y +=  spacing_small
     
-    draw_temperature_curve(draw, df_from_now, x_start, y, graph_height, hour_spacing)
+    draw_temperature_graph(draw, df_from_now, x_start, y, graph_height, hour_spacing)
     
+    y += graph_height
 
+    draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spacing)
 
 def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     x = x_start
@@ -105,7 +107,7 @@ def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
         draw_centered_text(draw, text, (x_start, y_start, x_end, y + 20), font_small, fill_main) 
    
 
-def draw_temperature_curve(draw, df_from_now, x_start, y_start, graph_height, hour_spacing):
+def draw_temperature_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spacing):
     offset = 8
     positions_rain = []
     
@@ -170,8 +172,22 @@ def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, ho
             print_icon = True
 
 
-def get_weather_icon(code, day):    
+def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spacing):
+    offset = 20
+    half_hour_spacing = math.floor(half_hour_spacing / 2)
     
+    # calculate spacing per mm precipitation
+    rain_max = math.ceil(df_from_now['precipitation'].max())
+    rain_spacing = (graph_height - offset) / rain_max
+    
+    for i in range(0, 49):
+        precipitation = df_from_now.loc[i,'precipitation']
+        x1 = x_start + hour_spacing * i - math.floor(half_hour_spacing / 2)
+        x2 = x_start + hour_spacing * i + math.floor(half_hour_spacing / 2)
+        y2 = y_start - precipitation + rain_spacing
+        draw.rectangle([(x1, y_start),(x2, y2)], fill= fill_main)
+
+def get_weather_icon(code, day):
     match code:
         case 0 | 1:
             if day:
