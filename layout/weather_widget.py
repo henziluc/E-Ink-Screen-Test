@@ -187,6 +187,20 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
         y2 = y_start + graph_height
         draw.rectangle([(x1, y1),(x2, y2)], fill= fill_rain_graph)
 
+    # draw rain scale
+    if rain_max > 0:
+        for i in range(0, rain_max + 1):
+            y = y_start + offset + i * rain_spacing
+            draw.line([(x_start, y),(x_start + 5, y)], fill= fill_main, width = 0)
+            
+            # draw every second rain value
+            rain = rain_max - i
+            if i % 2 == 0:
+                draw.text((x_start - 2, y), str(rain), font=font_small, fill=fill_main, anchor= 'lm')
+            
+
+
+    
 def get_weather_icon(code, day):
     match code:
         case 0 | 1:
