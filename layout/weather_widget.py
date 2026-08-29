@@ -121,7 +121,7 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
 
         positions.append((positions_x, positions_y))
         
-        hour = df_hourly.loc[i,'date'].hour
+        hour = df_from_now.loc[i,'date'].hour
         
         if print_icon:
             if 6 < hour < 21:
