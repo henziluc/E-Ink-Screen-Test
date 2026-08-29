@@ -196,7 +196,7 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
             
             # draw every second rain value
             rain = rain_max - i
-            if i % 2 == 0:
+            if i % 2 == 0 and rain > 0:
                 draw.text((1200- x_start + 2, y), str(rain), font=font_small, fill=fill_main, anchor= 'lm')
             
     draw.line([(1200-x_start, y_start),(1200-x_start, y_start + graph_height)], fill= fill_main, width = 0)
