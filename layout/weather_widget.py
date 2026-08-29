@@ -149,28 +149,26 @@ def draw_temperature_graph(draw, df_from_now, x_start, y_start, graph_height, ho
         
 
 def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, hour_spacing):
-    print_icon = True
     
-    for i in range(0, 49):
-           
-        if print_icon:
-            hour = df_from_now.loc[i, 'date'].hour
-            if sunrise < hour < sunset:
-                day = True
-            else:
-                day = False
-                
-            icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
-            icon = Image.open(icon_path).convert("RGBA")
-            icon = icon.resize((40, 40))
-
-            x = int((x_start + i * hour_spacing) - icon.width / 2)
-            y = int(y_start)
-            
-            image.paste(icon, (x, y), icon)
-            print_icon = False
+    # loop through the next 48h in 2h steps
+    for i in range(0, 49, 2):
+         
+        # define if day or night symbol  
+        hour = df_from_now.loc[i, 'date'].hour
+        if sunrise < hour < sunset:
+            day = True
         else:
-            print_icon = True
+            day = False
+        
+        # get icon path and print it    
+        icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
+        icon = Image.open(icon_path).convert("RGBA")
+        icon = icon.resize((40, 40))
+
+        x = int((x_start + i * hour_spacing) - icon.width / 2)
+        y = int(y_start)
+        
+        image.paste(icon, (x, y), icon)
 
 
 def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spacing):
@@ -180,6 +178,7 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
     rain_max = math.ceil(df_from_now['precipitation'].max())
     rain_spacing = (graph_height - offset) / rain_max
     
+    # draw rain bargraph
     for i in range(0, 49):
         precipitation = df_from_now.loc[i,'precipitation']
         x1 = x_start + hour_spacing * i - math.floor(hour_spacing / 2)
