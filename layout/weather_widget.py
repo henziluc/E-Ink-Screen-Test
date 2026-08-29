@@ -3,7 +3,7 @@ import math
 from PIL import Image
 from pathlib import Path
 
-from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_large
+from .fonts import font_very_small, font_small, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_large
 from .helpers import draw_centered_text, draw_smooth_curve, draw_dotted_line
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +21,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
         
     # Draw widget title
     draw.text((x_start, y), 'Weather Forecast', font=font_large, fill=fill_main)
-    y += spacing_large + spacing_small
+    y += spacing_large + spacing_small + spacing_normal
     
     # calulate hour spacing on the graph
     hour_spacing = (1200 - x_start * 2) / 48
@@ -67,7 +67,7 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     # draw bottom horizontal line of the graph       
     draw.line([(x_start, y), (1200-x_start, y)], fill= fill_main, width = 0)
     
-    y -= graph_height + spacing_small
+    y -= graph_height + spacing_small + spacing_normal
     
     # Draw daily weather overview
     draw_daily_wether_decription(draw, df_daily, x_start, y , x_day_start[0], 0)
@@ -119,12 +119,16 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         positions_y = (temp_max - temperature) * degrees_spacing + offset + y_start
 
         positions.append((positions_x, positions_y))
-
-        icon_path = BASE_DIR / "assets" / "weather_symbol" / "rain-snow-showers-night.png"
+        if 6 < df_hourly.loc[i,'date'].dt.hour < 21:
+            day = True
+        else:
+            day = False
+            
+        icon_path = get_weather_icon(df_from_now.loc[i,'weather_code'], day)
         icon = Image.open(icon_path).convert("RGBA")
         icon = icon.resize((40, 40))
 
-        image.paste(icon, (500, 300), icon)
+        image.paste(icon, (x_start + i * hour_spacing, y_start - spacing_normal), icon)
 
     # draw temperature curve    
     draw_smooth_curve(draw, positions, fill_main, 2)
@@ -143,6 +147,52 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         if temp % 5 == 0:
             draw_dotted_line(draw,(x_start, y ),(1200-x_start, y), dot_length=2, gap=8, fill=fill_main, width=1)
         
+
+def get_weather_icon(code, day):    
+    
+    match code:
+        case 0 | 1:
+            if day:
+                path = BASE_DIR / "assets" / "weather_symbol" / "clear-day.png"
+            else:
+                path = BASE_DIR / "assets" / "weather_symbol" / "clear-night.png"
+        case 2:
+            if day:
+                path = BASE_DIR / "assets" / "weather_symbol" / "partly-cloudy-day.png"
+            else:
+                path = BASE_DIR / "assets" / "weather_symbol" / "partly-cloudy-night.png"
+        case 3:
+            path = BASE_DIR / "assets" / "weather_symbol" / "cloudy.png"
+        case 45 | 48:
+            path = BASE_DIR / "assets" / "weather_symbol" / "fog.png"
+        case 51 | 53 | 55 | 80:
+            if day:
+                path = BASE_DIR / "assets" / "weather_symbol" / "showers-day.png"
+            else:
+                path = BASE_DIR / "assets" / "weather_symbol" / "showers-night.png"
+        case 61 | 63 | 65 | 81 | 82:
+            path = BASE_DIR / "assets" / "weather_symbol" / "rain.png"
+        case 66 | 67:
+            if day:
+                path = BASE_DIR / "assets" / "weather_symbol" / "rain-snow-showers-day.png"
+            else:
+                path = BASE_DIR / "assets" / "weather_symbol" / "rain-snow-showers-night.png"
+        case 71 | 73 | 85:
+            if day:
+                path = BASE_DIR / "assets" / "weather_symbol" / "snow-showers-day.png"
+            else:
+                path = BASE_DIR / "assets" / "weather_symbol" / "snow-showers-night.png"
+        case 75 | 77 | 86:
+            path = BASE_DIR / "assets" / "weather_symbol" / "snow.png"                
+        case 95:                
+            path = BASE_DIR / "assets" / "weather_symbol" / "thunder-rain.png"
+        case 96 | 99:
+            path = BASE_DIR / "assets" / "weather_symbol" / "hail.png"
+        case _:    
+            path = BASE_DIR / "assets" / "weather_symbol" / "unknown.png"        
+            
+            
+    return path
 
 
 def get_weather_description(code):
