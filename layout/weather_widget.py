@@ -130,7 +130,10 @@ def draw_weather_curve(draw, image, df_hourly, x_start, y_start, graph_height, h
         icon = Image.open(icon_path).convert("RGBA")
         icon = icon.resize((40, 40))
 
-        image.paste(icon, (x_start + i * hour_spacing, y_start - spacing_normal), icon)
+        x = int(x_start + i * hour_spacing)
+        y = int(y_start - spacing_normal)
+        
+        image.paste(icon, (x, y), icon)
 
     # draw temperature curve    
     draw_smooth_curve(draw, positions, fill_main, 2)
