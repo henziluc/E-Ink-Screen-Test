@@ -174,7 +174,6 @@ def draw_weather_icons(image, df_from_now, x_start, y_start, sunrise, sunset, ho
 
 def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spacing):
     offset = 20
-    half_hour_spacing = math.floor(half_hour_spacing / 2)
     
     # calculate spacing per mm precipitation
     rain_max = math.ceil(df_from_now['precipitation'].max())
@@ -182,8 +181,8 @@ def draw_rain_graph(draw, df_from_now, x_start, y_start, graph_height, hour_spac
     
     for i in range(0, 49):
         precipitation = df_from_now.loc[i,'precipitation']
-        x1 = x_start + hour_spacing * i - math.floor(half_hour_spacing / 2)
-        x2 = x_start + hour_spacing * i + math.floor(half_hour_spacing / 2)
+        x1 = x_start + hour_spacing * i - math.floor(hour_spacing / 2)
+        x2 = x_start + hour_spacing * i + math.floor(hour_spacing / 2)
         y2 = y_start - precipitation + rain_spacing
         draw.rectangle([(x1, y_start),(x2, y2)], fill= fill_main)
 
