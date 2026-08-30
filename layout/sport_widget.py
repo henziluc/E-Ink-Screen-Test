@@ -9,7 +9,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     y = y_start
     icon_size = 25
     
-    step_icon_path = BASE_DIR / "assets" / "sport_symbol" / "shoe-print.png"
+    step_icon_path = BASE_DIR / "assets" / "sport_symbol" / "shoe-prints.png"
     heart_icon_path = BASE_DIR / "assets" / "sport_symbol" / "heart.png"
     
     draw.text((x_start, y), 'Health Stats', font=font_large, fill=fill_main)
@@ -17,7 +17,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     y += spacing_large
     
     
-        
+    # draw steps    
     step_icon = Image.open(step_icon_path).convert("RGBA")
     step_icon = step_icon.resize((icon_size, icon_size))
     
