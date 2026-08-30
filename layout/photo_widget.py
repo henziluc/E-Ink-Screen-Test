@@ -1,5 +1,6 @@
 import random
 from pathlib import Path
+from PIL import Image
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,7 +29,7 @@ def display_photo(image, x_start, y_start, x_end):
     
     photo_path = BASE_DIR / "assets" / "photo" / photo_list[random_photo_number]
     
-    picture = image.open(photo_path).convert("RGBA")
+    picture = Image.open(photo_path).convert("RGBA")
     picture = picture.resize((x_size, y_size))
     
     image.paste(picture, (x_start, y_start) )
