@@ -93,8 +93,6 @@ def display_weather_graph(draw, image, df_hourly, df_daily, x_start, y_start):
     draw_temperature_graph(draw, df_from_now, x_start, y, graph_height, hour_spacing)
     
 
-    
-
 def draw_daily_wether_decription(draw, df_daily, x_start, y_start, x_end, day):
     x = x_start
     y = y_start

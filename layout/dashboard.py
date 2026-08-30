@@ -25,6 +25,7 @@ from .transport_widget import display_schedule_complet
 from .weather_widget import  display_weather_graph
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
+from .photo_widget import display_photo
 from assets.holiday_data import holidays
 from .fonts import font_small, font_medium, font_large, fill_main
 
@@ -56,6 +57,9 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # Draw next holidays
         display_holiday(draw, holidays, 30, 900)
+        
+        # draw random picture
+        display_photo(image, 400, 450, 1200)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
