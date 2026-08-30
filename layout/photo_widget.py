@@ -29,13 +29,17 @@ def display_photo(image, x_start, y_start, x_end):
     
     photo_path = BASE_DIR / "assets" / "photo" / photo_list[random_photo_number]
     
+    # Get picture and rotate
     picture = Image.open(photo_path).convert("RGBA")
-    picture = picture.rotate(-90, expand=True)
-    picture = ImageOps.fit(picture, (x_size, y_size), method=Image.Resampling.LANCZOS)
+    picture = ImageOps.exif_transpose(picture)
     
+    # Improve photo colors
     picture = ImageEnhance.Contrast(picture).enhance(1.4)
     picture = ImageEnhance.Color(picture).enhance(1.4)
     picture = ImageEnhance.Sharpness(picture).enhance(1.3)
-    picture = ImageEnhance.Brightness(picture).enhance(1.1)
+    picture = ImageEnhance.Brightness(picture).enhance(1.1)    
+    
+    # Resize picture
+    picture = ImageOps.fit(picture, (x_size, y_size), method=Image.Resampling.LANCZOS)
     
     image.paste(picture, (x_start, y_start) )
