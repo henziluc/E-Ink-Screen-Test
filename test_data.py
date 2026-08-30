@@ -206,3 +206,24 @@ departures_etzberg = pd.DataFrame(
         "realtime_departure_seconds",
     ],
 )
+
+# ============================================================
+# Health data
+# ============================================================
+
+health_data = {
+    "steps": 5437,
+    "step_goal": 6500,
+    "body_battery": 66,
+    "sleep_hours": 9.0,
+    "resting_hr": 41,
+    "sleep_score": 88,
+    "activity_type": "running",
+    "activity_distance": 4142.580078125,
+    "activity_duration": 1799.1700439453125,
+    "activity_aerobic_effect": 2.9000000953674316,
+    "activity_anaerobic_effect": 0.0,
+    "activity_calories": 419.0,
+    "activity_speed": 2.302000045776367,
+    "activity_pace": "7:14",
+}
