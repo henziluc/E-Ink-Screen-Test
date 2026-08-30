@@ -10,7 +10,7 @@ def display_photo(image, x_start, y_start, x_end):
     
     # define photo size
     x_size = x_end - x_start
-    y_size = x_size / 0.75
+    y_size = int(x_size / 0.75)
     
     # count number of photos
     folder = BASE_DIR / "assets" / "photo"
