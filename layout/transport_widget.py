@@ -1,22 +1,27 @@
+from PIL import Image
+from pathlib import Path
+
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_large
 from .helpers import draw_centered_text
 
-def display_schedule_complet(draw, station_name_1, df_1, station_name_2, df_2, x_start, y_start):
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+def display_schedule_complet(draw, image, station_name_1, df_1, station_name_2, df_2, x_start, y_start):
     y = y_start
     
     # Draw widget title    
     draw.text((x_start, y), "Next Trains", font=font_large, fill=fill_main)
     y += spacing_large
     # Draw schedule for station 1
-    draw, y = display_schedule(draw, station_name_1, df_1, x_start, y)
+    draw, y = display_schedule(draw, image, station_name_1, df_1, x_start, y)
     y += 10
     # Draw schedule for station 2
-    draw, y = display_schedule(draw, station_name_2, df_2, x_start , y)
+    draw, y = display_schedule(draw, image, station_name_2, df_2, x_start , y)
 
 
 
 
-def display_schedule(draw, station_name, df, x_start, y_start):
+def display_schedule(draw, image, station_name, df, x_start, y_start):
     y = y_start
     
     # Size of the squares around the route short name
@@ -24,6 +29,16 @@ def display_schedule(draw, station_name, df, x_start, y_start):
     sq_height = 24
     name = "Station " + station_name
     draw_centered_text(draw, name, (x_start,y ,x_start + 260 ,y + 29 ), font_normal, fill_main)
+    
+    if station_name == 'Etzberg':
+        icon_path = BASE_DIR / "assets" / "transport_symbol" / "bus-simple.png"
+    else:
+        icon_path = BASE_DIR / "assets" / "transport_symbol" / "train.png"
+        
+    icon = Image.open(icon_path).convert("RGBA")
+    icon = icon.resize((40, 40))
+            
+    image.paste(icon, (x_start, y), icon)
     
     y += spacing_small + 5
     
