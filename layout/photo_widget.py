@@ -1,6 +1,6 @@
 import random
 from pathlib import Path
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageEnhance
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -31,10 +31,11 @@ def display_photo(image, x_start, y_start, x_end):
     
     picture = Image.open(photo_path).convert("RGBA")
     picture = picture.rotate(-90, expand=True)
-    picture = ImageOps.fit(
-    picture,
-    (x_size, y_size),
-    method=Image.Resampling.LANCZOS
-)
+    picture = ImageOps.fit(picture, (x_size, y_size), method=Image.Resampling.LANCZOS)
+    
+    picture = ImageEnhance.Contrast(picture).enhance(1.4)
+    picture = ImageEnhance.Color(picture).enhance(1.4)
+    picture = ImageEnhance.Sharpness(picture).enhance(1.3)
+    picture = ImageEnhance.Brightness(picture).enhance(1.1)
     
     image.paste(picture, (x_start, y_start) )
