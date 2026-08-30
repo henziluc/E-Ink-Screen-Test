@@ -38,7 +38,7 @@ def display_schedule(draw, image, station_name, df, x_start, y_start):
     icon = Image.open(icon_path).convert("RGBA")
     icon = icon.resize((30, 30))
             
-    image.paste(icon, (x_start, y), icon)
+    image.paste(icon, (x_start + 2, y), icon)
     
     y += spacing_small + 5
     
