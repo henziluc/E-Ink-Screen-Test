@@ -60,7 +60,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         display_holiday(draw, holidays, 30, 900)
         
         # draw random picture
-        display_photo(image, 400, 450, 1200)
+        display_photo(draw, image, 400, 450, 1170)
         
         # draw healt data
         display_health_widget(draw, 30, 1150)

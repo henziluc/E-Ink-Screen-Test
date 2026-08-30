@@ -5,7 +5,7 @@ from PIL import Image, ImageOps, ImageEnhance
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-def display_photo(image, x_start, y_start, x_end):
+def display_photo(draw, image, x_start, y_start, x_end):
     photo_list = []
     
     # define photo size
@@ -41,5 +41,7 @@ def display_photo(image, x_start, y_start, x_end):
     
     # Resize picture
     picture = ImageOps.fit(picture, (x_size, y_size), method=Image.Resampling.LANCZOS)
+    
+    draw.rectangle([(x_start, y_start),(x_end, y_start + y_size)], outline ="black", width = 1)
     
     image.paste(picture, (x_start, y_start) )
