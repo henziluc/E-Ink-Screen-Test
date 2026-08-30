@@ -22,10 +22,10 @@ def display_photo(image, x_start, y_start, x_end):
     # get a list of all photo in a list
     for file in folder.iterdir():
         if file.suffix.lower() in [".jpg", ".jpeg", ".png", ".webp"]:
-            photo_list.append(file)
+            photo_list.append(file.name)
         
     # get random number between 1 and number of photos
-    random_photo_number = random.randint(1, photo_count)
+    random_photo_number = random.randint(1, photo_count - 1)
     print(random_photo_number)
     print(photo_list)
     
