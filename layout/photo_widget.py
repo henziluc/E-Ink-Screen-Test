@@ -42,6 +42,7 @@ def display_photo(draw, image, x_start, y_start, x_end):
     # Resize picture
     picture = ImageOps.fit(picture, (x_size, y_size), method=Image.Resampling.LANCZOS)
     
-    draw.rectangle([(x_start, y_start),(x_end, y_start + y_size)], outline ="black", width = 3)
+    image.paste(picture, (x_start, y_start))
     
-    image.paste(picture, (x_start, y_start) )
+    # Add frame around picture
+    draw.rectangle([(x_start, y_start),(x_end, y_start + y_size)], outline ="black", width = 3)
