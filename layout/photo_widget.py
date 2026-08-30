@@ -30,6 +30,7 @@ def display_photo(image, x_start, y_start, x_end):
     photo_path = BASE_DIR / "assets" / "photo" / photo_list[random_photo_number]
     
     picture = Image.open(photo_path).convert("RGBA")
+    picture = picture.rotate(-90, expand=True)
     picture = ImageOps.fit(
     picture,
     (x_size, y_size),
