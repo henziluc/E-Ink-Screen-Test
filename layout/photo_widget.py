@@ -34,7 +34,7 @@ def display_photo(image, x_start, y_start, x_end):
     picture = ImageOps.exif_transpose(picture)
     
     # Improve photo colors
-    picture = ImageEnhance.Contrast(picture).enhance(1.4)
+    picture = ImageEnhance.Contrast(picture).enhance(1.1)
     picture = ImageEnhance.Color(picture).enhance(1.4)
     picture = ImageEnhance.Sharpness(picture).enhance(1.3)
     picture = ImageEnhance.Brightness(picture).enhance(1.1)    
