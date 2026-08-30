@@ -36,7 +36,7 @@ def display_schedule(draw, image, station_name, df, x_start, y_start):
         icon_path = BASE_DIR / "assets" / "transport_symbol" / "train.png"
         
     icon = Image.open(icon_path).convert("RGBA")
-    icon = icon.resize((30, 30))
+    icon = icon.resize((25, 25))
             
     image.paste(icon, (x_start + 1, y), icon)
     
