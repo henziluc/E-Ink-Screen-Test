@@ -54,7 +54,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         display_weather_graph(draw, image, weather_hourly, weather_daily, 30, 120)
         
         # Draw transport schedule
-        display_schedule_complet(draw, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 450)
+        display_schedule_complet(draw, image, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 450)
         
         # Draw next holidays
         display_holiday(draw, holidays, 30, 900)
