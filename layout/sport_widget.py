@@ -10,11 +10,11 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     icon_size = 25
     
     step_icon_path = BASE_DIR / "assets" / "sport_symbol" / "shoe-prints.png"
-    battery_full_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_full.png"
-    battery_three_quarters_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_three_quarters.png"
-    battery_half_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_half.png"
-    battery_quarter_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_quarter.png"
-    battery_empty_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_empty.png"   
+    battery_full_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-full.png"
+    battery_three_quarters_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_three-quarters.png"
+    battery_half_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-half.png"
+    battery_quarter_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-quarter.png"
+    battery_empty_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-empty.png"   
     heart_icon_path = BASE_DIR / "assets" / "sport_symbol" / "heart.png"
     
     draw.text((x_start, y), 'Health Stats', font = font_large, fill = fill_main)
