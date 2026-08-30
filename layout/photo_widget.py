@@ -1,6 +1,6 @@
 import random
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageOps
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,12 +26,14 @@ def display_photo(image, x_start, y_start, x_end):
         
     # get random number between 1 and number of photos
     random_photo_number = random.randint(1, photo_count - 1)
-    print(random_photo_number)
-    print(photo_list)
     
     photo_path = BASE_DIR / "assets" / "photo" / photo_list[random_photo_number]
     
     picture = Image.open(photo_path).convert("RGBA")
-    picture = picture.resize((x_size, y_size))
+    picture = ImageOps.fit(
+    picture,
+    (x_size, y_size),
+    method=Image.Resampling.LANCZOS
+)
     
     image.paste(picture, (x_start, y_start) )
