@@ -11,7 +11,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     
     step_icon_path = BASE_DIR / "assets" / "sport_symbol" / "shoe-prints.png"
     battery_full_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-full.png"
-    battery_three_quarters_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery_three-quarters.png"
+    battery_three_quarters_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-three-quarters.png"
     battery_half_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-half.png"
     battery_quarter_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-quarter.png"
     battery_empty_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-empty.png"   
