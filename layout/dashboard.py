@@ -63,7 +63,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         display_photo(image, 400, 450, 1200)
         
         # draw healt data
-        display_health_widget(draw, 30, 1300)
+        display_health_widget(draw, 30, 1100)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
