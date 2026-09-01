@@ -15,7 +15,7 @@ def display_birthday_widget(draw, image, x_start, y_start, birthday_data):
     y = y_start
     upcoming_birthdays = get_upcoming_birthdays(birthday_data, 5)
 
-    draw.text((x_start, y_start), 'Upcoming Birthdays', font=font_large, fill=fill_main)
+    draw.text((x_start, y_start), 'Birthdays', font=font_large, fill=fill_main)
     
     y += spacing_large
     
@@ -31,7 +31,7 @@ def display_birthday_widget(draw, image, x_start, y_start, birthday_data):
         if int(days_until) < 2:
             draw.text((x_start + icon_size + 170, y), 'in' + days_until + ' days' , font = font_small, fill = fill_main )
         else:
-            draw.text((x_start + icon_size + 170, y), 'in' + days_until + ' days' , font = font_small, fill = fill_main )
+            draw.text((x_start + icon_size + 170, y), 'in ' + days_until + ' days' , font = font_small, fill = fill_main )
         y += spacing_small
   
     
