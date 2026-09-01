@@ -119,7 +119,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     image.paste(calories_icon, (x_start, y), calories_icon)   
     
     activity_calories = str(round(health_data['activity_calories'],))
-    draw.text((x_start + icon_size + 5, y), activity_calories, font = font_small, fill = fill_main)    
+    draw.text((x_start + icon_size + 5, y), activity_calories + ' cal', font = font_small, fill = fill_main)    
 
     y += spacing_small
     
