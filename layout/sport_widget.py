@@ -90,7 +90,8 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
         activity_icon = Image.open(running_icon_path).convert("RGBA")
         
     activity_icon = activity_icon.resize((icon_size, icon_size))
-    image.paste(activity_icon, (x_start + 20, y), activity_icon)
+    image.paste(activity_icon, (x_start, y), activity_icon)
+    draw.text((x_start + icon_size + 5, y), health_data['activity_type'], font = font_small, fill = fill_main)    
 
     y += spacing_small
       
@@ -98,15 +99,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     duration_icon = duration_icon.resize((icon_size, icon_size))
     image.paste(duration_icon, (x_start, y), duration_icon)
     
-    activity_duration_h = str(math.floor(health_data['activity_duration'] / 3600))
-    activity_duration_min = math.floor(health_data['activity_duration'] % 3600 * 60)
-    
-    if activity_duration_min < 10:
-        activity_duration_min = '0' + str(activity_duration_min)
-    else:
-        activity_duration_min = str(activity_duration_min)
-    
-    draw.text((x_start + icon_size + 5, y), activity_duration_h + ':' + activity_duration_min + 'h', font = font_small, fill = fill_main)
+    draw.text((x_start + icon_size + 5, y), seconds_to_hours(health_data['activity_duration']), font = font_small, fill = fill_main)
     
     y += spacing_small
     
@@ -125,3 +118,19 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     
     activity_calories = str(round(health_data['activity_calories'], 0))
     draw.text((x_start + icon_size + 5, y), activity_calories, font = font_small, fill = fill_main)    
+    
+    
+def seconds_to_hours(seconds):
+    
+    time_h = round(seconds / 3600, 0)
+    
+    time_m = (seconds / 3600 - time_h) * 60
+    
+    if time_m < 10:
+        time_m = 0 + str(time_m)
+    else:
+        time_m = str(time_m)
+    
+    time = str(time_h) + ':' + time_m
+    
+    return time
