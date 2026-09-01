@@ -24,6 +24,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     fire_icon_path = BASE_DIR / "assets" / "sport_symbol" / "fire.png"
     arrows_icon_path = BASE_DIR / "assets" / "sport_symbol" / "arrows.png"
     hourglass_icon_path = BASE_DIR / "assets" / "sport_symbol" / "hourglass.png"
+    speed_icon_path = BASE_DIR / "assets" / "sport_symbol" / "gauge.png"
 
     
     draw.text((x_start, y), 'Health Stats', font = font_large, fill = fill_main)
@@ -91,7 +92,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
         
     activity_icon = activity_icon.resize((icon_size, icon_size))
     image.paste(activity_icon, (x_start, y), activity_icon)
-    draw.text((x_start + icon_size + 5, y), health_data['activity_type'], font = font_small, fill = fill_main)    
+    draw.text((x_start + icon_size + 5, y), 'Last Activity', font = font_small, fill = fill_main)    
 
     y += spacing_small
       
@@ -103,14 +104,15 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     
     y += spacing_small
     
-    distance_icon = Image.open(arrows_icon_path).convert("RGBA")
-    distance_icon = distance_icon.resize((icon_size, icon_size))
-    image.paste(distance_icon, (x_start, y), distance_icon)   
-    
-    activity_duration = str(round(health_data['activity_duration'] / 1000, 1))
-    draw.text((x_start + icon_size + 5, y), activity_duration, font = font_small, fill = fill_main)    
-    
-    y += spacing_small
+    if health_data['activity_distance'] != None:    
+        distance_icon = Image.open(arrows_icon_path).convert("RGBA")
+        distance_icon = distance_icon.resize((icon_size, icon_size))
+        image.paste(distance_icon, (x_start, y), distance_icon)   
+        
+        activity_distance = str(round(health_data['activity_distance'] / 1000, 1))
+        draw.text((x_start + icon_size + 5, y), activity_distance, font = font_small, fill = fill_main)    
+        
+        y += spacing_small
     
     calories_icon = Image.open(fire_icon_path).convert("RGBA")
     calories_icon = calories_icon.resize((icon_size, icon_size))
@@ -118,13 +120,23 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     
     activity_calories = str(round(health_data['activity_calories'], 0))
     draw.text((x_start + icon_size + 5, y), activity_calories, font = font_small, fill = fill_main)    
+
+    if health_data['activity_pace'] != None:
+        speed_icon = Image.open(speed_icon_path).convert("RGBA")
+        speed_icon = speed_icon.resize((icon_size, icon_size))
+        image.paste(speed_icon, (x_start, y), speed_icon)   
+        
+        draw.text((x_start + icon_size + 5, y), health_data['activity_pace'] + ' min/km', font = font_small, fill = fill_main)   
+
+
+
     
     
 def seconds_to_hours(seconds):
     
     time_h = round(seconds / 3600, 0)
     
-    time_m = (seconds / 3600 - time_h) * 60
+    time_m = round((seconds / 3600 - time_h) * 60)
     
     if time_m < 10:
         time_m = 0 + str(time_m)
