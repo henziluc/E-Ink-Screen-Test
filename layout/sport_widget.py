@@ -121,6 +121,8 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     activity_calories = str(round(health_data['activity_calories'], 0))
     draw.text((x_start + icon_size + 5, y), activity_calories, font = font_small, fill = fill_main)    
 
+    y += spacing_small
+    
     if health_data['activity_pace'] != None:
         speed_icon = Image.open(speed_icon_path).convert("RGBA")
         speed_icon = speed_icon.resize((icon_size, icon_size))
