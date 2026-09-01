@@ -27,11 +27,12 @@ from .helpers import draw_grid
 from .holiday_widget import display_holiday
 from .photo_widget import display_photo
 from .sport_widget import display_health_widget
+from .birthday_widget import display_birthday_widget
 from assets.holiday_data import holidays
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
-def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data):
+def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data, birthday_data):
 
     epd = epd13in3E.EPD()
     try:
@@ -62,8 +63,11 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         # draw random picture
         display_photo(draw, image, 370, 450, 830)
         
-        # draw healt data
+        # draw health data
         display_health_widget(draw, image, 30, 1150, health_data)
+        
+        # draw birthday data
+        display_birthday_widget(draw, image, 850, 450, birthday_data)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
