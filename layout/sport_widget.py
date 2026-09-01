@@ -21,6 +21,9 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     running_icon_path = BASE_DIR / "assets" / "sport_symbol" / "person-running.png"
     swimming_icon_path = BASE_DIR / "assets" / "sport_symbol" / "person-swimming.png"
     gym_icon_path = BASE_DIR / "assets" / "sport_symbol" / "dumbbell.png"
+    fire_icon_path = BASE_DIR / "assets" / "sport_symbol" / "fire.png"
+    arrows_icon_path = BASE_DIR / "assets" / "sport_symbol" / "arrows.png"
+    hourglass_icon_path = BASE_DIR / "assets" / "sport_symbol" / "hourglass.png"
 
     
     draw.text((x_start, y), 'Health Stats', font = font_large, fill = fill_main)
@@ -79,9 +82,46 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     
     if activity_type == 'running':
         activity_icon = Image.open(running_icon_path).convert("RGBA")
-        
-        
+    elif activity_type == 'strength_training':
+        activity_icon = Image.open(gym_icon_path).convert("RGBA")
+    elif activity_type == 'swimming':
+        activity_icon = Image.open(swimming_icon_path).convert("RGBA")
+    else:
+        activity_icon = Image.open(running_icon_path).convert("RGBA")
         
     activity_icon = activity_icon.resize((icon_size, icon_size))
-    image.paste(activity_icon, (x_start, y), activity_icon)
-        
+    image.paste(activity_icon, (x_start + 20, y), activity_icon)
+
+    y += spacing_small
+      
+    duration_icon = Image.open(hourglass_icon_path).convert("RGBA")
+    duration_icon = duration_icon.resize((icon_size, icon_size))
+    image.paste(duration_icon, (x_start, y), duration_icon)
+    
+    activity_duration_h = str(math.floor(health_data['activity_duration'] / 3600))
+    activity_duration_min = math.floor(health_data['activity_duration'] % 3600 * 60)
+    
+    if activity_duration_min < 10:
+        activity_duration_min = '0' + str(activity_duration_min)
+    else:
+        activity_duration_min = str(activity_duration_min)
+    
+    draw.text((x_start + icon_size + 5, y), activity_duration_h + ':' + activity_duration_min + 'h', font = font_small, fill = fill_main)
+    
+    y += spacing_small
+    
+    distance_icon = Image.open(arrows_icon_path).convert("RGBA")
+    distance_icon = distance_icon.resize((icon_size, icon_size))
+    image.paste(distance_icon, (x_start, y), distance_icon)   
+    
+    activity_duration = str(round(health_data['activity_duration'] / 1000, 1))
+    draw.text((x_start + icon_size + 5, y), activity_duration, font = font_small, fill = fill_main)    
+    
+    y += spacing_small
+    
+    calories_icon = Image.open(fire_icon_path).convert("RGBA")
+    calories_icon = calories_icon.resize((icon_size, icon_size))
+    image.paste(calories_icon, (x_start, y), calories_icon)   
+    
+    activity_calories = str(round(health_data['activity_calories'], 0))
+    draw.text((x_start + icon_size + 5, y), activity_calories, font = font_small, fill = fill_main)    
