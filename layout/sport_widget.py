@@ -81,6 +81,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     # Draw Activity
     activity_type = health_data['activity_type']
     
+    # Change icon depening on activity
     if activity_type == 'running':
         activity_icon = Image.open(running_icon_path).convert("RGBA")
     elif activity_type == 'strength_training':
@@ -95,7 +96,8 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     draw.text((x_start + icon_size + 5, y), 'Last Activity', font = font_small, fill = fill_main)    
 
     y += spacing_small
-      
+    
+    # Draw activity duration  
     duration_icon = Image.open(hourglass_icon_path).convert("RGBA")
     duration_icon = duration_icon.resize((icon_size, icon_size))
     image.paste(duration_icon, (x_start, y), duration_icon)
@@ -104,6 +106,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     
     y += spacing_small
     
+    # Draw activity distance if value is not None
     if health_data['activity_distance'] != None:    
         distance_icon = Image.open(arrows_icon_path).convert("RGBA")
         distance_icon = distance_icon.resize((icon_size, icon_size))
@@ -114,6 +117,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
         
         y += spacing_small
     
+    # Draw activity calorie
     calories_icon = Image.open(fire_icon_path).convert("RGBA")
     calories_icon = calories_icon.resize((icon_size, icon_size))
     image.paste(calories_icon, (x_start, y), calories_icon)   
@@ -123,6 +127,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
 
     y += spacing_small
     
+    # Draw activity pace if value is not None
     if health_data['activity_pace'] != None:
         speed_icon = Image.open(speed_icon_path).convert("RGBA")
         speed_icon = speed_icon.resize((icon_size, icon_size))
