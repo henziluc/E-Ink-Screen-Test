@@ -23,7 +23,12 @@ def display_birthday_widget(draw, image, x_start, y_start, birthday_data):
         icon = Image.open(cake_icon_path).convert("RGBA")
         icon = icon.resize((icon_size, icon_size))
         image.paste(icon, (x_start, y), icon)
-        draw.text((x_start + icon_size + 5, y), person["name"] + str(person["next_birthday"]), font = font_small, fill = fill_main )
+        name = person["name"]
+        birthday_date =  person["next_birthday"].strftime("%d.%m.")
+        days_until = str((person["next_birthday"] - date.today()).days)
+        draw.text((x_start + icon_size + 5, y), name , font = font_small, fill = fill_main )
+        draw.text((x_start + icon_size + 100, y), birthday_date , font = font_small, fill = fill_main )
+        draw.text((x_start + icon_size + 150, y), days_until + 'in' + days_until + ' days' , font = font_small, fill = fill_main )
         y += spacing_small
   
     
