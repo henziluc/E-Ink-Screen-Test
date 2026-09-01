@@ -100,7 +100,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     duration_icon = duration_icon.resize((icon_size, icon_size))
     image.paste(duration_icon, (x_start, y), duration_icon)
     
-    draw.text((x_start + icon_size + 5, y), seconds_to_hours(health_data['activity_duration']), font = font_small, fill = fill_main)
+    draw.text((x_start + icon_size + 5, y), seconds_to_hours(health_data['activity_duration']) + ' h', font = font_small, fill = fill_main)
     
     y += spacing_small
     
@@ -110,7 +110,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
         image.paste(distance_icon, (x_start, y), distance_icon)   
         
         activity_distance = str(round(health_data['activity_distance'] / 1000, 1))
-        draw.text((x_start + icon_size + 5, y), activity_distance, font = font_small, fill = fill_main)    
+        draw.text((x_start + icon_size + 5, y), activity_distance + ' km', font = font_small, fill = fill_main)    
         
         y += spacing_small
     
@@ -118,7 +118,7 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
     calories_icon = calories_icon.resize((icon_size, icon_size))
     image.paste(calories_icon, (x_start, y), calories_icon)   
     
-    activity_calories = str(round(health_data['activity_calories'], 0))
+    activity_calories = str(round(health_data['activity_calories'],))
     draw.text((x_start + icon_size + 5, y), activity_calories, font = font_small, fill = fill_main)    
 
     y += spacing_small
