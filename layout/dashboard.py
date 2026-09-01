@@ -26,8 +26,9 @@ from .weather_widget import  display_weather_graph
 from .helpers import draw_grid
 from .holiday_widget import display_holiday
 from .photo_widget import display_photo
-from .sport_widget import display_health_widget
+from .health_widget import display_health_widget
 from .birthday_widget import display_birthday_widget
+from .sport_widget import display_sport_widget
 from assets.holiday_data import holidays
 from .fonts import font_small, font_medium, font_large, fill_main
 
@@ -68,6 +69,9 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # draw birthday data
         display_birthday_widget(draw, image, 850, 450, birthday_data)
+        
+        # draw sport data
+        
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
