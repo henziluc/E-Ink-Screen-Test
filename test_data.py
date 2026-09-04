@@ -240,3 +240,9 @@ birthday_data = [
     {"name": "Julia", "birthday": date(2000, 1, 15)},
     {"name": "Simon", "birthday": date(1997, 9, 30)},
 ]
+
+
+
+moon_data = {'phase': 'Last Quarter',
+             'waxing': False,
+             'illumination': 46.8}
