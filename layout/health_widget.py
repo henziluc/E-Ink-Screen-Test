@@ -43,7 +43,7 @@ def seconds_to_hours(seconds):
     time_m = round((seconds / 3600 - time_h) * 60)
     
     if time_m < 10:
-        time_m = 0 + str(time_m)
+        time_m = '0' + str(time_m)
     else:
         time_m = str(time_m)
     
