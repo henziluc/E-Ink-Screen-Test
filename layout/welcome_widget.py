@@ -6,10 +6,10 @@ from .fonts import font_massiv, fill_main
 from .helpers import draw_centered_text
 
 BASE_DIR = Path(__file__).resolve().parent.parent
-moon_full_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_1.svg"
-moon_3_4_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_2.svg"
-moon_half_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_3.svg"
-moon_1_4_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_4.svg"
+moon_full_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_1.png"
+moon_3_4_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_2.png"
+moon_half_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_3.png"
+moon_1_4_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_4.png"
 
 def display_welcome(draw, image, x_start, y_start, moon_data):
     
