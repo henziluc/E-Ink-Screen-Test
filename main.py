@@ -4,14 +4,15 @@ from test_data import (
     weather_daily,
     departures_seen,
     departures_etzberg,
-    health_data,
+    health_data_Luca,
+    health_data_Jojo,
     birthday_data,
     moon_data,
 )
 
 def main():
 
-    make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data, birthday_data, moon_data)
+    make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data_Luca, health_data_Jojo, birthday_data, moon_data)
     
 if __name__ == "__main__":
     main()

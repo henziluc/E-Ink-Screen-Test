@@ -212,7 +212,7 @@ departures_etzberg = pd.DataFrame(
 # Health data
 # ============================================================
 
-health_data = {
+health_data_Luca = {
     "steps": 5437,
     "step_goal": 6500,
     "body_battery": 66,
@@ -226,6 +226,23 @@ health_data = {
     "activity_anaerobic_effect": 0.0,
     "activity_calories": 419.0,
     "activity_speed": 2.302000045776367,
+    "activity_pace": "7:14",
+}
+
+health_data_Jojo = {
+    "steps": 7437,
+    "step_goal": 8500,
+    "body_battery": 36,
+    "sleep_hours": 7.0,
+    "resting_hr": 41,
+    "sleep_score": 82,
+    "activity_type": "running",
+    "activity_distance": 3142.580078125,
+    "activity_duration": 1999.1700439453125,
+    "activity_aerobic_effect": 2.2000000953674316,
+    "activity_anaerobic_effect": 0.0,
+    "activity_calories": 319.0,
+    "activity_speed": 2.02000045776367,
     "activity_pace": "7:14",
 }
 

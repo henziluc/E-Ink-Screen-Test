@@ -32,7 +32,14 @@ from assets.holiday_data import holidays
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
-def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data, birthday_data, moon_data):
+def make_dashbord(weather_hourly,
+                  weather_daily,
+                  departures_seen,
+                  departures_etzberg,
+                  health_data_1,
+                  health_data_2,
+                  birthday_data,
+                  moon_data):
 
     epd = epd13in3E.EPD()
     try:
@@ -64,7 +71,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         display_photo(draw, image, 365, 455, 830)
         
         # draw health data
-        display_health_widget(draw, image, 30, 1150, health_data, health_data)
+        display_health_widget(draw, image, 30, 1150, health_data_1, health_data_2)
         
         # draw birthday data
         display_birthday_widget(draw, image, 850, 450, birthday_data)
