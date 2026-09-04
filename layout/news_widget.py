@@ -12,7 +12,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
     y += spacing_large
     
     # Draw news items
-    for item in news_data['items']:
+    for item in news_data['swiss']:
         draw.text((x_start, y), item['title'], font=font_medium, fill=fill_main)
         y += spacing_normal
         
