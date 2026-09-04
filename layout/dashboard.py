@@ -28,12 +28,11 @@ from .holiday_widget import display_holiday
 from .photo_widget import display_photo
 from .health_widget import display_health_widget
 from .birthday_widget import display_birthday_widget
-from .sport_widget import display_sport_widget
 from assets.holiday_data import holidays
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
-def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data, birthday_data):
+def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etzberg, health_data, birthday_data, moon_data):
 
     epd = epd13in3E.EPD()
     try:
@@ -50,7 +49,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         draw.text((30, 1575),"Last refresh: " + now_str, font=font_small,fill=fill_main)
         
         # Draw welcome message
-        display_welcome(draw, 30, 30)
+        display_welcome(draw, image, 30, 30, moon_data)
         
         # Draw weather curve
         display_weather_graph(draw, image, weather_hourly, weather_daily, 30, 120)
@@ -69,8 +68,6 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         
         # draw birthday data
         display_birthday_widget(draw, image, 850, 450, birthday_data)
-        
-       
         
         
         # Draw helper grid
