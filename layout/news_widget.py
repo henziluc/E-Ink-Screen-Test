@@ -27,8 +27,8 @@ def generate_qr(url):
     qr = qrcode.QRCode(
         version=None,
         error_correction=qrcode.constants.ERROR_CORRECT_M,
-        box_size=6,
-        border=2,
+        box_size=3,
+        border=1,
     )
 
     qr.add_data(url)
