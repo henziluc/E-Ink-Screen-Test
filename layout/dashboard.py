@@ -79,7 +79,7 @@ def make_dashbord(weather_hourly,
         display_birthday_widget(draw, image, 850, 450, birthday_data)
         
         # draw news data
-        display_news_widget(draw, image, 365, 1060, news_data)
+        display_news_widget(draw, image, 365, 1100, news_data)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)

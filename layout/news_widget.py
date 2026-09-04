@@ -14,7 +14,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
     # Draw news items
     for item in news_data['swiss']:
         # Draw QR code for the news item
-        image.paste(generate_qr(item['link']), (x_start + 600, y - spacing_normal))
+        image.paste(generate_qr(item['link']), (x_start + 420, y - spacing_normal))
         
         
         lines = wrap_text_to_width(
