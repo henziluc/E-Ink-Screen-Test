@@ -37,13 +37,13 @@ def display_moon_phase(image, x_start, y_start, moon_data):
     illumination = moon_data['illumination']
     
     if illumination > 87:
-        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_full.svg"
+        moon_icon_path = moon_full_icon_path
     elif illumination > 62:
-        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_3_4.svg"
+        moon_icon_path = moon_3_4_icon_path
     elif illumination > 37:
-        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_half.svg"
+        moon_icon_path = moon_half_icon_path
     else:
-        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_1_4.svg"
+        moon_icon_path = moon_1_4_icon_path
     
     if illumination > 2:
         moon_icon = Image.open(moon_icon_path).convert("RGBA")    
