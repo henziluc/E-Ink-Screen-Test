@@ -28,12 +28,12 @@ def display_welcome(draw, image, x_start, y_start, moon_data):
         text = 'Good Evening'
     else:
         text = 'Good Night'
-        display_moon_phase(image, 800, y_start, moon_data)
+        display_moon_phase(image, 800, y_start + 20, moon_data)
     draw_centered_text(draw, text,(x_start, y_start, x_end, y_end), font_massiv, fill_main)
     
     
 def display_moon_phase(image, x_start, y_start, moon_data):
-    icon_size = 80
+    icon_size = 60
     illumination = moon_data['illumination']
     
     if illumination > 87:
