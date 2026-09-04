@@ -12,7 +12,7 @@ moon_half_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_3.svg"
 moon_1_4_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon-phases_4.svg"
 
 def display_welcome(draw, image, x_start, y_start, moon_data):
-    icon_size = 80
+    
     
     x_end = 1200 - 2 * x_start
     y_end = font_massiv.size + y_start
@@ -23,27 +23,31 @@ def display_welcome(draw, image, x_start, y_start, moon_data):
         text = 'Good Morning'
     elif 12 <= now_hour < 18:
         text = 'Good Afternoon'
+        display_moon_phase(image, x_end, y_start, moon_data)
     elif 18 <= now_hour < 21:
         text = 'Good Evening'
     else:
         text = 'Good Night'
-        illumination = moon_data['illumination']
-        
-        if illumination > 87:
-            moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_full.png"
-        elif illumination > 62:
-            moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_3_4.png"
-        elif illumination > 37:
-            moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_half.png"
-        else:
-            moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_1_4.png"
-        
-        
-        if illumination > 2:
-            moon_icon = Image.open(moon_icon_path).convert("RGBA")    
-            moon_icon = moon_icon.resize((icon_size, icon_size))
-            if moon_data['waxing']:
-                moon_icon = ImageOps.mirror(moon_icon)
-            image.paste(moon_icon, (x_start, y_start), moon_icon)
-    
+        display_moon_phase(image, x_end, y_start, moon_data)
     draw_centered_text(draw, text,(x_start, y_start, x_end, y_end), font_massiv, fill_main)
+    
+    
+def display_moon_phase(image, x_start, y_start, moon_data):
+    icon_size = 80
+    illumination = moon_data['illumination']
+    
+    if illumination > 87:
+        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_full.png"
+    elif illumination > 62:
+        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_3_4.png"
+    elif illumination > 37:
+        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_half.png"
+    else:
+        moon_icon_path = BASE_DIR / "assets" / "moon_symbol" / "moon_1_4.png"
+    
+    if illumination > 2:
+        moon_icon = Image.open(moon_icon_path).convert("RGBA")    
+        moon_icon = moon_icon.resize((icon_size, icon_size))
+        if moon_data['waxing']:
+            moon_icon = ImageOps.mirror(moon_icon)
+        image.paste(moon_icon, (x_start, y_start), moon_icon)
