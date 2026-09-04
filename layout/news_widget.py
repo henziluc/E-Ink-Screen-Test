@@ -17,7 +17,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
         y += spacing_normal
         
         # Draw QR code for the news item
-        image.paste(generate_qr(item['url']), (x_start + 600, y - spacing_normal))
+        image.paste(generate_qr(item['link']), (x_start + 600, y - spacing_normal))
         
         y += spacing_large
     
