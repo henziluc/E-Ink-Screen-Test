@@ -270,4 +270,19 @@ moon_data = {'phase': 'Last Quarter',
 # News data
 # ============================================================
 
-news_data = []
+news_data = {'swiss': [{'title': 'Zweisprachigkeit per Gesetz – Freiburger Sprachengesetz: Wie klein darf eine Minderheit sein?', 'link': 'https://www.srf.ch/news/schweiz/zweisprachigkeit-per-gesetz-freiburger-sprachengesetz-wie-klein-darf-eine-minderheit-sein'},
+                       {'title': 'Fall Spiess-Hegglin – Ringier-Verlag ziehtvor Bundesgericht', 'link': 'https://www.srf.ch/news/schweiz/fall-spiess-hegglin-ringier-verlag-zieht-vor-bundesgericht'},
+                       {'title': 'Deal für Bauern – Mercosur-Abkommen soll mit Millionen für Bauern abgefedert werden', 'link': 'https://www.srf.ch/news/schweiz/deal-fuer-bauern-mercosur-abkommen-soll-mit-millionen-fuer-bauern-abgefedert-werden'},
+                       {'title': 'Flugabwehr der Schweizer Armee – Mit den Patriot-Kosten wachsen die Finanzprobleme bei der Rüstung', 'link': 'https://www.srf.ch/news/schweiz/flugabwehr-der-schweizer-armee-mit-den-patriot-kosten-wachsen-die-finanzprobleme-bei-der-ruestung'},
+                       {'title':'Informantin im Fall Zali – Ertrunkene Frau im Luganersee wies hohen Alkoholspiegel auf', 'link': 'https://www.srf.ch/news/schweiz/informantin-im-fall-zali-ertrunkene-frau-im-luganersee-wies-hohen-alkoholspiegel-auf'}],
+             'world': [{'title': 'Europe targeted by spiralling campaign of sabotage - and Russia is the chief suspect', 'link': 'https://www.bbc.co.uk/news/articles/c5y4g6meekro?at_medium=RSS&at_campaign=rss'},
+                       {'title': "'A rare moment of joy': Nepal tunnel rescues bring hope for more flood survivors", 'link': 'https://www.bbc.co.uk/news/videos/cd79vp91321o?at_medium=RSS&at_campaign=rss'},
+                       {'title':"UK support for Falkland Islands 'unwavering' after Argentina restates claims, No 10 says", 'link': 'https://www.bbc.co.uk/news/articles/cn45jg3zlz4o?at_medium=RSS&at_campaign=rss'},
+                       {'title': 'Russia hits Ukrainian security headquarters in drone attack, Zelensky says', 'link': 'https://www.bbc.co.uk/news/articles/c5yep7y48x2o?at_medium=RSS&at_campaign=rss'},
+                       {'title': "Steve Irwin's family celebrates 'superhero' dad, 20 years after shock death", 'link':'https://www.bbc.co.uk/news/articles/cjrx75ldydwo?at_medium=RSS&at_campaign=rss'}],
+             'random': [{'title': 'At least 37 killed by toxic fumes in Nigeria while stealing petrol, reports say', 'link': 'https://www.bbc.co.uk/news/articles/cde024l10dyo?at_medium=RSS&at_campaign=rss'},
+                        {'title': 'Is a whale fossil the leftovers of a Bronze Age Sunday roast?', 'link': 'https://www.bbc.co.uk/news/articles/cly4zkpvl4wo?at_medium=RSS&at_campaign=rss'}, 
+                        {'title': 'Renewable energy in NI reaches record level', 'link': 'https://www.bbc.co.uk/news/articles/ce3rql5rzx4o?at_medium=RSS&at_campaign=rss'}, 
+                        {'title': "From 'dog fruit' to darling: India's avocado boom", 'link': 'https://www.bbc.co.uk/news/articles/clyjzpgv29do?at_medium=RSS&at_campaign=rss'}, 
+                        {'title': "'Miracle' eagle with broken wing spotted back above Scottish coast", 'link': 'https://www.bbc.co.uk/news/articles/crerw2nj81zo?at_medium=RSS&at_campaign=rss'}]}
+
