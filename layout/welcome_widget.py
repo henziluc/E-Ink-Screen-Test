@@ -17,18 +17,18 @@ def display_welcome(draw, image, x_start, y_start, moon_data):
     x_end = 1200 - 2 * x_start
     y_end = font_massiv.size + y_start
     now = datetime.datetime.now()   
-    now_hour = now.hour
+    #now_hour = now.hour
+    now_hour = 22
     
     if 4 <= now_hour < 12:
         text = 'Good Morning'
     elif 12 <= now_hour < 18:
         text = 'Good Afternoon'
-        display_moon_phase(image, x_end, y_start, moon_data)
     elif 18 <= now_hour < 21:
         text = 'Good Evening'
     else:
         text = 'Good Night'
-        display_moon_phase(image, x_end, y_start, moon_data)
+        display_moon_phase(image, 800, y_start, moon_data)
     draw_centered_text(draw, text,(x_start, y_start, x_end, y_end), font_massiv, fill_main)
     
     
