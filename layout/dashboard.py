@@ -64,7 +64,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         display_photo(draw, image, 365, 455, 830)
         
         # draw health data
-        display_health_widget(draw, image, 30, 1150, health_data)
+        display_health_widget(draw, image, 30, 1150, health_data, health_data)
         
         # draw birthday data
         display_birthday_widget(draw, image, 850, 450, birthday_data)

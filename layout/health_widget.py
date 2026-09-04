@@ -5,32 +5,59 @@ import math
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+# Define all icon paths
+step_icon_path = BASE_DIR / "assets" / "sport_symbol" / "shoe-prints.png"
+battery_full_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-full.png"
+battery_three_quarters_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-three-quarters.png"
+battery_half_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-half.png"
+battery_quarter_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-quarter.png"
+battery_empty_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-empty.png"   
+sleep_icon_path = BASE_DIR / "assets" / "sport_symbol" / "bed.png"
+running_icon_path = BASE_DIR / "assets" / "sport_symbol" / "person-running.png"
+swimming_icon_path = BASE_DIR / "assets" / "sport_symbol" / "person-swimming.png"
+gym_icon_path = BASE_DIR / "assets" / "sport_symbol" / "dumbbell.png"
+fire_icon_path = BASE_DIR / "assets" / "sport_symbol" / "fire.png"
+arrows_icon_path = BASE_DIR / "assets" / "sport_symbol" / "arrows.png"
+hourglass_icon_path = BASE_DIR / "assets" / "sport_symbol" / "hourglass.png"
+speed_icon_path = BASE_DIR / "assets" / "sport_symbol" / "gauge.png"
 
-def display_health_widget(draw, image, x_start, y_start, health_data):
+
+
+def display_health_widget(draw, image, x_start, y_start, health_data1, health_data2):
     y = y_start
     icon_size = 25
-    
-    # Define all icon paths
-    step_icon_path = BASE_DIR / "assets" / "sport_symbol" / "shoe-prints.png"
-    battery_full_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-full.png"
-    battery_three_quarters_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-three-quarters.png"
-    battery_half_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-half.png"
-    battery_quarter_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-quarter.png"
-    battery_empty_icon_path = BASE_DIR / "assets" / "sport_symbol" / "battery-empty.png"   
-    sleep_icon_path = BASE_DIR / "assets" / "sport_symbol" / "bed.png"
-    running_icon_path = BASE_DIR / "assets" / "sport_symbol" / "person-running.png"
-    swimming_icon_path = BASE_DIR / "assets" / "sport_symbol" / "person-swimming.png"
-    gym_icon_path = BASE_DIR / "assets" / "sport_symbol" / "dumbbell.png"
-    fire_icon_path = BASE_DIR / "assets" / "sport_symbol" / "fire.png"
-    arrows_icon_path = BASE_DIR / "assets" / "sport_symbol" / "arrows.png"
-    hourglass_icon_path = BASE_DIR / "assets" / "sport_symbol" / "hourglass.png"
-    speed_icon_path = BASE_DIR / "assets" / "sport_symbol" / "gauge.png"
-
-    
+   
     draw.text((x_start, y), 'Health Stats', font = font_large, fill = fill_main)
     
     y += spacing_large
     
+    display_personal_health(draw, image, x_start, y, health_data1, "Luca")
+    display_personal_health(draw, image, x_start + 160, y, health_data2, "Jojo")
+
+
+    
+def seconds_to_hours(seconds):
+    
+    time_h = round(seconds / 3600)
+    
+    time_m = round((seconds / 3600 - time_h) * 60)
+    
+    if time_m < 10:
+        time_m = 0 + str(time_m)
+    else:
+        time_m = str(time_m)
+    
+    time = str(time_h) + ':' + time_m
+    
+    return time
+
+
+
+def display_personal_health(draw, image, x_start, y_start, health_data, name):
+    icon_size = 25
+    y = y_start
+    draw.text((x_start, y), name, font = font_medium, fill = fill_main)
+    y += spacing_medium
     
     # Draw actual steps / target steps    
     step_icon = Image.open(step_icon_path).convert("RGBA")
@@ -134,22 +161,3 @@ def display_health_widget(draw, image, x_start, y_start, health_data):
         image.paste(speed_icon, (x_start, y), speed_icon)   
         
         draw.text((x_start + icon_size + 5, y), health_data['activity_pace'] + ' min/km', font = font_small, fill = fill_main)   
-
-
-
-    
-    
-def seconds_to_hours(seconds):
-    
-    time_h = round(seconds / 3600)
-    
-    time_m = round((seconds / 3600 - time_h) * 60)
-    
-    if time_m < 10:
-        time_m = 0 + str(time_m)
-    else:
-        time_m = str(time_m)
-    
-    time = str(time_h) + ':' + time_m
-    
-    return time
