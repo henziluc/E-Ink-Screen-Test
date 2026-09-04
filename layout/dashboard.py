@@ -70,7 +70,7 @@ def make_dashbord(weather_hourly, weather_daily, departures_seen, departures_etz
         # draw birthday data
         display_birthday_widget(draw, image, 850, 450, birthday_data)
         
-        # draw sport data
+       
         
         
         # Draw helper grid
