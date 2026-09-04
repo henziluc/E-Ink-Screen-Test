@@ -20,9 +20,9 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
         lines = wrap_text_to_width(
         item["title"],
         font_small,
-        max_width=800,
+        max_width=400,
         draw=draw,
-        max_lines=2
+        max_lines=3
 )       
         for line in lines:
             draw.text((x_start, y), line, font=font_small, fill=fill_main)
