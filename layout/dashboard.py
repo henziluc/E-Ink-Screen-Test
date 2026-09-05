@@ -30,6 +30,7 @@ from .health_widget import display_health_widget
 from .birthday_widget import display_birthday_widget
 from .news_widget import display_news_widget
 from assets.holiday_data import holidays
+from .wifi_widget import display_wifi_qr_code
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
@@ -59,6 +60,9 @@ def make_dashbord(weather_hourly,
         
         # Draw welcome message
         display_welcome(draw, image, 30, 30, moon_data)
+        
+        # Draw Wi-Fi QR code
+        display_wifi_qr_code(draw, image, 970, 30)
         
         # Draw weather curve
         display_weather_graph(draw, image, weather_hourly, weather_daily, 30, 120)
