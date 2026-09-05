@@ -24,7 +24,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
     for item in random_news.values():
         # Draw QR code for the news item
         qr_code_image = generate_qr(item['link'])
-        qr_code_image = qr_code_image.resize((70, 70))  # Resize QR code to fit in the widget
+        qr_code_image = qr_code_image.resize((80, 80))  # Resize QR code to fit in the widget
         image.paste(qr_code_image, (x_start + 420, y))
         
         
@@ -39,7 +39,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
             draw.text((x_start, y), line, font=font_small, fill=fill_main)
             y += spacing_small
             
-        y += 20
+        y += 25
         
         
         
