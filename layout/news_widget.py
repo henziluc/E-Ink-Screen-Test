@@ -1,6 +1,7 @@
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 import qrcode
 from PIL import Image
+import random
 
 
 def display_news_widget(draw, image, x_start, y_start, news_data):
@@ -11,8 +12,16 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
     draw.text((x_start, y), "News", font=font_large, fill=fill_main)
     y += spacing_large
     
+    
+    random_news = {
+    category: random.choice(articles)
+    for category, articles in news_data.items()
+}
+    
+    
+    
     # Draw news items
-    for item in news_data['swiss']:
+    for item in random_news:
         # Draw QR code for the news item
         image.paste(generate_qr(item['link']), (x_start + 420, y - spacing_normal))
         
@@ -26,7 +35,9 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
 )       
         for line in lines:
             draw.text((x_start, y), line, font=font_small, fill=fill_main)
-            y += spacing_normal
+            y += spacing_small
+            
+        y += 10
         
         
         
