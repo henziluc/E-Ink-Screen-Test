@@ -284,5 +284,11 @@ news_data = {'swiss': [{'title': 'Zweisprachigkeit per Gesetz – Freiburger Spr
                         {'title': 'Is a whale fossil the leftovers of a Bronze Age Sunday roast?', 'link': 'https://www.bbc.co.uk/news/articles/cly4zkpvl4wo?at_medium=RSS&at_campaign=rss'}, 
                         {'title': 'Renewable energy in NI reaches record level', 'link': 'https://www.bbc.co.uk/news/articles/ce3rql5rzx4o?at_medium=RSS&at_campaign=rss'}, 
                         {'title': "From 'dog fruit' to darling: India's avocado boom", 'link': 'https://www.bbc.co.uk/news/articles/clyjzpgv29do?at_medium=RSS&at_campaign=rss'}, 
-                        {'title': "'Miracle' eagle with broken wing spotted back above Scottish coast", 'link': 'https://www.bbc.co.uk/news/articles/crerw2nj81zo?at_medium=RSS&at_campaign=rss'}]}
+                        {'title': "'Miracle' eagle with broken wing spotted back above Scottish coast", 'link': 'https://www.bbc.co.uk/news/articles/crerw2nj81zo?at_medium=RSS&at_campaign=rss'}],
+             'sport': [{'title': 'Haaland header maintains perfect winning start for Man City', 'link': 'https://www.bbc.co.uk/sport/football/videos/cx2zg0zl0nyo?at_medium=RSS&at_campaign=rss'},
+                       {'title': 'Chilwell scores on Palace return in victory at Fulham', 'link': 'https://www.bbc.co.uk/sport/football/videos/cg59dgn7jm9o?at_medium=RSS&at_campaign=rss'},
+                       {'title': 'Forest and Spurs remain winless after disallowed goal drama in draw', 'link': 'https://www.bbc.co.uk/sport/football/videos/c4g589gkdepo?at_medium=RSS&at_campaign=rss'},
+                       {'title': 'Ramsey strikes late as Newcastle salvage Bournemouth draw', 'link': 'https://www.bbc.co.uk/sport/football/videos/cvgye9zy419o?at_medium=RSS&at_campaign=rss'},
+                       {'title': 'Late Vuskovic header rescues point for Brighton against Leeds', 'link': 'https://www.bbc.co.uk/sport/football/videos/c9w4px54j7yo?at_medium=RSS&at_campaign=rss'}]
+             }
 
