@@ -21,7 +21,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
     
     
     # Draw news items
-    for item in random_news.values:
+    for item in random_news.values():
         # Draw QR code for the news item
         image.paste(generate_qr(item['link']), (x_start + 420, y - spacing_normal))
         
