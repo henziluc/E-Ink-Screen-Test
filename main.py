@@ -1,3 +1,5 @@
+from dotenv import load_dotenv
+
 from layout.dashboard import make_dashbord
 from test_data import (
     weather_hourly,
@@ -11,8 +13,9 @@ from test_data import (
     news_data
 )
 
-def main():
 
+def main():
+    load_dotenv()
     make_dashbord(weather_hourly,
                   weather_daily,
                   departures_seen,
