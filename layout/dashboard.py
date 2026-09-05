@@ -62,7 +62,7 @@ def make_dashbord(weather_hourly,
         display_welcome(draw, image, 30, 30, moon_data)
         
         # Draw Wi-Fi QR code
-        display_wifi_qr_code(draw, image, 970, 30)
+        display_wifi_qr_code(draw, image, 1040, 10)
         
         # Draw weather curve
         display_weather_graph(draw, image, weather_hourly, weather_daily, 30, 120)
