@@ -6,7 +6,6 @@ from .fonts import font_small, font_normal, font_medium, font_large, fill_main, 
 
 def display_wifi_qr_code(draw, image, x_start, y_start):
     wifi_string = os.getenv("wifi_string")
-    print(f"Wi-Fi QR code string: {wifi_string}")  # Debugging line to check the value of wifi_string
     y = y_start
     # Generate QR code for Wi-Fi
     qr = qrcode.QRCode(
@@ -25,7 +24,7 @@ def display_wifi_qr_code(draw, image, x_start, y_start):
     qr_img = qr_img.resize((150, 150))
 
     # Paste the QR code onto the main image
-    draw.text((x_start, y), "Wi-Fi QR", font=font_normal, fill=fill_main)
+    draw.text((x_start + 20, y), "Wi-Fi QR", font=font_normal, fill=fill_main)
     
     y += spacing_normal
     
