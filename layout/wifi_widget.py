@@ -24,7 +24,7 @@ def display_wifi_qr_code(draw, image, x_start, y_start):
     qr_img = qr_img.resize((100, 100))
 
     # Paste the QR code onto the main image
-    draw.text((x_start + 15, y), "Wi-Fi QR", font=font_normal, fill=fill_main)
+    draw.text((x_start, y), "Wi-Fi QR", font=font_normal, fill=fill_main)
     
     y += spacing_normal
     
