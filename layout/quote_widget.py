@@ -9,8 +9,8 @@ def display_quote_widget(draw, x_start, y_start, quote_data):
     # Draw quote data
     draw.text((x_start, y), "Quote", font=font_large, fill=fill_main)
     y += spacing_large
-    quote = random.sample(quote_data, min(len(quote_data[0]), 1))  # Select up to 3 random quotes
-    
+    quote = random.choice(quote_data)  # Select a random quote
+
     draw.text((x_start, y), quote['title'], font=font_medium, fill=fill_main)
     y += spacing_normal
     
