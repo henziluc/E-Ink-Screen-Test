@@ -292,3 +292,12 @@ news_data = {'swiss': [{'title': 'Zweisprachigkeit per Gesetz – Freiburger Spr
                        {'title': 'Late Vuskovic header rescues point for Brighton against Leeds', 'link': 'https://www.bbc.co.uk/sport/football/videos/c9w4px54j7yo?at_medium=RSS&at_campaign=rss'}]
              }
 
+# ============================================================
+# Quot data
+# ============================================================
+
+quote_data =[{'title': 'Wilma Rudolph', 'description': 'Believe me, the reward is not so great without the struggle'},
+             {'title': 'Jules Renard', 'description': 'On earth there is no heaven, but there are pieces of it'},
+             {'title': 'Saint Jerome', 'description': "Good, better, best. Never let it rest. 'Til your good is better and your better is best"},
+             {'title': 'Alfred Lord Tennyson', 'description': 'To strive, to seek, to find, and not to yield'},
+             {'title': 'Thomas Carlyle', 'description': 'No pressure, no diamonds'}]
