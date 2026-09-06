@@ -10,7 +10,8 @@ from test_data import (
     health_data_Jojo,
     birthday_data,
     moon_data,
-    news_data
+    news_data,
+    quote_data
 )
 
 
@@ -24,7 +25,8 @@ def main():
                   health_data_Jojo,
                   birthday_data,
                   moon_data,
-                  news_data)
-    
+                  news_data,
+                  quote_data)
+
 if __name__ == "__main__":
     main()
