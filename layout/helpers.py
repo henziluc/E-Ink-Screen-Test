@@ -155,3 +155,63 @@ def draw_centered_text_auto_size(draw, text, box, font, fill, min_size=10):
         font=current_font,
         fill=fill
     )
+    
+    
+def wrap_text_to_width(text, font, max_width, draw, max_lines=2):
+    """
+    Wrap text to fit max_width pixels.
+    Returns a list of lines, with a maximum of max_lines.
+    If the text is too long, the last line is shortened with '...'.
+    """
+
+    words = text.split()
+    lines = []
+    current_line = ""
+
+    for word in words:
+        test_line = current_line + (" " if current_line else "") + word
+
+        width = draw.textbbox(
+            (0, 0),
+            test_line,
+            font=font
+        )[2]
+
+        if width <= max_width:
+            current_line = test_line
+        else:
+            if current_line:
+                lines.append(current_line)
+
+            current_line = word
+
+            # Maximum number of lines reached
+            if len(lines) == max_lines - 1:
+                break
+
+    if current_line and len(lines) < max_lines:
+        lines.append(current_line)
+
+    # Check if there are words left that weren't displayed
+    if len(lines) == max_lines:
+        displayed_text = " ".join(lines)
+
+        if len(displayed_text.split()) < len(words):
+            last_line = lines[-1]
+
+            while last_line:
+                test = last_line.rstrip() + "..."
+
+                width = draw.textbbox(
+                    (0, 0),
+                    test,
+                    font=font
+                )[2]
+
+                if width <= max_width:
+                    lines[-1] = test
+                    break
+
+                last_line = last_line.rsplit(" ", 1)[0]
+
+    return lines
