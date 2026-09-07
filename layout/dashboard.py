@@ -75,13 +75,13 @@ def make_dashbord(weather_hourly,
         display_schedule_complet(draw, image, 'Seen', departures_seen, 'Etzberg', departures_etzberg, 30, 450)
         
         # Draw next holidays
-        display_holiday(draw, holidays, 30, 900)
+        display_holiday(draw, holidays, 30, 910)
         
         # draw random picture
         display_photo(draw, image, 365, 455, 830)
         
         # draw health data
-        display_health_widget(draw, image, 30, 1150, health_data_1, health_data_2)
+        display_health_widget(draw, image, 30, 1170, health_data_1, health_data_2)
         
         # draw news data
         display_news_widget(draw, image, 365, 1100, news_data)
