@@ -98,7 +98,7 @@ def make_dashbord(weather_hourly,
         display_quote_widget(draw,  850, 910, quote_data)
         
         # draw software status
-        display_software_status(draw, image, 30, 1575, status_data)
+        display_software_status(draw, image, 1170, 1575, status_data)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
