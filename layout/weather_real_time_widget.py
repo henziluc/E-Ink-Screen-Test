@@ -1,7 +1,7 @@
 from PIL import Image
 from pathlib import Path
 
-from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_large
+from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 path_humidity = BASE_DIR / "assets" / "weather_symbol" / "humidity.png"
@@ -10,6 +10,7 @@ path_temperature = BASE_DIR / "assets" / "weather_symbol" / "thermometer.png"
 
 def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_data):
     y = y_start
+    x = x_start
     icon_size = 20
     
     icon_temperature = Image.open(path_temperature).convert("RGBA")
@@ -21,27 +22,30 @@ def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_d
     icon_humidity = Image.open(path_humidity).convert("RGBA")
     icon_humidity = icon_humidity.resize((icon_size, icon_size))
 
-    draw.text((x_start, y), "Inside", font=font_normal, fill=fill_main)
-    y += spacing_normal
+    draw.text((x, y), "Inside", font=font_medium, fill=fill_main)
+    y += spacing_medium
     
-    image.paste(icon_temperature, (x_start, y), icon_temperature)
-    draw.text((x_start + icon_size + 5, y), f"{real_time_weather_data['temperature_inside']} °C", font=font_small, fill=fill_main)
+    image.paste(icon_temperature, (x, y), icon_temperature)
+    draw.text((x + icon_size + 5, y), f"{real_time_weather_data['temperature_inside']} °C", font=font_small, fill=fill_main)
     y += spacing_small
     
-    image.paste(icon_humidity, (x_start, y), icon_humidity)
-    draw.text((x_start + icon_size + 5, y), f"{real_time_weather_data['humidity_inside']} %", font=font_small, fill=fill_main)
+    image.paste(icon_humidity, (x, y), icon_humidity)
+    draw.text((x + icon_size + 5, y), f"{real_time_weather_data['humidity_inside']} %", font=font_small, fill=fill_main)
     y += spacing_small
 
-    draw.text((x_start, y), "Outside", font=font_normal, fill=fill_main)    
-    y += spacing_normal
+    x += 160
+    y = y_start
     
-    image.paste(icon_temperature, (x_start, y), icon_temperature)
-    draw.text((x_start + icon_size + 5, y), f"{real_time_weather_data['temperature_outside']} °C", font=font_small, fill=fill_main)
+    draw.text((x, y), "Outside", font=font_medium, fill=fill_main)    
+    y += spacing_medium
+    
+    image.paste(icon_temperature, (x, y), icon_temperature)
+    draw.text((x + icon_size + 5, y), f"{real_time_weather_data['temperature_outside']} °C", font=font_small, fill=fill_main)
     y += spacing_small
     
-    image.paste(icon_humidity, (x_start, y), icon_humidity)
-    draw.text((x_start + icon_size + 5, y), f"{real_time_weather_data['humidity_outside']} %", font=font_small, fill=fill_main)
+    image.paste(icon_humidity, (x, y), icon_humidity)
+    draw.text((x + icon_size + 5, y), f"{real_time_weather_data['humidity_outside']} %", font=font_small, fill=fill_main)
     y += spacing_small
     
-    image.paste(icon_wind, (x_start, y), icon_wind)
-    draw.text((x_start + icon_size + 5, y), f"{real_time_weather_data['wind_speed_outside']} m/s", font=font_small, fill=fill_main)
+    image.paste(icon_wind, (x, y), icon_wind)
+    draw.text((x + icon_size + 5, y), f"{real_time_weather_data['wind_speed_outside']} m/s", font=font_small, fill=fill_main)
