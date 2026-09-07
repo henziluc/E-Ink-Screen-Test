@@ -13,12 +13,14 @@ path_quote = BASE_DIR / "assets" / "status_symbol" / "quote.png"
 
 
 def display_software_status(draw, image, x_start, y_start, status_data):
-    icon_size = 15
-    x = x_start
+    icon_size = 20
+    x = x_start - icon_size
     
     icon_weather = Image.open(path_weather).convert("RGBA")
     icon_weather = icon_weather.resize((icon_size, icon_size)) 
     image.paste(icon_weather, (x, y_start), icon_weather)
+    draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=1)
+    draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=1)
     x -= icon_size + 5
     
     icon_transport = Image.open(path_transport).convert("RGBA")
