@@ -314,3 +314,17 @@ real_time_weather_data = {
     "humidity_inside": 45,
     "co2_inside": 400,
 }
+
+# ============================================================
+# status data
+# ============================================================
+
+status_data = {
+    "weather_status": "Running",
+    "transport_status": "Not Running",
+    "health_status": "Running",
+    "moon_status": "Not Running",
+    "news_status": "Running",
+    "quote_status": "Running",
+    "weather_real_time_status": "Running",
+}
