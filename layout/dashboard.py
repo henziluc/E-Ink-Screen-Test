@@ -32,6 +32,7 @@ from .news_widget import display_news_widget
 from assets.holiday_data import holidays
 from .wifi_widget import display_wifi_qr_code
 from .quote_widget import display_quote_widget
+from .weather_real_time_widget import display_real_time_weather
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
@@ -44,7 +45,8 @@ def make_dashbord(weather_hourly,
                   birthday_data,
                   moon_data,
                   news_data,
-                  quote_data):
+                  quote_data,
+                  weather_real_time_data):
 
     epd = epd13in3E.EPD()
     try:
@@ -81,14 +83,17 @@ def make_dashbord(weather_hourly,
         # draw health data
         display_health_widget(draw, image, 30, 1150, health_data_1, health_data_2)
         
-        # draw birthday data
-        display_birthday_widget(draw, image, 850, 450, birthday_data)
-        
         # draw news data
         display_news_widget(draw, image, 365, 1100, news_data)
         
+        # draw real time weather data
+        display_real_time_weather(draw, image, 850, 450, weather_real_time_data)
+        
+        # draw birthday data
+        display_birthday_widget(draw, image, 850, 700, birthday_data)
+        
         # draw quote data
-        display_quote_widget(draw,  850, 700, quote_data)
+        display_quote_widget(draw,  850, 950, quote_data)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)

@@ -11,7 +11,8 @@ from test_data import (
     birthday_data,
     moon_data,
     news_data,
-    quote_data
+    quote_data,
+    real_time_weather_data
 )
 
 
@@ -26,7 +27,8 @@ def main():
                   birthday_data,
                   moon_data,
                   news_data,
-                  quote_data)
+                  quote_data,
+                  real_time_weather_data)
 
 if __name__ == "__main__":
     main()
