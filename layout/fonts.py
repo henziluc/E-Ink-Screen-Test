@@ -35,6 +35,8 @@ fill_main = 'black'
 
 fill_rain_graph = 'gray'
 
+fill_error = 'red'
+
 
 spacing_small = font_small.size + 10
 

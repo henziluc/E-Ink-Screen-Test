@@ -1,7 +1,7 @@
 from PIL import Image, ImageOps
 from pathlib import Path
 
-from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
+from .fonts import font_small, font_normal, font_medium, font_large, fill_main, fill_error,spacing_small, spacing_normal, spacing_medium, spacing_large
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 path_weather = BASE_DIR / "assets" / "status_symbol" / "partly-cloudy-day.png"
@@ -20,8 +20,8 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     icon_weather = icon_weather.resize((icon_size, icon_size)) 
     image.paste(icon_weather, (x, y_start), icon_weather)
     if status_data.get("weather_status") == "nok" or status_data.get("weather_real_time_status") == "nok":
-        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
-        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=2)
+        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_error, width=2)
+        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_error, width=2)
 
     x -= icon_size + 5
     
@@ -29,8 +29,8 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     icon_transport = icon_transport.resize((icon_size, icon_size))
     image.paste(icon_transport, (x, y_start), icon_transport)
     if status_data.get("transport_status") == "nok":
-        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
-        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=2)
+        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_error, width=2)
+        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_error, width=2)
     
     x -= icon_size + 5
     
@@ -38,8 +38,8 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     icon_health = icon_health.resize((icon_size, icon_size))
     image.paste(icon_health, (x, y_start), icon_health)
     if status_data.get("health_status") == "nok":
-        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
-        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=2)
+        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_error, width=2)
+        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_error, width=2)
         
     x -= icon_size + 5
     
@@ -48,8 +48,8 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     icon_moon = ImageOps.mirror(icon_moon)
     image.paste(icon_moon, (x, y_start), icon_moon)
     if status_data.get("moon_status") == "nok":
-        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
-        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=2)
+        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_error, width=2)
+        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_error, width=2)
         
     x -= icon_size + 5
     
@@ -57,8 +57,8 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     icon_news = icon_news.resize((icon_size, icon_size))
     image.paste(icon_news, (x, y_start), icon_news)
     if status_data.get("news_status") == "nok":
-        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
-        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=2)
+        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_error, width=2)
+        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_error, width=2)
         
     x -= icon_size + 5
     
@@ -66,8 +66,8 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     icon_quote = icon_quote.resize((icon_size, icon_size))
     image.paste(icon_quote, (x, y_start), icon_quote)
     if status_data.get("quote_status") == "nok":
-        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
-        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_main, width=2)
+        draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_error, width=2)
+        draw.line((x , y_start + icon_size, x + icon_size, y_start), fill=fill_error, width=2)
 
     
     
