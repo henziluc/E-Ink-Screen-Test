@@ -6,7 +6,7 @@ from .fonts import font_small, font_normal, font_medium, font_large, fill_main, 
 BASE_DIR = Path(__file__).resolve().parent.parent
 path_humidity = BASE_DIR / "assets" / "weather_symbol" / "humidity.png"
 path_wind = BASE_DIR / "assets" / "weather_symbol" / "windsock.png"
-path_temperature = BASE_DIR / "assets" / "weather_symbol" / "temperature.png"
+path_temperature = BASE_DIR / "assets" / "weather_symbol" / "thermometer.png"
 
 def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_data):
     y = y_start
