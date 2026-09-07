@@ -33,6 +33,7 @@ from assets.holiday_data import holidays
 from .wifi_widget import display_wifi_qr_code
 from .quote_widget import display_quote_widget
 from .weather_real_time_widget import display_real_time_weather
+from .software_status_widget import display_software_status
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
@@ -46,7 +47,8 @@ def make_dashbord(weather_hourly,
                   moon_data,
                   news_data,
                   quote_data,
-                  weather_real_time_data):
+                  weather_real_time_data,
+                  status_data):
 
     epd = epd13in3E.EPD()
     try:
@@ -84,7 +86,7 @@ def make_dashbord(weather_hourly,
         display_health_widget(draw, image, 30, 1170, health_data_1, health_data_2)
         
         # draw news data
-        display_news_widget(draw, image, 365, 1100, news_data)
+        display_news_widget(draw, image, 365, 1090, news_data)
         
         # draw real time weather data
         display_real_time_weather(draw, image, 850, 450, weather_real_time_data)
@@ -94,6 +96,9 @@ def make_dashbord(weather_hourly,
         
         # draw quote data
         display_quote_widget(draw,  850, 910, quote_data)
+        
+        # draw software status
+        display_software_status(draw, image, 30, 1575, status_data)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
