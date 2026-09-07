@@ -78,7 +78,7 @@ def make_dashbord(weather_hourly,
         display_holiday(draw, holidays, 30, 910)
         
         # draw random picture
-        display_photo(draw, image, 365, 455, 830)
+        display_photo(draw, image, 365, 460, 830)
         
         # draw health data
         display_health_widget(draw, image, 30, 1170, health_data_1, health_data_2)
@@ -90,10 +90,10 @@ def make_dashbord(weather_hourly,
         display_real_time_weather(draw, image, 850, 450, weather_real_time_data)
         
         # draw birthday data
-        display_birthday_widget(draw, image, 850, 700, birthday_data)
+        display_birthday_widget(draw, image, 850, 680, birthday_data)
         
         # draw quote data
-        display_quote_widget(draw,  850, 950, quote_data)
+        display_quote_widget(draw,  850, 910, quote_data)
         
         # Draw helper grid
         # draw = draw_grid(draw, 20, 1600, 1200)
