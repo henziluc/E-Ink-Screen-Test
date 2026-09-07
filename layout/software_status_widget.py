@@ -8,7 +8,7 @@ path_weather = BASE_DIR / "assets" / "status_symbol" / "partly-cloudy-day.png"
 path_transport = BASE_DIR / "assets" / "status_symbol" / "train.png"
 path_health = BASE_DIR / "assets" / "status_symbol" / "heart.png"
 path_moon = BASE_DIR / "assets" / "status_symbol" / "moon.png"
-path_news = BASE_DIR / "assets" / "status_symbol" / "newspaper.png"
+path_news = BASE_DIR / "assets" / "status_symbol" / "news.png"
 path_quote = BASE_DIR / "assets" / "status_symbol" / "quote.png"
 
 
