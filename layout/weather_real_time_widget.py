@@ -22,6 +22,10 @@ def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_d
     icon_humidity = Image.open(path_humidity).convert("RGBA")
     icon_humidity = icon_humidity.resize((icon_size, icon_size))
 
+    
+    draw.text((x, y), "Weather Now ", font=font_large, fill=fill_main)
+    y += spacing_large
+    
     draw.text((x, y), "Inside", font=font_medium, fill=fill_main)
     y += spacing_medium
     
@@ -34,7 +38,7 @@ def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_d
     y += spacing_small
 
     x += 160
-    y = y_start
+    y = y_start + spacing_large
     
     draw.text((x, y), "Outside", font=font_medium, fill=fill_main)    
     y += spacing_medium
