@@ -45,7 +45,7 @@ def display_software_status(draw, image, x_start, y_start, status_data):
     
     icon_moon = Image.open(path_moon).convert("RGBA")
     icon_moon = icon_moon.resize((icon_size, icon_size))
-    icon_moon = ImageOps.rotate(icon_moon, 190)
+    icon_moon = ImageOps.mirror(icon_moon)
     image.paste(icon_moon, (x, y_start), icon_moon)
     if status_data.get("moon_status") == "nok":
         draw.line((x , y_start, x + icon_size, y_start + icon_size), fill=fill_main, width=2)
