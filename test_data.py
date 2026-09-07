@@ -301,3 +301,15 @@ quote_data =[{'title': 'Wilma Rudolph', 'description': 'Believe me, the reward i
              {'title': 'Saint Jerome', 'description': "Good, better, best. Never let it rest. 'Til your good is better and your better is best"},
              {'title': 'Alfred Lord Tennyson', 'description': 'To strive, to seek, to find, and not to yield'},
              {'title': 'Thomas Carlyle', 'description': 'No pressure, no diamonds'}]
+
+# ============================================================
+# real time weather data
+# ============================================================
+
+real_time_weather_data = {
+    "temperature_outside": 28.5,
+    "humidity_outside": 65,
+    "wind_speed_outside": 12.3,
+    "temperature_inside": 21.5,
+    "humidity_inside": 45,
+}
