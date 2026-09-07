@@ -7,6 +7,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 path_humidity = BASE_DIR / "assets" / "weather_symbol" / "humidity.png"
 path_wind = BASE_DIR / "assets" / "weather_symbol" / "windsock.png"
 path_temperature = BASE_DIR / "assets" / "weather_symbol" / "thermometer.png"
+path_co2 = BASE_DIR / "assets" / "weather_symbol" / "co2.png"
 
 def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_data):
     y = y_start
@@ -22,6 +23,8 @@ def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_d
     icon_humidity = Image.open(path_humidity).convert("RGBA")
     icon_humidity = icon_humidity.resize((icon_size, icon_size))
 
+    icon_co2 = Image.open(path_co2).convert("RGBA")
+    icon_co2 = icon_co2.resize((icon_size, icon_size))
     
     draw.text((x, y), "Weather Now ", font=font_large, fill=fill_main)
     y += spacing_large
@@ -36,6 +39,9 @@ def display_real_time_weather(draw, image, x_start, y_start, real_time_weather_d
     image.paste(icon_humidity, (x, y), icon_humidity)
     draw.text((x + icon_size + 5, y), f"{real_time_weather_data['humidity_inside']} %", font=font_small, fill=fill_main)
     y += spacing_small
+    
+    image.paste(icon_co2, (x, y), icon_co2)
+    draw.text((x + icon_size + 5, y), f"{real_time_weather_data['co2_inside']} ppm", font=font_small, fill=fill_main)
 
     x += 160
     y = y_start + spacing_large

@@ -312,4 +312,5 @@ real_time_weather_data = {
     "wind_speed_outside": 12.3,
     "temperature_inside": 21.5,
     "humidity_inside": 45,
+    "co2_inside": 400,
 }
