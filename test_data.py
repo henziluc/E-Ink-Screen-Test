@@ -320,11 +320,11 @@ real_time_weather_data = {
 # ============================================================
 
 status_data = {
-    "weather_status": "Running",
-    "transport_status": "Not Running",
-    "health_status": "Running",
-    "moon_status": "Not Running",
-    "news_status": "Running",
-    "quote_status": "Running",
-    "weather_real_time_status": "Running",
+    "weather_status": "ok",
+    "transport_status": "ok",
+    "health_status": "nok",
+    "moon_status": "ok",
+    "news_status": "nok",
+    "quote_status": "nok",
+    "weather_real_time_status": "nok",
 }
