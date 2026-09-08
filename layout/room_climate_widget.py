@@ -19,6 +19,9 @@ def display_room_climate_widget(draw, image, x_start, y_start, room_climate_data
     
     draw.line((x_start, y, x_start, y - graph_height), fill=fill_main, width=2)
     draw.line((x_start, y, x_start + graph_width, y), fill=fill_main, width=2)
+    print(type(room_climate_data))
+    print(room_climate_data)
+    print(room_climate_data.columns)
     draw_room_climate_graph(draw, x_start, y - graph_height, graph_width, graph_height, room_climate_data, "temperature", fill_main)
     
     y += spacing_small
