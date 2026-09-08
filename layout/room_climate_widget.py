@@ -1,6 +1,8 @@
-
-from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
+import math
 import pandas as pd
+
+from .helpers import draw_smooth_curve
+from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 
 def display_room_climate_widget(draw, image, x_start, y_start, room_climate_data):
     y = y_start
@@ -45,23 +47,28 @@ def display_room_climate_widget(draw, image, x_start, y_start, room_climate_data
     
     
 def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, data, value_key, color):
+    offset = 8
+    positions = []
+    datapoints = 12
+    
     if len(data) < 2:
         return  # Not enough data to draw a graph
     
-    min_value = min(data[value_key])
-    max_value = max(data[value_key])
+    min_value = math.floor(data[value_key].min())  # Ensure the minimum value is at least 0
+    max_value = math.ceil(data[value_key].max())  # Ensure the maximum value is at least 1 to avoid division by zero
+    delta = max_value - min_value
+    x_spacing = (graph_height - offset * 2) / delta
+    y_spacing = graph_width / 12
     
     if min_value == max_value:
         return  # Avoid division by zero
     
-    # Normalize the data to fit within the graph height
-    normalized_data = [(value - min_value) / (max_value - min_value) for value in data[value_key]]
+    for i in range(datapoints):
+        value = data.iloc[i][value_key]
+        x = x_start + i * x_spacing
+        y = y_start - offset - (value - min_value) * y_spacing
+        positions.append((x, y))
+  
     
     # Draw the graph line
-    for i in range(1, len(normalized_data)):
-        x1 = x_start + (i - 1) * (graph_width / (len(normalized_data) - 1))
-        y1 = y_start - normalized_data[i - 1] * graph_height
-        x2 = x_start + i * (graph_width / (len(normalized_data) - 1))
-        y2 = y_start - normalized_data[i] * graph_height
-        
-        draw.line((x1, y1, x2, y2), fill=color, width=2)    
+    draw_smooth_curve(draw, x_start, y_start, graph_width, graph_height, positions, color)
