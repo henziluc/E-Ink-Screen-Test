@@ -13,7 +13,8 @@ from test_data import (
     news_data,
     quote_data,
     real_time_weather_data,
-    status_data
+    status_data,
+    room_climate_data
 )
 
 
@@ -30,7 +31,8 @@ def main():
                   news_data,
                   quote_data,
                   real_time_weather_data,
-                  status_data)
+                  status_data,
+                  room_climate_data)
 
 if __name__ == "__main__":
     main()

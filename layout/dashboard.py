@@ -34,6 +34,7 @@ from .wifi_widget import display_wifi_qr_code
 from .quote_widget import display_quote_widget
 from .weather_real_time_widget import display_real_time_weather
 from .software_status_widget import display_software_status
+from .room_climate_widget import display_room_climate_widget
 from .fonts import font_small, font_medium, font_large, fill_main
 
 
@@ -48,7 +49,8 @@ def make_dashbord(weather_hourly,
                   news_data,
                   quote_data,
                   weather_real_time_data,
-                  status_data):
+                  status_data,
+                  room_climate_data):
 
     epd = epd13in3E.EPD()
     try:
@@ -96,6 +98,9 @@ def make_dashbord(weather_hourly,
         
         # draw quote data
         display_quote_widget(draw,  850, 910, quote_data)
+        
+        # draw room climate data
+        display_room_climate_widget(draw, image, 850, 1200, room_climate_data)
         
         # draw software status
         display_software_status(draw, image, 1170, 1575, status_data)
