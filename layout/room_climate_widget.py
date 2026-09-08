@@ -63,7 +63,7 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     if min_value == max_value:
         return  # Avoid division by zero
     
-    for i in range(len(data), len(data) - datapoints, -1):
+    for i in range(len(data)-1, len(data) - datapoints - 1, -1):
         value = data.iloc[i][value_key]
         print(value)
         x = x_start + i * x_spacing
