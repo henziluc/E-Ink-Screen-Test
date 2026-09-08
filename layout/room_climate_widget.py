@@ -71,4 +71,4 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
   
     
     # Draw the graph line
-    draw_smooth_curve(draw, x_start, y_start, graph_width, graph_height, positions, color)
+    draw_smooth_curve(draw, positions, fill_main, 2)
