@@ -47,7 +47,7 @@ def display_room_climate_widget(draw, image, x_start, y_start, room_climate_data
     
     
 def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, data, value_key, color):
-    offset = 8
+    offset = 3
     positions = []
     datapoints = 12
     
@@ -57,8 +57,8 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     min_value = math.floor(data[value_key].min())  # Ensure the minimum value is at least 0
     max_value = math.ceil(data[value_key].max())  # Ensure the maximum value is at least 1 to avoid division by zero
     delta = max_value - min_value
-    x_spacing = (graph_height - offset * 2) / delta
-    y_spacing = graph_width / 12
+    y_spacing = (graph_height - offset * 2) / delta
+    x_spacing = graph_width / 12
     
     if min_value == max_value:
         return  # Avoid division by zero
