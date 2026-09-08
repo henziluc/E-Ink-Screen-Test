@@ -100,7 +100,7 @@ def make_dashbord(weather_hourly,
         display_quote_widget(draw,  850, 910, quote_data)
         
         # draw room climate data
-        display_room_climate_widget(draw, image, 850, 1200, room_climate_data)
+        display_room_climate_widget(draw, image, 850, 1100, room_climate_data)
         
         # draw software status
         display_software_status(draw, image, 1170, 1575, status_data)
