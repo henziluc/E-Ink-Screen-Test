@@ -56,8 +56,9 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     draw.line((x_start, y_start, x_start + graph_width, y_start), fill=fill_main, width=2)
     draw.text((x_start - 2, y_start - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
     draw.text((x_start - 2, y_start - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
-    
-    x_increment = 1    
+    draw.text((x_start , y_start + offset), str(data.iloc[len(data) - datapoints - 1]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
+    draw.text((x_start + graph_width , y_start + offset), str(data.iloc[len(data) - 1]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
+    x_increment = 0    
     
    
     for i in range(len(data) - datapoints - 1, len(data) - 1, 1):

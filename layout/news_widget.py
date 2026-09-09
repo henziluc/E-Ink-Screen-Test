@@ -26,7 +26,7 @@ def display_news_widget(draw, image, x_start, y_start, news_data):
         # Draw QR code for the news item
         qr_code_image = generate_qr(item['link'])
         qr_code_image = qr_code_image.resize((80, 80))  # Resize QR code to fit in the widget
-        image.paste(qr_code_image, (x_start + 390, y))
+        image.paste(qr_code_image, (x_start + 380, y))
         
         
         lines = wrap_text_to_width(
