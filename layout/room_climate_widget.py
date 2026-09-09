@@ -4,7 +4,7 @@ import pandas as pd
 from .helpers import draw_smooth_curve
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 
-def display_room_climate_widget(draw, image, x_start, y_start, room_climate_data):
+def display_room_climate_widget(draw, x_start, y_start, room_climate_data):
     y = y_start
     graph_height = 100
     graph_width = 1200 - x_start - 30  # Adjust the width based on your layout
@@ -58,7 +58,7 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     draw.text((x_start - 2, y_start - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
         
     
-    
+    print(f"Start Value: X: {x_start}, Y: {y_start}")
     for i in range(len(data) - datapoints - 1, len(data) - 1, 1):
         value = data.iloc[i][value_key]
         x = x_start + i * x_spacing
