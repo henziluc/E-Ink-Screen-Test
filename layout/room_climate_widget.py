@@ -39,7 +39,8 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     offset = 3
     positions = []
     datapoints = 12
-    
+    data = data.tail(datapoints)  # Get the last 12 data points
+
     if len(data) < 2:
         return  # Not enough data to draw a graph
     
@@ -56,12 +57,12 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     draw.line((x_start, y_start, x_start + graph_width, y_start), fill=fill_main, width=2)
     draw.text((x_start - 2, y_start - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
     draw.text((x_start - 2, y_start - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
-    draw.text((x_start , y_start + offset), str(data.iloc[len(data) - datapoints - 1]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
-    draw.text((x_start + graph_width , y_start + offset), str(data.iloc[len(data) - 1]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
+    draw.text((x_start , y_start + offset), str(data.iloc[0]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
+    draw.text((x_start + graph_width , y_start + offset), str(data.iloc[- 1]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
     x_increment = 0    
     
    
-    for i in range(len(data) - datapoints - 1, len(data) - 1, 1):
+    for i in range(len(data) - 1):
         value = data.iloc[i][value_key]
         
         x = x_start + x_increment * x_spacing
