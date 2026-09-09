@@ -32,7 +32,6 @@ from .news_widget import display_news_widget
 from assets.holiday_data import holidays
 from .wifi_widget import display_wifi_qr_code
 from .quote_widget import display_quote_widget
-from .weather_real_time_widget import display_real_time_weather
 from .software_status_widget import display_software_status
 from .room_climate_widget import display_room_climate_widget
 from .fonts import font_small, font_medium, font_large, fill_main
@@ -48,7 +47,6 @@ def make_dashbord(weather_hourly,
                   moon_data,
                   news_data,
                   quote_data,
-                  weather_real_time_data,
                   status_data,
                   room_climate_data):
 
@@ -90,17 +88,14 @@ def make_dashbord(weather_hourly,
         # draw news data
         display_news_widget(draw, image, 365, 1090, news_data)
         
-        # draw real time weather data
-        display_real_time_weather(draw, image, 850, 450, weather_real_time_data)
-        
         # draw birthday data
-        display_birthday_widget(draw, image, 850, 680, birthday_data)
+        display_birthday_widget(draw, image, 850, 450, birthday_data)
         
         # draw quote data
-        display_quote_widget(draw,  850, 910, quote_data)
+        display_quote_widget(draw,  850, 680, quote_data)
         
         # draw room climate data
-        display_room_climate_widget(draw, 850, 1100, room_climate_data)
+        display_room_climate_widget(draw, 850, 870, room_climate_data)
         
         # draw software status
         display_software_status(draw, image, 1170, 1575, status_data)
