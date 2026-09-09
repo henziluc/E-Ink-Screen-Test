@@ -61,9 +61,9 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     
     for i in range(len(data) - datapoints - 1, len(data) - 1, 1):
         value = data.iloc[i][value_key]
-        print(value)
         x = x_start + i * x_spacing
         y = y_start - offset - (value - min_value) * y_spacing
+        print(f"Value: {value}, X: {x}, Y: {y}")  # Debugging line to check values
         positions.append((x, y))
   
     
