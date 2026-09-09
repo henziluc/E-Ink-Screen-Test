@@ -52,10 +52,10 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     if min_value == max_value:
         return  # Avoid division by zero
     
-    draw.line((x_start, y, x_start, y - graph_height), fill=fill_main, width=2)
-    draw.line((x_start, y, x_start + graph_width, y), fill=fill_main, width=2)
-    draw.text((x_start - 2, y - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
-    draw.text((x_start - 2, y - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
+    draw.line((x_start, y_start, x_start, y_start - graph_height), fill=fill_main, width=2)
+    draw.line((x_start, y_start, x_start + graph_width, y_start), fill=fill_main, width=2)
+    draw.text((x_start - 2, y_start - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
+    draw.text((x_start - 2, y_start - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
         
     
     
