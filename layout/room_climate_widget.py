@@ -18,29 +18,18 @@ def display_room_climate_widget(draw, image, x_start, y_start, room_climate_data
     # Draw temperature
     draw.text((x_start, y), "Temperature", font=font_normal, fill=fill_main)
     y += spacing_normal + graph_height
-    
-    draw.line((x_start, y, x_start, y - graph_height), fill=fill_main, width=2)
-    draw.line((x_start, y, x_start + graph_width, y), fill=fill_main, width=2)
-
-    draw_room_climate_graph(draw, x_start, y, graph_width, graph_height, df, "temperature", fill_main)
-    
+    draw_room_climate_graph(draw, x_start, y, graph_width, graph_height, df, "temperature", fill_main) 
     y += spacing_small
     
     # Draw Humidity
     draw.text((x_start, y), "Humidity", font=font_normal, fill=fill_main)
     y += spacing_normal + graph_height
-    
-    draw.line((x_start, y, x_start, y - graph_height), fill=fill_main, width=2)
-    draw.line((x_start, y, x_start + graph_width, y), fill=fill_main, width=2)
     draw_room_climate_graph(draw, x_start, y, graph_width, graph_height, df, "humidity", fill_main)
     y += spacing_small
         
     # Draw CO2
     draw.text((x_start, y), "CO2", font=font_normal, fill=fill_main)
     y += spacing_normal + graph_height
-    
-    draw.line((x_start, y, x_start, y - graph_height), fill=fill_main, width=2)
-    draw.line((x_start, y, x_start + graph_width, y), fill=fill_main, width=2)
     draw_room_climate_graph(draw, x_start, y, graph_width, graph_height, df, "co2", fill_main)
     
     
@@ -62,6 +51,13 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     
     if min_value == max_value:
         return  # Avoid division by zero
+    
+    draw.line((x_start, y, x_start, y - graph_height), fill=fill_main, width=2)
+    draw.line((x_start, y, x_start + graph_width, y), fill=fill_main, width=2)
+    draw.text((x_start - 2, y - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
+    draw.text((x_start - 2, y - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
+        
+    
     
     for i in range(len(data) - datapoints - 1, len(data) - 1, 1):
         value = data.iloc[i][value_key]
