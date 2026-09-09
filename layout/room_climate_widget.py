@@ -58,12 +58,11 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     
     start_time = data.iloc[0]["date"].strftime("%H:%M")
     end_time = data.iloc[-1]["date"].strftime("%H:%M")
-    draw.text((x_start , y_start + offset), str(start_time), font=font_small, fill=fill_main, anchor= 'mt')
-    draw.text((x_start + graph_width , y_start + offset), str(end_time), font=font_small, fill=fill_main, anchor= 'mt')
+    draw.text((x_start , y_start + 5), str(start_time), font=font_small, fill=fill_main, anchor= 'mt')
+    draw.text((x_start + graph_width , y_start + 5), str(end_time), font=font_small, fill=fill_main, anchor= 'mt')
     x_increment = 0    
     
-   
-    for i in range(len(data) - 1):
+    for i in range(len(data)):
         value = data.iloc[i][value_key]
         
         x = x_start + x_increment * x_spacing
