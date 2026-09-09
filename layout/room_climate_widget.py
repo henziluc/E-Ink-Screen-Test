@@ -56,16 +56,17 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     draw.line((x_start, y_start, x_start + graph_width, y_start), fill=fill_main, width=2)
     draw.text((x_start - 2, y_start - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
     draw.text((x_start - 2, y_start - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
-        
     
-    print(f"Start Value: X: {x_start}, Y: {y_start}")
+    x_increment = 1    
+    
+   
     for i in range(len(data) - datapoints - 1, len(data) - 1, 1):
         value = data.iloc[i][value_key]
-        x = x_start + i * x_spacing
+        
+        x = x_start + x_increment * x_spacing
         y = y_start - offset - (value - min_value) * y_spacing
-        print(f"Value: {value}, X: {x}, Y: {y}")  # Debugging line to check values
         positions.append((x, y))
-  
+        x_increment += 1
     
     # Draw the graph line
     draw_smooth_curve(draw, positions, fill_main, 2)
