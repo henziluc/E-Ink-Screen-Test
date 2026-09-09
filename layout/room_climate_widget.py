@@ -1,5 +1,6 @@
 import math
 import pandas as pd
+from datetime import datetime
 
 from .helpers import draw_smooth_curve
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
@@ -10,8 +11,7 @@ def display_room_climate_widget(draw, x_start, y_start, room_climate_data):
     graph_width = 1200 - x_start - 30  # Adjust the width based on your layout
     
     df = pd.DataFrame(room_climate_data)
-    df["time"] = pd.to_datetime(df["time"])
-    
+        
     draw.text((x_start, y), "Room Climate", font=font_large, fill=fill_main)
     y += spacing_large
     
@@ -39,7 +39,7 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     offset = 3
     positions = []
     datapoints = 12
-    data = data.tail(datapoints)  # Get the last 12 data points
+    data = data.tail(datapoints + 1)  # Get the last 12 data points
 
     if len(data) < 2:
         return  # Not enough data to draw a graph
@@ -48,7 +48,7 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     max_value = math.ceil(data[value_key].max())  # Ensure the maximum value is at least 1 to avoid division by zero
     delta = max_value - min_value
     y_spacing = (graph_height - offset * 2) / delta
-    x_spacing = graph_width / 12
+    x_spacing = graph_width / datapoints
     
     if min_value == max_value:
         return  # Avoid division by zero
@@ -57,8 +57,11 @@ def draw_room_climate_graph(draw, x_start, y_start, graph_width, graph_height, d
     draw.line((x_start, y_start, x_start + graph_width, y_start), fill=fill_main, width=2)
     draw.text((x_start - 2, y_start - offset), str(min_value), font=font_small, fill=fill_main, anchor= 'rm')
     draw.text((x_start - 2, y_start - graph_height - offset), str(max_value), font=font_small, fill=fill_main, anchor= 'rm')
-    draw.text((x_start , y_start + offset), str(data.iloc[0]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
-    draw.text((x_start + graph_width , y_start + offset), str(data.iloc[- 1]["time"]), font=font_small, fill=fill_main, anchor= 'mt')
+    
+    start_time = data.iloc[0]["date"].strftime("%H:%M")
+    end_time = data.iloc[-1]["date"].strftime("%H:%M")
+    draw.text((x_start , y_start + offset), str(start_time), font=font_small, fill=fill_main, anchor= 'mt')
+    draw.text((x_start + graph_width , y_start + offset), str(end_time), font=font_small, fill=fill_main, anchor= 'mt')
     x_increment = 0    
     
    
