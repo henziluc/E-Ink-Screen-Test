@@ -5,12 +5,10 @@ from datetime import datetime
 from .helpers import draw_smooth_curve
 from .fonts import font_small, font_normal, font_medium, font_large, fill_main, spacing_small, spacing_normal, spacing_medium, spacing_large
 
-def display_room_climate_widget(draw, x_start, y_start, room_climate_data):
+def display_room_climate_widget(draw, x_start, y_start, df):
     y = y_start
     graph_height = 100
     graph_width = 1200 - x_start - 30  # Adjust the width based on your layout
-    
-    df = pd.DataFrame(room_climate_data)
         
     draw.text((x_start, y), "Room Climate", font=font_large, fill=fill_main)
     y += spacing_large

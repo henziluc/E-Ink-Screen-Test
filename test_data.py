@@ -385,4 +385,15 @@ room_climate_data = [
     {"date": "2026-09-08 21:30", "co2": 830, "humidity": 55.5, "temperature": 22.5},
 ]
 
+
+room_climate_data = pd.DataFrame(
+    room_climate_data,
+    columns=[
+        "date",
+        "co2",
+        "humidity",
+        "temperature",
+    ],
+)
+
 room_climate_data["date"] = pd.to_datetime(room_climate_data["date"])
